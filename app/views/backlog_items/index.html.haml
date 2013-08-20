@@ -1,6 +1,10 @@
 %h2= "This Week"
 
 %table.table.table-bordered.table-striped
+  - @items.each do |item|
+    %tr
+      %td
+        %a= item.name
   %tr
     %td="view backlog"
   %tr
