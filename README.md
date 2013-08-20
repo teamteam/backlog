@@ -1,5 +1,15 @@
 # Backlog
 
+## Configure your environment
+
+Install the Ruby
+
+    $ rvm install `cat .ruby-version`
+
+Create and use a gemset
+
+    $ rvm use `cat .ruby-version`@`cat .ruby-gemset` --create
+
 ## Test your code
 
 Generate a feature spec with the following command:
