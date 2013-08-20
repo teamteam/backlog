@@ -4,7 +4,7 @@
   - @items.each do |item|
     %tr
       %td
-        %a= item.name
+        %a{:href => backlog_item_path(item)}= item.name
   %tr
     %td="view backlog"
   %tr
