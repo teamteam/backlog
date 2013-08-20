@@ -9,10 +9,12 @@ feature "Backlog" do
 
   scenario "can view a backlog item from the backlog" do
     backlog_item = BacklogItem.create :name => "Backlog Item Name"
-    backlog_item = BacklogItem.create :name => "Backlog Item Name 2"
+    backlog_item2 = BacklogItem.create :name => "Backlog Item Name 2"
 
     visit backlog_path
     click_link backlog_item.name
-    page.has_content?(backlog_item.name)
+
+    assert page.has_text?(backlog_item.name)
+    assert page.has_no_text?(backlog_item2.name)
   end
 end
