@@ -16,4 +16,14 @@ describe BacklogItemsController do
       assert_select "a[href=#{backlog_item_path backlog_item}]"
     end
   end
+
+  describe "edit" do
+    it "assigns backlog_item" do
+      backlog_item = BacklogItem.create :name => 'Backlog Item Name'
+
+      get :edit, :backlog_item_id => backlog_item.id
+
+      assert_equal assigns(:backlog_item), backlog_item
+    end
+  end
 end
