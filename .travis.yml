@@ -5,3 +5,5 @@ env:
 - DB=sqlite
 before_script:
 - npm install
+script:
+- bundle exec rake minitest:all  
