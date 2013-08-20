@@ -8,8 +8,8 @@ feature "Backlog" do
   end
 
   scenario "can view a backlog item from the backlog" do
-    backlog_item = BacklogItem.create :name => "Backlog Item Name"
-    backlog_item2 = BacklogItem.create :name => "Backlog Item Name 2"
+    backlog_item = backlog_items :first_item
+    backlog_item2 = backlog_items :second_item
 
     visit backlog_path
     click_link backlog_item.name

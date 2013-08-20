@@ -3,7 +3,7 @@ require "test_helper"
 describe BacklogItemsController do
   describe "index" do
     it "links items to their detail page" do
-      backlog_item = BacklogItem.create :name => "Backlog Item Name"
+      backlog_item = backlog_items :first_item
 
       get :index
 

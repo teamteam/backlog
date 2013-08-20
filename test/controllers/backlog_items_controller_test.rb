@@ -9,7 +9,7 @@ describe BacklogItemsController do
     end
 
     it "provides links to the backlog items" do
-      backlog_item = BacklogItem.create :name => 'Backlog Item Name'
+      backlog_item = backlog_items :first_item
 
       get :index
 
@@ -19,7 +19,7 @@ describe BacklogItemsController do
 
   describe "edit" do
     it "assigns backlog_item" do
-      backlog_item = BacklogItem.create :name => 'Backlog Item Name'
+      backlog_item = backlog_items :first_item
 
       get :edit, :backlog_item_id => backlog_item.id
 
