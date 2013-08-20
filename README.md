@@ -18,7 +18,7 @@ Install node depencies
 
     $ npm install
 
-Bower dependencies (note that this is automatically run the first time you run npm install)
+Bower dependencies (note that this runs automatically when you run npm install)
 
     $ ./bin/bower_install
 
