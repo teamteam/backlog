@@ -1,6 +1,6 @@
 class BacklogItemsController < ApplicationController
   def index
-    @items = BacklogItem.all
+    @backlog_items = BacklogItem.all
   end
 
   def edit

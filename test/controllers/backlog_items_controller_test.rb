@@ -5,7 +5,7 @@ describe BacklogItemsController do
     it "assigns backlog_items" do
       get :index
 
-      assert_equal assigns(:items), BacklogItem.all
+      assert_equal assigns(:backlog_items), BacklogItem.all
     end
 
     it "provides links to the backlog items" do

@@ -1,7 +1,7 @@
 %h2= "This Week"
 
 %table.table.table-bordered.table-striped
-  - @items.each do |item|
+  - @backlog_items.each do |backlog_item|
     %tr
       %td
-        %a{:href => backlog_item_path(item)}= item.name
+        %a{:href => backlog_item_path(backlog_item)}= backlog_item.name
