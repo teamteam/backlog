@@ -45,4 +45,13 @@ feature "Backlog Item" do
 
     assert_not_nil BacklogItem.find_by_name_and_completed backlog_item.name, true
   end
+
+  scenario "can reopen backlog item that is completed" do
+    backlog_item = backlog_items :second_item
+
+    visit backlog_item_path(backlog_item)
+    click_on "Reopen"
+
+    assert_not_nil BacklogItem.find_by_name_and_completed backlog_item.name, false
+  end
 end
