@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20130821184729) do
 
   create_table "backlog_items", force: true do |t|
     t.string  "name"
-    t.boolean "completed"
+    t.boolean "completed", default: false
   end
 
 end
