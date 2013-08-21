@@ -6,3 +6,4 @@
       %td
         %a{:href => backlog_item_path(backlog_item)}= backlog_item.name
         = button_to "Delete", backlog_item, :method => :delete, :class => "btn btn-danger"
+= link_to "Create Backlog item", new_backlog_item_path, :class => "btn btn-success"

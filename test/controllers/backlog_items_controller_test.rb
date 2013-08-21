@@ -40,4 +40,26 @@ describe BacklogItemsController do
       assert_equal assigns(:backlog_item), @backlog_item
     end
   end
+
+  describe "new" do
+    it "assigns a new backlog item" do
+      get :new
+
+      assert_nil assigns(:backlog_item).id
+    end
+  end
+
+  describe "create" do
+    it "creates a new backlog item" do
+      post :create, :backlog_item => { :name => 'Newly Created Backlog Item Name' }
+
+      assert_not_nil BacklogItem.find_by_name 'Newly Created Backlog Item Name'
+    end
+
+    it "redirects to backlog item" do
+      post :create, :backlog_item => { :name => 'Item Name' }
+
+      assert_redirected_to backlog_item_path(BacklogItem.find_by_name('Item Name'))
+    end
+  end
 end
