@@ -1,2 +1,4 @@
 .backlog-item
   %h1= @backlog_item.name
+
+  = button_to "Delete", @backlog_item, :method => :delete
