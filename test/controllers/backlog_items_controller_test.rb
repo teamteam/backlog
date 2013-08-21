@@ -39,6 +39,14 @@ describe BacklogItemsController do
 
       assert_equal assigns(:backlog_item), @backlog_item
     end
+
+    it "redirects to backlog item" do
+      backlog_item = backlog_items :first_item
+
+      post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => 'Updated Backlog Item Name' }
+
+      assert_redirected_to backlog_item_path(BacklogItem.find_by_name('Updated Backlog Item Name'))
+    end
   end
 
   describe "new" do
