@@ -7,7 +7,7 @@ describe BacklogItemsController do
 
       get :index
 
-      assert_select "a", backlog_item.name
+      assert_select "a[href=#{backlog_item_path(backlog_item)}]", backlog_item.name
     end
   end
 end
