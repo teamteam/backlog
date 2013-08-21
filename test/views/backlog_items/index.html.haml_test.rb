@@ -9,5 +9,11 @@ describe BacklogItemsController do
 
       assert_select "a[href=#{backlog_item_path(backlog_item)}]", backlog_item.name
     end
+
+    it "links to new backlog item page" do
+      get :index
+
+      assert_select "a[href=#{new_backlog_item_path}]", "Create Backlog item"
+    end
   end
 end

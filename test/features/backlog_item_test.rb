@@ -17,4 +17,13 @@ feature "Backlog Item" do
 
     assert_nil BacklogItem.find_by_id backlog_item.id
   end
+
+  scenario "can add new backlog item" do
+    visit new_backlog_item_path
+
+    fill_in "Name", :with => "New Backlog Item Name"
+    click_on "Create Backlog item"
+
+    assert_not_nil BacklogItem.find_by_name("New Backlog Item Name")
+  end
 end
