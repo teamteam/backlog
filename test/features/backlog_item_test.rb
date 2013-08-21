@@ -6,7 +6,7 @@ feature "Backlog Item" do
 
     visit backlog_item_path(backlog_item)
 
-    page.must_have_content backlog_item.name
+    page.must_have_field "Name", :with => backlog_item.name
   end
 
   scenario "can remove the backlog item" do
@@ -25,5 +25,15 @@ feature "Backlog Item" do
     click_on "Create Backlog item"
 
     assert_not_nil BacklogItem.find_by_name("New Backlog Item Name")
+  end
+
+  scenario "can edit backlog item" do
+    backlog_item = backlog_items :first_item
+
+    visit backlog_item_path(backlog_item)
+    fill_in "Name", :with => "Updated Backlog Item Name"
+    click_on "Update Backlog item"
+
+    assert_not_nil BacklogItem.find_by_name("Updated Backlog Item Name")
   end
 end

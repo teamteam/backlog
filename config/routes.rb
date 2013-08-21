@@ -6,6 +6,7 @@ Backlog::Application.routes.draw do
   get 'backlog/new', to: 'backlog_items#new', as: :new_backlog_item
   post 'backlog/create', to: 'backlog_items#create', as: :create_backlog_item
   get 'backlog/:backlog_item_id', to: 'backlog_items#edit', as: :backlog_item
+  patch 'backlog/:backlog_item_id', to: 'backlog_items#update', as: :update_backlog_item
   delete 'backlog/:backlog_item_id', to: 'backlog_items#destroy', as: :delete_backlog_item
 
   # You can have the root of your site routed with "root"
