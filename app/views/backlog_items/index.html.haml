@@ -1,17 +1,7 @@
 %h2= "This Week"
 
 %table.table.table-bordered.table-striped
-  %tr
-    %td="view backlog"
-  %tr
-    %td="view backlog item"
-  %tr
-    %td="add item to backlog"
-  %tr
-    %td="remove item on backlog page"
-  %tr
-    %td="remove item on item page"
-  %tr
-    %td="edit backlog item"
-  %tr
-    %td="complete backlog item"
+  - @backlog_items.each do |backlog_item|
+    %tr
+      %td
+        %a{:href => backlog_item_path(backlog_item)}= backlog_item.name

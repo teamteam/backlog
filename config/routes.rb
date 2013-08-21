@@ -3,6 +3,7 @@ Backlog::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   get 'backlog', to: 'backlog_items#index', as: :backlog
+  get 'backlog/:backlog_item_id', to: 'backlog_items#edit', as: :backlog_item
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
