@@ -7,7 +7,7 @@ describe BacklogItemsController do
 
       get :edit, :backlog_item_id => backlog_item.id
 
-      assert_select 'body', backlog_item.name
+      @response.body.must_match /#{backlog_item.name}/
     end
   end
 end
