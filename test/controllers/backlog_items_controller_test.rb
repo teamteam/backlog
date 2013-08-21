@@ -1,6 +1,10 @@
 require "test_helper"
 
 describe BacklogItemsController do
+  before :each do
+    @backlog_item = backlog_items :first_item
+  end
+
   describe "index" do
     it "assigns backlog_items" do
       get :index
@@ -9,21 +13,31 @@ describe BacklogItemsController do
     end
 
     it "provides links to the backlog items" do
-      backlog_item = backlog_items :first_item
-
       get :index
 
-      assert_select "a[href=#{backlog_item_path backlog_item}]"
+      assert_select "a[href=#{backlog_item_path @backlog_item}]"
+    end
+  end
+
+  describe "destroy" do
+    it "deletes the backlog item" do
+      delete :destroy, :backlog_item_id => @backlog_item.id
+
+      assert_nil BacklogItem.find_by_id @backlog_item.id
+    end
+
+    it "redirects to the backlog" do
+      delete :destroy, :backlog_item_id => @backlog_item.id
+
+      assert_redirected_to backlog_path
     end
   end
 
   describe "edit" do
     it "assigns backlog_item" do
-      backlog_item = backlog_items :first_item
+      get :edit, :backlog_item_id => @backlog_item.id
 
-      get :edit, :backlog_item_id => backlog_item.id
-
-      assert_equal assigns(:backlog_item), backlog_item
+      assert_equal assigns(:backlog_item), @backlog_item
     end
   end
 end
