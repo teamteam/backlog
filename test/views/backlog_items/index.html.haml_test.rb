@@ -15,5 +15,11 @@ describe BacklogItemsController do
 
       assert_select "a[href=#{new_backlog_item_path}]", "Create Backlog item"
     end
+
+    it "calls out the backlog items that are completed" do
+      get :index
+
+      assert_select "tr.success"
+    end
   end
 end
