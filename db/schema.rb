@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820034015) do
+ActiveRecord::Schema.define(version: 20130821184729) do
 
   create_table "backlog_items", force: true do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "completed"
   end
 
 end

@@ -5,3 +5,7 @@
     = f.submit :class => 'btn btn-success'
 
   = button_to "Delete", @backlog_item, :method => :delete, :class => 'btn btn-danger'
+
+  = form_for @backlog_item, url: update_backlog_item_path(@backlog_item) do |f|
+    = f.hidden_field :completed, :value => true
+    = f.submit "Complete", :class => 'btn btn-success'

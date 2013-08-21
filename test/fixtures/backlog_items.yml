@@ -3,3 +3,4 @@ first_item:
 
 second_item:
   name: Second Item Name
+  completed: true
