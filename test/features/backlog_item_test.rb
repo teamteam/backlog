@@ -6,6 +6,15 @@ feature "Backlog Item" do
 
     visit backlog_item_path(backlog_item)
 
-    assert page.has_text?(backlog_item.name)
+    page.must_have_content backlog_item.name
+  end
+
+  scenario "can remove the backlog item" do
+    backlog_item = backlog_items :first_item
+
+    visit backlog_item_path(backlog_item)
+    page.click_on "Delete"
+
+    assert_nil BacklogItem.find_by_id backlog_item.id
   end
 end
