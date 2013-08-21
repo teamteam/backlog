@@ -7,4 +7,10 @@
     = csrf_meta_tags
 
   %body
+    .row
+      .col-lg-8.col-lg-offset-2
+        %nav.navbar.navbar-default{:role => "navigation"}
+          .navbar-header
+            %a.navbar-brand{:href => backlog_path}="Backlog"
+
     = yield
