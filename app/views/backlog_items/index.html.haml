@@ -12,10 +12,13 @@
         - @backlog_items.each do |backlog_item|
           %tr.backlog-item-row
             %td
-              - if backlog_item.completed
-                %i.glyphicon.glyphicon-ok.pull-left
+              .pull-left
+                - if backlog_item.completed
+                  %i.glyphicon.glyphicon-ok
+                - else
+                  %i.glyphicon.glyphicon-remove
 
-              %a.pull-left{:href => backlog_item_path(backlog_item)}= backlog_item.name
+                %a{:href => backlog_item_path(backlog_item)}= backlog_item.name
 
               .backlog-item-controls
                 = link_to backlog_item_path(backlog_item), :class => "pull-right edit" do

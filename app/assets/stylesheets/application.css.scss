@@ -36,21 +36,27 @@ h2 {
 }
 
 .backlog-item-row {
-  i.glyphicon-ok {
-    margin-left: 10px;
-    position: relative;
-    left: -10px;
+  .pull-left {
+    i {
+      margin-left: 10px;
+      position: relative;
+      left: -10px;
+    }
+
+    i.glyphicon-remove {
+      color: #CCCCCC;
+    }
   }
 }
 
 .backlog-item-controls {
   .delete {
-    color: #FF0000;
+    color: #FE3034;
     margin-left: 10px;
   }
 
   .edit {
-    color: #000000;
+    color: #CCCCCC;
     margin-left: 8px;
   }
 }
