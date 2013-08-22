@@ -19,6 +19,28 @@ describe BacklogItemsController do
     end
   end
 
+  describe "toggle_complete" do
+    before :each do
+      @request.env["HTTP_REFERER"] = "referer-value"
+    end
+
+    it "toggles the completed value of the item" do
+      backlog_item = backlog_items :first_item
+
+      get :toggle_complete, :backlog_item_id => backlog_item.id
+
+      assert_not_nil BacklogItem.find_by_id_and_completed(backlog_item.id, true)
+    end
+
+    it "redirects to the referer" do
+      backlog_item = backlog_items :first_item
+
+      get :toggle_complete, :backlog_item_id => backlog_item.id
+
+      assert_redirected_to "referer-value"
+    end
+  end
+
   describe "destroy" do
     it "deletes the backlog item" do
       delete :destroy, :backlog_item_id => @backlog_item.id
@@ -42,7 +64,7 @@ describe BacklogItemsController do
   end
 
   describe "update" do
-    it "" do
+    it "redirects to the referer" do
       @request.env["HTTP_REFERER"] = "referer-value"
       backlog_item = backlog_items :first_item
 

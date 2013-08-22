@@ -1,36 +1,26 @@
-.row
-  .col-lg-8.col-lg-offset-2
-    %h2= "This Week"
+.backlog
+  .row
+    .col-lg-8.col-lg-offset-2
+      %h2= "This Week"
 
-    %table.table
-      - if @backlog_items.empty?
-        %tr.backlog-item-row
-          %td
-            %em
-              No backlog items
-      - else
-        - @backlog_items.each do |backlog_item|
+      %table.table
+        - if @backlog_items.empty?
           %tr.backlog-item-row
             %td
-              .pull-left
-                - if backlog_item.completed
-                  %i.glyphicon.glyphicon-ok
-                - else
-                  %i.glyphicon.glyphicon-remove
+              %em
+                No backlog items
+        - else
+          - @backlog_items.each do |backlog_item|
+            %tr.backlog-item-row
+              %td
+                .pull-left
+                  = link_to toggle_complete_backlog_item_path(backlog_item), :id => "toggle-#{backlog_item.id}" do
+                    %i.glyphicon{ :class => backlog_item.completed ? 'glyphicon-ok' : 'glyphicon-remove' }
+                  = link_to backlog_item.name, backlog_item_path(backlog_item)
 
-                %a{:href => backlog_item_path(backlog_item)}= backlog_item.name
+                .backlog-item-controls
+                  = link_to backlog_item_path(backlog_item), :class => "pull-right edit" do
+                    %i.glyphicon.glyphicon-chevron-right
 
-              .backlog-item-controls
-                = link_to backlog_item_path(backlog_item), :class => "pull-right edit" do
-                  %i.glyphicon.glyphicon-chevron-right
-
-                = link_to backlog_item, :method => :delete, :id => "remove-#{backlog_item.id}", :class => "pull-right delete" do
-                  %i.glyphicon.glyphicon-floppy-remove
-
-                = form_for backlog_item, :html => {:class => "form-inline"}, :url => update_backlog_item_path(backlog_item) do |f|
-                  - if backlog_item.completed
-                    = f.hidden_field :completed, :value => false
-                    = f.submit "Reopen", :class => 'btn btn-xs btn-info pull-right'
-                  - else
-                    = f.hidden_field :completed, :value => true
-                    = f.submit "Complete", :class => 'btn btn-xs btn-success pull-right'
+                  = link_to backlog_item, :method => :delete, :id => "remove-#{backlog_item.id}", :class => "pull-right delete" do
+                    %i.glyphicon.glyphicon-floppy-remove

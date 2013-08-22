@@ -22,7 +22,7 @@ feature "Backlog" do
     backlog_items(:second_item).delete
 
     visit backlog_path
-    click_on "Complete"
+    page.find("#toggle-#{backlog_item.id}").click
 
     assert_not_nil BacklogItem.find_by_name_and_completed backlog_item.name, true
   end
@@ -32,7 +32,7 @@ feature "Backlog" do
     backlog_items(:first_item).delete
 
     visit backlog_path
-    click_on "Reopen"
+    page.find("#toggle-#{backlog_item.id}").click
 
     assert_not_nil BacklogItem.find_by_name_and_completed backlog_item.name, false
   end
