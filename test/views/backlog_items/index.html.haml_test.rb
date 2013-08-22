@@ -21,7 +21,7 @@ describe BacklogItemsController do
     it "calls out the backlog items that are completed" do
       get :index
 
-      assert_select "tr.success"
+      assert_select "i.glyphicon-ok"
     end
   end
 end

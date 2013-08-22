@@ -35,10 +35,26 @@ h2 {
   text-align: center;
 }
 
-.delete {
-  color: #FF0000;
+.backlog-item-row {
+  i.glyphicon-ok {
+    margin-left: 10px;
+    position: relative;
+    left: -10px;
+  }
 }
 
-.edit {
-  color: #000000;
+.backlog-item-controls {
+  .delete {
+    color: #FF0000;
+    margin-left: 10px;
+  }
+
+  .edit {
+    color: #000000;
+    margin-left: 8px;
+  }
+}
+
+.glyphicon-ok {
+  color: #89B068;
 }
