@@ -15,7 +15,7 @@ describe BacklogItemsController do
     it "links to new backlog item page" do
       get :index
 
-      assert_select "a[href=#{new_backlog_item_path}]", "Create Backlog item"
+      assert_select "a[href=#{new_backlog_item_path}]"
     end
 
     it "calls out the backlog items that are completed" do
