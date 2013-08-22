@@ -23,5 +23,13 @@ describe BacklogItemsController do
 
       assert_select "i.glyphicon-ok"
     end
+
+    it "gracefully handles no backlog items" do
+      BacklogItem.delete_all
+
+      get :index
+
+      @response.body.must_include "No backlog items"
+    end
   end
 end
