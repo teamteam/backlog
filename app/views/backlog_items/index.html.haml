@@ -19,8 +19,5 @@
                   = link_to backlog_item.name, backlog_item_path(backlog_item)
 
                 .backlog-item-controls
-                  = link_to backlog_item_path(backlog_item), :class => "pull-right edit" do
-                    %i.glyphicon.glyphicon-chevron-right
-
                   = link_to backlog_item, :method => :delete, :id => "remove-#{backlog_item.id}", :class => "pull-right delete" do
                     %i.glyphicon.glyphicon-floppy-remove

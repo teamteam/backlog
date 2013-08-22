@@ -35,7 +35,25 @@ h2 {
   text-align: center;
 }
 
+.backlog {
+  table.table {
+    margin-top: 20px;
+
+    td {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border: none;
+    }
+  }
+}
+
 .backlog-item-row {
+  font-size: 18px;
+
+  a {
+    color: #000000;
+  }
+
   .pull-left {
     i {
       margin-left: 10px;
