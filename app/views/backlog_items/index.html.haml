@@ -7,9 +7,10 @@
         %tr{:class => ('success' if backlog_item.completed)}
           %td
             .pull-left= backlog_item.name
-            = link_to backlog_item_path(backlog_item), class: "pull-right" do
+            = link_to backlog_item_path(backlog_item), :class => "pull-right" do
               %i.glyphicon.glyphicon-chevron-right
-            = button_to "Delete", backlog_item, :method => :delete, :class => "btn btn-xs btn-danger pull-right"
+            = link_to backlog_item, :method => :delete, :id => "remove-#{backlog_item.id}", :class => "pull-right" do
+              %i.glyphicon.glyphicon-remove
             = form_for backlog_item, url: update_backlog_item_path(backlog_item) do |f|
               - if backlog_item.completed
                 = f.hidden_field :completed, :value => false

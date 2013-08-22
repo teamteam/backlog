@@ -12,7 +12,7 @@ feature "Backlog" do
     backlog_items(:second_item).delete
 
     visit backlog_path
-    page.click_on "Delete"
+    page.find("#remove-#{backlog_item.id}").click
 
     assert_nil BacklogItem.find_by_id backlog_item.id
   end
