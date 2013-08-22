@@ -7,7 +7,9 @@ describe BacklogItemsController do
 
       get :index
 
-      assert_select "a[href=#{backlog_item_path(backlog_item)}]", "Edit"
+      assert_select "a[href=#{backlog_item_path(backlog_item)}]" do
+        assert_select "i.glyphicon-chevron-right"
+      end
     end
 
     it "links to new backlog item page" do

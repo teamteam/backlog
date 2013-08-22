@@ -7,6 +7,8 @@
         %tr{:class => ('success' if backlog_item.completed)}
           %td
             .pull-left= backlog_item.name
+            = link_to backlog_item_path(backlog_item), class: "pull-right" do
+              %i.glyphicon.glyphicon-chevron-right
             = button_to "Delete", backlog_item, :method => :delete, :class => "btn btn-xs btn-danger pull-right"
             = form_for backlog_item, url: update_backlog_item_path(backlog_item) do |f|
               - if backlog_item.completed
@@ -15,6 +17,5 @@
               - else
                 = f.hidden_field :completed, :value => true
                 = f.submit "Complete", :class => 'btn btn-xs btn-success pull-right'
-            = link_to "Edit", backlog_item_path(backlog_item), :class => "btn btn-xs btn-default pull-right"
 
     = link_to "Create Backlog item", new_backlog_item_path, :class => "btn btn-success"
