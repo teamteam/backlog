@@ -72,22 +72,17 @@ h2 {
     color: #000000;
   }
 
-  .pull-left {
-    i {
-      margin-left: 10px;
-      position: relative;
-      left: -10px;
-    }
-
-    i.glyphicon-remove {
-      color: #CCCCCC;
-    }
-  }
-}
-
-.backlog-item-controls {
-  .delete {
-    color: #FE3034;
+  i {
     margin-left: 10px;
+    position: relative;
+    left: -10px;
+  }
+
+  i.glyphicon-remove {
+    color: #CCCCCC;
+  }
+
+  i.glyphicon-remove:hover {
+    color: #FE3034;
   }
 }
