@@ -19,9 +19,10 @@
           .col-lg-2.control-label
           .col-lg-8
             = f.submit "Update", :class => 'btn btn-default'
+            %hr
 
         .form-group
           .col-lg-2.control-label
-            %label= "Delete"
+            %label= "Caution"
           .col-lg-8
-            = link_to "Delete #{@backlog_item.name}", @backlog_item, :method => :delete, :id => "remove", :class => "btn btn-danger", :data => { confirm: "Are you sure?" }
+            = link_to "Delete", @backlog_item, :method => :delete, :id => "remove", :class => "btn btn-danger", :data => { confirm: "Are you sure?" }
