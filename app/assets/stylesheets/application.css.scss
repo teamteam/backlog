@@ -32,6 +32,29 @@ a:hover {
 body {
   padding-top: 20px;
   font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+i {
+  margin-left: 10px;
+  position: relative;
+  left: -10px;
+}
+
+i.glyphicon-remove {
+  color: $default;
+}
+
+i.glyphicon-remove:hover {
+  color: $danger;
+}
+
+.completed {
+  color: $success;
+}
+
+.not-completed {
+  color: $default;
 }
 
 h1 {
@@ -41,14 +64,18 @@ h1 {
 }
 
 .backlog-item {
-  height: 100px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  text-align: center;
+  form {
+    padding-top: 50px;
+  }
+
+  label {
+    font-weight: normal;
+    color: $text;
+  }
+
+  i {
+    padding-left: 20px;
+  }
 }
 
 .backlog {
@@ -61,32 +88,8 @@ h1 {
         padding-bottom: 20px;
         border: none;
 
-        font-size: 18px;
-
         a {
           color: $text;
-        }
-
-        i {
-          margin-left: 10px;
-          position: relative;
-          left: -10px;
-        }
-
-        i.glyphicon-remove {
-          color: $default;
-        }
-
-        i.glyphicon-remove:hover {
-          color: $danger;
-        }
-
-        .completed {
-          color: $success;
-        }
-
-        .not-completed {
-          color: $default;
         }
       }
     }
