@@ -13,13 +13,85 @@
  *= require_tree .
  */
 
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+$success: #89B068;
+$danger: #FE3034;
+$default: #DDDDDD;
+$text: #444444;
+
+a:hover {
+  text-decoration: none;
+}
+
+.navbar {
+  background: none;
+  border: none;
+}
+
+body {
+  padding-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+i {
+  margin-left: 10px;
+  position: relative;
+  left: -10px;
+}
+
+i.glyphicon-remove {
+  color: $default;
+}
+
+i.glyphicon-remove:hover {
+  color: $danger;
+}
+
+.completed {
+  color: $success;
+}
+
+.not-completed {
+  color: $default;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  margin-top: 0px;
+  padding-left: 15px;
+}
+
 .backlog-item {
-  height: 100px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  text-align: center;
+  form {
+    padding-top: 50px;
+  }
+
+  label {
+    font-weight: normal;
+    color: $text;
+  }
+
+  i {
+    padding-left: 20px;
+  }
+}
+
+.backlog {
+  table.table {
+    margin-top: 20px;
+
+    tr {
+      td {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border: none;
+
+        a {
+          color: $text;
+        }
+      }
+    }
+  }
 }

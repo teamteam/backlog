@@ -1,7 +1,27 @@
 .backlog-item
-  = form_for @backlog_item, url: update_backlog_item_path(@backlog_item) do |f|
-    = f.label :name
-    = f.text_field :name
-    = f.submit :class => 'btn btn-success'
+  .row
+    .col-lg-8.col-lg-offset-2
+      = form_for @backlog_item, url: update_backlog_item_path(@backlog_item), :html => { :role => "form", :class => "form-horizontal" } do |f|
+        .form-group
+          .col-lg-2.control-label
+            = f.label :name
+          .col-lg-8
+            = f.text_field :name, :class => "form-control"
 
-  = button_to "Delete", @backlog_item, :method => :delete, :class => 'btn btn-danger'
+        .form-group
+          .col-lg-2.control-label
+            %label= "Completed"
+          .col-lg-8
+            = link_to toggle_complete_backlog_item_path(@backlog_item), :id => "toggle" do
+              %i.glyphicon.glyphicon-ok.form-control-static{ :class => @backlog_item.completed ? 'completed' : 'not-completed' }
+
+        .form-group
+          .col-lg-2.control-label
+          .col-lg-8
+            = f.submit "Update", :class => 'btn btn-default'
+
+        .form-group
+          .col-lg-2.control-label
+            %label= "Delete"
+          .col-lg-8
+            = link_to "Delete #{@backlog_item.name}", @backlog_item, :method => :delete, :id => "remove", :class => "btn btn-danger"

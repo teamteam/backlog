@@ -18,12 +18,18 @@ class BacklogItemsController < ApplicationController
 
   def update
     backlog_item = BacklogItem.find params[:backlog_item_id]
-    backlog_item.update_attributes params.require(:backlog_item).permit(:name)
-    redirect_to backlog_item_path(backlog_item)
+    backlog_item.update_attributes params.require(:backlog_item).permit(:name, :completed)
+    redirect_to :back
   end
 
   def destroy
     BacklogItem.delete params[:backlog_item_id]
     redirect_to backlog_path
+  end
+
+  def toggle_complete
+    backlog_item = BacklogItem.find params[:backlog_item_id]
+    backlog_item.update_attribute :completed, (not backlog_item.completed)
+    redirect_to :back
   end
 end
