@@ -15,16 +15,21 @@
 
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+$success: #89B068;
+$danger: #FE3034;
+$default: #DDDDDD;
+$text: #444444;
+
 a:hover {
   text-decoration: none;
 }
 
 .completed {
-  color: #89B068;
+  color: $success;
 }
 
 .not-completed {
-  color: #CCCCCC;
+  color: $default;
 }
 
 body {
@@ -32,9 +37,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-h2 {
+h1 {
   font-family: 'Roboto', sans-serif;
   margin-top: 0px;
+  padding-left: 15px;
 }
 
 .backlog-item {
@@ -69,7 +75,7 @@ h2 {
   font-size: 18px;
 
   a {
-    color: #000000;
+    color: $text;
   }
 
   i {
@@ -79,10 +85,10 @@ h2 {
   }
 
   i.glyphicon-remove {
-    color: #CCCCCC;
+    color: $default;
   }
 
   i.glyphicon-remove:hover {
-    color: #FE3034;
+    color: $danger;
   }
 }
