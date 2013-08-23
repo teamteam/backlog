@@ -35,9 +35,10 @@ hr {
 }
 
 .navbar-brand {
+  padding-top: 6px;
+
   i {
     font-size: 28px;
-    padding-top: 6px;
     color: $text;
   }
 }
