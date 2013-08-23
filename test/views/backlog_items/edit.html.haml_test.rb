@@ -12,7 +12,7 @@ describe BacklogItemsController do
     end
 
     it "shows a link back to the backlog" do
-      assert_select "a[href=#{backlog_path}]", "Backlog"
+      assert_select "a[href=#{backlog_path}]"
     end
   end
 end
