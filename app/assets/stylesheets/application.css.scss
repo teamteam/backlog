@@ -22,6 +22,10 @@ $text: #444444;
 
 a:hover {
   text-decoration: none;
+
+  i {
+    color: $text;
+  }
 }
 
 hr {
@@ -54,10 +58,6 @@ i {
   margin-left: 10px;
   position: relative;
   left: -10px;
-}
-
-i:hover {
-  color: $text;
 }
 
 i.glyphicon-remove {
@@ -97,17 +97,32 @@ h1 {
   }
 }
 
+hr {
+  height: 1px;
+  border: none;
+  border-top: thin dotted $default;
+}
+
+table.table {
+  border-top: thin dotted $default;
+
+  tr {
+    border-bottom: thin dotted $default;
+
+    td {
+      border: none;
+    }
+  }
+}
+
 .backlog {
   table.table {
     margin-top: 40px;
 
     tr {
-      border-bottom: $default solid 1px;
-
       td {
         padding-top: 20px;
         padding-bottom: 20px;
-        // border: none;
 
         a {
           color: $text;
