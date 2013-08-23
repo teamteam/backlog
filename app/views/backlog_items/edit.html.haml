@@ -24,4 +24,4 @@
           .col-lg-2.control-label
             %label= "Delete"
           .col-lg-8
-            = link_to "Delete #{@backlog_item.name}", @backlog_item, :method => :delete, :id => "remove", :class => "btn btn-danger"
+            = link_to "Delete #{@backlog_item.name}", @backlog_item, :method => :delete, :id => "remove", :class => "btn btn-danger", :data => { confirm: "Are you sure?" }
