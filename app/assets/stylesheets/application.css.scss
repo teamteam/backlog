@@ -46,9 +46,14 @@ body {
 }
 
 i {
+  color: $default;
   margin-left: 10px;
   position: relative;
   left: -10px;
+}
+
+i:hover {
+  color: $text;
 }
 
 i.glyphicon-remove {
