@@ -11,7 +11,8 @@
       .col-lg-8.col-lg-offset-2
         %nav.navbar.navbar-default{:role => "navigation"}
           .navbar-header
-            %a.navbar-brand{:href => backlog_path}="Backlog"
+            = link_to backlog_path, :class => "navbar-brand" do
+              %i.glyphicon.glyphicon-list
 
           %div.collapse.navbar-collapse.navbar-ex1-collapse
             %ul.nav.navbar-nav.navbar-right

@@ -29,6 +29,11 @@ a:hover {
   border: none;
 }
 
+.navbar-brand {
+  font-size: 28px;
+  padding-top: 6px;
+}
+
 body {
   padding-top: 20px;
   font-family: 'Roboto', sans-serif;
@@ -59,7 +64,7 @@ i.glyphicon-remove:hover {
 
 h1 {
   font-family: 'Roboto', sans-serif;
-  margin-top: 0px;
+  margin-top: 10px;
   padding-left: 15px;
 }
 
