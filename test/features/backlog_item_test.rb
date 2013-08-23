@@ -22,7 +22,7 @@ feature "Backlog Item" do
     visit new_backlog_item_path
 
     fill_in "Name", :with => "New Backlog Item Name"
-    click_on "Create Backlog item"
+    click_on "Create"
 
     assert_not_nil BacklogItem.find_by_name("New Backlog Item Name")
   end
