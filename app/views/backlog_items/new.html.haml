@@ -1,5 +1,14 @@
 .backlog-item
   .row
+    .col-lg-6.col-lg-offset-3
+      - if @backlog_item.errors.any?
+        %div.alert.alert-danger
+          %strong
+            Errors
+          %ul
+            - @backlog_item.errors.full_messages.each do |msg|
+              %li= msg
+  .row
     .col-lg-8.col-lg-offset-2
       = form_for @backlog_item, url: create_backlog_item_path, :html => { :role => "form", :class => "form-horizontal" } do |f|
         .form-group

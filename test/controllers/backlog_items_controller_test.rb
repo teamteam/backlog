@@ -72,6 +72,15 @@ describe BacklogItemsController do
 
       assert_redirected_to "referer-value"
     end
+
+    it "renders edit backlog item form with errors on error" do
+      backlog_item = backlog_items :first_item
+
+      post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "" }
+
+      assert_not_nil assigns(:backlog_item)
+      assert_template :edit
+    end
   end
 
   describe "new" do
@@ -89,10 +98,17 @@ describe BacklogItemsController do
       assert_not_nil BacklogItem.find_by_name 'Newly Created Backlog Item Name'
     end
 
-    it "redirects to backlog item" do
+    it "redirects to backlog item on success" do
       post :create, :backlog_item => { :name => 'Item Name' }
 
       assert_redirected_to backlog_item_path(BacklogItem.find_by_name('Item Name'))
+    end
+
+    it "renders new backlog item form with errors on error" do
+      post :create, :backlog_item => { :name => "" }
+
+      assert_not_nil assigns(:backlog_item)
+      assert_template :new
     end
   end
 end

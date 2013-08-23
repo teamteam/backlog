@@ -8,8 +8,12 @@ class BacklogItemsController < ApplicationController
   end
 
   def create
-    backlog_item = BacklogItem.create :name => params[:backlog_item][:name]
-    redirect_to backlog_item_path(backlog_item)
+    @backlog_item = BacklogItem.new :name => params[:backlog_item][:name]
+    if @backlog_item.save
+      redirect_to backlog_item_path(@backlog_item)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -17,9 +21,12 @@ class BacklogItemsController < ApplicationController
   end
 
   def update
-    backlog_item = BacklogItem.find params[:backlog_item_id]
-    backlog_item.update_attributes params.require(:backlog_item).permit(:name, :completed)
-    redirect_to :back
+    @backlog_item = BacklogItem.find params[:backlog_item_id]
+    if @backlog_item.update_attributes params.require(:backlog_item).permit(:name, :completed)
+      redirect_to :back
+    else
+      render :edit
+    end
   end
 
   def destroy
