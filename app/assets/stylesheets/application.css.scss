@@ -24,12 +24,9 @@ a:hover {
   text-decoration: none;
 }
 
-.completed {
-  color: $success;
-}
-
-.not-completed {
-  color: $default;
+.navbar {
+  background: none;
+  border: none;
 }
 
 body {
@@ -54,41 +51,44 @@ h1 {
   text-align: center;
 }
 
-.navbar {
-  background: none;
-  border: none;
-}
-
 .backlog {
   table.table {
     margin-top: 20px;
 
-    td {
-      padding-top: 20px;
-      padding-bottom: 20px;
-      border: none;
+    tr {
+      td {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border: none;
+
+        font-size: 18px;
+
+        a {
+          color: $text;
+        }
+
+        i {
+          margin-left: 10px;
+          position: relative;
+          left: -10px;
+        }
+
+        i.glyphicon-remove {
+          color: $default;
+        }
+
+        i.glyphicon-remove:hover {
+          color: $danger;
+        }
+
+        .completed {
+          color: $success;
+        }
+
+        .not-completed {
+          color: $default;
+        }
+      }
     }
-  }
-}
-
-.backlog-item-row {
-  font-size: 18px;
-
-  a {
-    color: $text;
-  }
-
-  i {
-    margin-left: 10px;
-    position: relative;
-    left: -10px;
-  }
-
-  i.glyphicon-remove {
-    color: $default;
-  }
-
-  i.glyphicon-remove:hover {
-    color: $danger;
   }
 }

@@ -5,13 +5,13 @@
 
       %table.table
         - if @backlog_items.empty?
-          %tr.backlog-item-row
+          %tr
             %td
               %em
                 No backlog items
         - else
           - @backlog_items.each do |backlog_item|
-            %tr.backlog-item-row
+            %tr
               %td
                 .pull-left
                   = link_to toggle_complete_backlog_item_path(backlog_item), :id => "toggle-#{backlog_item.id}" do
