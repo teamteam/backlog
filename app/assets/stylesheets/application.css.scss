@@ -19,6 +19,14 @@ a:hover {
   text-decoration: none;
 }
 
+.completed {
+  color: #89B068;
+}
+
+.not-completed {
+  color: #CCCCCC;
+}
+
 body {
   padding-top: 20px;
   font-family: 'Roboto', sans-serif;
@@ -82,13 +90,4 @@ h2 {
     color: #FE3034;
     margin-left: 10px;
   }
-
-  .edit {
-    color: #CCCCCC;
-    margin-left: 8px;
-  }
-}
-
-.glyphicon-ok {
-  color: #89B068;
 }
