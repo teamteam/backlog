@@ -7,5 +7,18 @@
     = csrf_meta_tags
 
   %body
-    .container
-      = yield
+    .row
+      .col-lg-8.col-lg-offset-2
+        %nav.navbar.navbar-default{:role => "navigation"}
+          .navbar-header
+            = link_to backlog_path, :class => "navbar-brand" do
+              %i.icon-list
+
+          %div.collapse.navbar-collapse.navbar-ex1-collapse
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                .navbar-form
+                  .form-group
+                    = link_to "New Item", new_backlog_item_path, :class => 'btn btn-success'
+
+    = yield

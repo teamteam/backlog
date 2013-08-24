@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+# Use font-awesome for icons
+gem 'font-awesome-rails', '3.1.1.2'
+
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -47,7 +51,14 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
 group :test, :development do
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
+
+  gem 'sqlite3'
 end
