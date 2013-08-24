@@ -19,7 +19,7 @@ describe BacklogItemsController do
     it "calls out the backlog items that are completed" do
       get :index
 
-      assert_select "i.glyphicon-ok"
+      assert_select "i.icon-ok"
     end
 
     it "gracefully handles no backlog items" do
