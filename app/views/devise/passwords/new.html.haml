@@ -1,0 +1,28 @@
+.row
+  .col-lg-8.col-lg-offset-2
+    %h1
+      Forgot your password?
+
+    = form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => "form", :class => "form-horizontal" } do |f|
+
+      .form-group{:class => resource.errors.has_key?(:email) ? 'has-error' : ''}
+        .col-lg-2.control-label
+          = f.label :email
+        .col-lg-8
+          = f.email_field :email, :autofocus => true, :class => 'form-control'
+
+      .form-group
+        .col-lg-2.control-label
+        .col-lg-8
+          = f.submit "Send me reset password instructions", :class => "btn btn-default"
+
+      .form-group
+        .col-lg-2.control-label
+        .col-lg-8
+          %hr
+
+      .form-group
+        .col-lg-2.control-label
+        .col-lg-8
+          %small
+            = render "devise/shared/links"
