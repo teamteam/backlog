@@ -15,8 +15,9 @@
 
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+$dark: #000000;
 $success: #5CB85C;
-$danger: #FE3034;
+$danger: #BD4A48;
 $default: #DDDDDD;
 $text: #444444;
 
@@ -24,12 +25,17 @@ $text: #444444;
   font-size: 14px;
 }
 
+.danger {
+  color: $danger;
+}
+
+a {
+  color: $text;
+}
+
 a:hover {
   text-decoration: none;
-
-  i {
-    color: $text;
-  }
+  color: $dark;
 }
 
 hr {
@@ -72,6 +78,10 @@ i.glyphicon-remove:hover {
   color: $danger;
 }
 
+i.glyphicon-pencil:hover {
+  color: $text;
+}
+
 .completed {
   color: $success;
 }
@@ -93,7 +103,6 @@ h1 {
 
   label {
     font-weight: normal;
-    color: $text;
   }
 
   i {
@@ -127,10 +136,6 @@ table.table {
       td {
         padding-top: 20px;
         padding-bottom: 20px;
-
-        a {
-          color: $text;
-        }
       }
     }
   }

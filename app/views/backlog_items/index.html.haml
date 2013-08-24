@@ -18,7 +18,7 @@
                     %i.glyphicon.glyphicon-ok{ :class => backlog_item.completed ? 'completed' : 'not-completed' }
                     = backlog_item.name
 
-                .pull-right
+                .edit-controls.pull-right
                   = link_to backlog_item_path(backlog_item) do
                     %i.glyphicon.glyphicon-pencil
                   = link_to backlog_item, :method => :delete, :id => "remove-#{backlog_item.id}", :data => { confirm: "Are you sure?" } do
