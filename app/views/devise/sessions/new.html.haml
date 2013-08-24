@@ -1,0 +1,41 @@
+.row
+  .col-lg-8.col-lg-offset-2
+    %h1
+      Sign In
+
+    = form_for resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => "form", :class => "form-horizontal" } do |f|
+
+      .form-group{:class => flash[:alert] ? 'has-error' : ''}
+        .col-lg-2.control-label
+          = f.label :email
+        .col-lg-8
+          = f.email_field :email, :autofocus => true, :class => "form-control"
+
+      .form-group{:class => flash[:alert] ? 'has-error' : ''}
+        .col-lg-2.control-label
+          = f.label :password
+        .col-lg-8
+          = f.email_field :password, :class => "form-control"
+
+      .form-group
+        .col-lg-2.control-label
+          = f.label :remember_me
+        .col-lg-8
+          .checkbox
+            = f.check_box :remember_me
+
+      .form-group
+        .col-lg-2.control-label
+        .col-lg-8
+          = f.submit "Sign in", :class => "btn btn-default"
+
+      .form-group
+        .col-lg-2.control-label
+        .col-lg-8
+          %hr
+
+      .form-group
+        .col-lg-2.control-label
+        .col-lg-8
+          %small
+            = render "devise/shared/links"

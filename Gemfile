@@ -64,4 +64,5 @@ group :test, :development do
   gem 'minitest-rails-capybara'
 
   gem 'sqlite3'
+  gem 'mailcatcher'
 end
