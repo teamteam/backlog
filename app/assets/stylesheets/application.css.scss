@@ -40,13 +40,17 @@ a:hover {
 }
 
 hr {
-    padding-bottom: 0;
-    margin-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .navbar {
   background: none;
   border: none;
+}
+
+.control-label {
+  top: -4px;
 }
 
 .navbar-brand {
