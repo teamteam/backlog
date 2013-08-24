@@ -1,9 +1,25 @@
-%h2= "This Week"
+.backlog
+  .row
+    .col-lg-8.col-lg-offset-2
+      %h1= "This Week"
 
-%table.table.table-bordered.table-striped
-  - @backlog_items.each do |backlog_item|
-    %tr
-      %td
-        %a{:href => backlog_item_path(backlog_item)}= backlog_item.name
-        = button_to "Delete", backlog_item, :method => :delete, :class => "btn btn-danger"
-= link_to "Create Backlog item", new_backlog_item_path, :class => "btn btn-success"
+      %table.table
+        - if @backlog_items.empty?
+          %tr
+            %td
+              %em
+                No backlog items
+        - else
+          - @backlog_items.each do |backlog_item|
+            %tr
+              %td
+                .pull-left
+                  = link_to toggle_complete_backlog_item_path(backlog_item), :id => "toggle-#{backlog_item.id}" do
+                    %i.icon-ok{ :class => backlog_item.completed ? 'completed' : 'not-completed' }
+                    = backlog_item.name
+
+                .edit-controls.pull-right
+                  = link_to backlog_item_path(backlog_item) do
+                    %i.icon-pencil
+                  = link_to backlog_item, :method => :delete, :id => "remove-#{backlog_item.id}", :data => { confirm: "Are you sure?" } do
+                    %i.icon-remove

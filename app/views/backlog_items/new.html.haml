@@ -1,4 +1,14 @@
-= form_for @backlog_item, url: create_backlog_item_path do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.submit :class => 'btn btn-success'
+.backlog-item
+  .row
+    .col-lg-8.col-lg-offset-2
+      = form_for @backlog_item, url: create_backlog_item_path, :html => { :role => "form", :class => "form-horizontal" } do |f|
+        .form-group{:class => @backlog_item.errors.has_key?(:name) ? 'has-error' : ''}
+          .col-lg-2.control-label
+            = f.label :name
+          .col-lg-8
+            = f.text_field :name, :class => "form-control", :placeholder => @backlog_item.errors[:name].join('')
+
+        .form-group
+          .col-lg-2.control-label
+          .col-lg-8
+            = f.submit "Create", :class => 'btn btn-default'
