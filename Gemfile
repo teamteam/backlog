@@ -5,6 +5,9 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+# Use font-awesome for icons
+gem 'font-awesome-rails', '3.1.1.2'
+
 # Use sqlite3 as the database for Active Record
 
 # Use SCSS for stylesheets

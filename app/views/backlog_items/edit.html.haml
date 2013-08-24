@@ -19,7 +19,7 @@
             %label= "Completed"
           .col-lg-8
             = link_to toggle_complete_backlog_item_path(@backlog_item), :id => "toggle" do
-              %i.glyphicon.glyphicon-ok.form-control-static{ :class => @backlog_item.completed ? 'completed' : 'not-completed' }
+              %i.icon-ok.form-control-static{ :class => @backlog_item.completed ? 'completed' : 'not-completed' }
             %hr
 
         .form-group

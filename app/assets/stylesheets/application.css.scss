@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require bootstrap/dist/css/bootstrap
+ *= require font-awesome
  *= require_self
  *= require_tree .
  */
@@ -70,15 +71,15 @@ i {
   left: -10px;
 }
 
-i.glyphicon-remove {
+i.icon-remove {
   color: $default;
 }
 
-i.glyphicon-remove:hover {
+i.icon-remove:hover {
   color: $danger;
 }
 
-i.glyphicon-pencil:hover {
+i.icon-pencil:hover {
   color: $text;
 }
 

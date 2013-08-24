@@ -15,11 +15,11 @@
               %td
                 .pull-left
                   = link_to toggle_complete_backlog_item_path(backlog_item), :id => "toggle-#{backlog_item.id}" do
-                    %i.glyphicon.glyphicon-ok{ :class => backlog_item.completed ? 'completed' : 'not-completed' }
+                    %i.icon-ok{ :class => backlog_item.completed ? 'completed' : 'not-completed' }
                     = backlog_item.name
 
                 .edit-controls.pull-right
                   = link_to backlog_item_path(backlog_item) do
-                    %i.glyphicon.glyphicon-pencil
+                    %i.icon-pencil
                   = link_to backlog_item, :method => :delete, :id => "remove-#{backlog_item.id}", :data => { confirm: "Are you sure?" } do
-                    %i.glyphicon.glyphicon-remove
+                    %i.icon-remove
