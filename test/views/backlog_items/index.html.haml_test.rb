@@ -2,32 +2,34 @@ require "test_helper"
 
 describe BacklogItemsController do
   describe "index" do
-    it "links items to their detail page" do
-      backlog_item = backlog_items :first_item
+    describe "with backlog items" do
+      before :each do
+        @backlog_item = backlog_items :first_item
 
-      get :index
+        get :index
+      end
 
-      assert_select "a[href=#{backlog_item_path(backlog_item)}]"
+      it "links items to their detail page" do
+        assert_select "a[href=#{backlog_item_path(@backlog_item)}]"
+      end
+
+      it "links to new backlog item page" do
+        assert_select "a[href=#{new_backlog_item_path}]"
+      end
+
+      it "calls out the backlog items that are completed" do
+        assert_select "i.icon-ok"
+      end
     end
 
-    it "links to new backlog item page" do
-      get :index
+    describe "without backlog items" do
+      it "gracefully handles no backlog items" do
+        BacklogItem.delete_all
 
-      assert_select "a[href=#{new_backlog_item_path}]"
-    end
+        get :index
 
-    it "calls out the backlog items that are completed" do
-      get :index
-
-      assert_select "i.icon-ok"
-    end
-
-    it "gracefully handles no backlog items" do
-      BacklogItem.delete_all
-
-      get :index
-
-      @response.body.must_include "No backlog items"
+        @response.body.must_include "No backlog items"
+      end
     end
   end
 end
