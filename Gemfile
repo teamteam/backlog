@@ -57,6 +57,8 @@ group :production do
 end
 
 group :test, :development do
+  gem 'rspec-rails'
+
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
 
