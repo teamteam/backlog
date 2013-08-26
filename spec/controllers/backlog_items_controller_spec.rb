@@ -26,6 +26,16 @@ describe BacklogItemsController do
     end
   end
 
+  describe "#edit" do
+    it "assigns backlog_item to the correct instance" do
+      BacklogItem.should_receive(:find).with("1").and_return "existing backlog item"
+
+      get :edit, :backlog_item_id => 1
+
+      expect(assigns :backlog_item).to eq('existing backlog item')
+    end
+  end
+
   describe "#toggle_complete" do
     before :each do
       @request.env['HTTP_REFERER'] = 'something'
