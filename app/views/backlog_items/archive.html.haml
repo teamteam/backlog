@@ -1,0 +1,5 @@
+- if @backlog_items.empty?
+  No archived items
+- else
+  - @backlog_items.each do |backlog_item|
+    = backlog_item.name
