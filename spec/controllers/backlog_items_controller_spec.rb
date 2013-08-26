@@ -16,6 +16,15 @@ describe BacklogItemsController do
     end
   end
 
+  describe "#archive" do
+    it "assigns backlog_items" do
+      BacklogItem.should_receive(:find_by_archived).with(true).and_return 'archived backlog items'
+      get :archive
+
+      expect(assigns :backlog_items).to eq('archived backlog items')
+    end
+  end
+
   describe "#new" do
     it "assigns backlog_item to a new instance of BacklogItem" do
       BacklogItem.should_receive(:new).and_return 'new backlog item'

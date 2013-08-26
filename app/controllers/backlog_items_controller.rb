@@ -3,6 +3,10 @@ class BacklogItemsController < ApplicationController
     @backlog_items = BacklogItem.all
   end
 
+  def archive
+    @backlog_items = BacklogItem.find_by_archived true
+  end
+
   def new
     @backlog_item = BacklogItem.new
   end
