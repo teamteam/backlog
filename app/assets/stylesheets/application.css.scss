@@ -133,7 +133,13 @@ table.table {
   }
 }
 
-.backlog {
+.archive {
+  i {
+    color: $text;
+  }
+}
+
+.backlog, .archive {
   table.table {
     margin-top: 40px;
 
