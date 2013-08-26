@@ -16,6 +16,16 @@ describe BacklogItemsController do
     end
   end
 
+  describe "#new" do
+    it "assigns backlog_item to a new instance of BacklogItem" do
+      BacklogItem.should_receive(:new).and_return 'new backlog item'
+
+      get :new
+
+      expect(assigns :backlog_item).to eq('new backlog item')
+    end
+  end
+
   describe "#toggle_complete" do
     before :each do
       @request.env['HTTP_REFERER'] = 'something'
