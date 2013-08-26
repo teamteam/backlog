@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'backlog_items/archive.html.haml' do
+describe 'backlog_items/archive' do
 
   it "handles no items gracefully" do
     assign :backlog_items, []
