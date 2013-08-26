@@ -1,5 +1,18 @@
-- if @backlog_items.empty?
-  No archived items
-- else
-  - @backlog_items.each do |backlog_item|
-    = backlog_item.name
+.backlog
+  .row
+    .col-lg-8.col-lg-offset-2
+      %h1= "Archive"
+
+      %table.table
+        - if @backlog_items.empty?
+          %tr
+            %td
+              %em
+                No archived items
+        - else
+          - @backlog_items.each do |backlog_item|
+            %tr
+              %td
+                .pull-left
+                  %i.icon-ok.completed
+                  = backlog_item.name
