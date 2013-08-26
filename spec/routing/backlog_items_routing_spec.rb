@@ -1,11 +1,15 @@
 require "spec_helper"
 
 describe BacklogItemsController do
-  describe "path helpers" do
+  describe "routes" do
+    before :each do
+      @team_name = "teamteam"
+    end
+
     it "has a backlog_path" do
       path = backlog_path
 
-      path.should eq("/backlog")
+      path.should eq("/#{@team_name}")
       get(path).should route_to(
         'backlog_items#index'
       )
@@ -15,7 +19,7 @@ describe BacklogItemsController do
       item = mock_model BacklogItem, :id => 1
       path = backlog_item_path(item)
 
-      path.should eq("/backlog/1")
+      path.should eq("/#{@team_name}/1")
       get(path).should route_to(
         'backlog_items#edit',
         :backlog_item_id => "#{item.id}"
@@ -25,7 +29,7 @@ describe BacklogItemsController do
     it "has a new_backlog_item_path" do
       path = new_backlog_item_path
       
-      path.should eq("/backlog/new")
+      path.should eq("/#{@team_name}/new")
       get(path).should route_to(
         'backlog_items#new'
       )
@@ -34,7 +38,7 @@ describe BacklogItemsController do
     it "has a create_backlog_item_path" do
       path = create_backlog_item_path
 
-      path.should eq("/backlog/create")
+      path.should eq("/#{@team_name}/create")
       post(path).should route_to(
         'backlog_items#create'
       )
@@ -44,7 +48,7 @@ describe BacklogItemsController do
       item = mock_model BacklogItem, :id => 1
       path = update_backlog_item_path(item)
 
-      path.should eq("/backlog/1")
+      path.should eq("/#{@team_name}/1")
       patch(path).should route_to(
         'backlog_items#update',
         :backlog_item_id => "#{item.id}"
@@ -55,7 +59,7 @@ describe BacklogItemsController do
       item = mock_model BacklogItem, :id => 1
       path = delete_backlog_item_path(item)
 
-      path.should eq("/backlog/1")
+      path.should eq("/#{@team_name}/1")
       delete(path).should route_to(
         'backlog_items#destroy',
         :backlog_item_id => "#{item.id}"
@@ -66,7 +70,7 @@ describe BacklogItemsController do
       item = mock_model BacklogItem, :id => 1
       path = toggle_complete_backlog_item_path(item)
       
-      path.should eq("/backlog/1/toggle-complete")
+      path.should eq("/#{@team_name}/1/toggle-complete")
       get(path).should route_to(
         'backlog_items#toggle_complete',
         :backlog_item_id => "#{item.id}"
