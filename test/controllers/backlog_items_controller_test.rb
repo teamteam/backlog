@@ -34,7 +34,6 @@ describe BacklogItemsController do
 
     it "redirects to the referer" do
       backlog_item = backlog_items :first_item
-
       get :toggle_complete, :backlog_item_id => backlog_item.id
 
       assert_redirected_to "referer-value"
