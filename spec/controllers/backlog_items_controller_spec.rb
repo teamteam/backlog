@@ -36,9 +36,27 @@ describe BacklogItemsController do
     end
   end
 
-  describe "#toggle_complete" do
+  describe "#destroy" do
     before :each do
       @request.env['HTTP_REFERER'] = 'something'
+    end
+
+    it "deletes the item" do
+      BacklogItem.should_receive(:delete).with "#{@item1.id}"
+
+      delete :destroy, :backlog_item_id => @item1.id
+    end
+
+    it "redirects to the referer" do
+      get :toggle_complete, :backlog_item_id => @item1.id
+
+      response.should redirect_to("something")
+    end
+  end
+
+  describe "#toggle_complete" do
+    before :each do
+      @request.env['HTTP_REFERER'] = "something"
     end
 
     it "toggles the backlog item completed attribute from false to true" do
@@ -59,6 +77,8 @@ describe BacklogItemsController do
 
     it "redirects to the referer" do
       get :toggle_complete, :backlog_item_id => @item1.id
+
+      response.should redirect_to("something")
     end
   end
 end
