@@ -18,4 +18,6 @@ puts "Creating backlog items ..."
 ].each do |backlog_item_name|
   BacklogItem.create :name => backlog_item_name
 end
+
+BacklogItem.first.update_attribute :archived, true
 puts "... backlog items successfully created"
