@@ -26,6 +26,35 @@ describe BacklogItemsController do
     end
   end
 
+  describe "#create" do
+    before :each do
+      @item = mock_model BacklogItem
+      BacklogItem.should_receive(:new).and_return @item
+    end
+
+    it "creates a new backlog item" do
+      @item.should_receive(:save).and_return true
+
+      post :create, :backlog_item => { :name => "new backlog item" }
+    end
+
+    it "redirects to backlog when creation is successful" do
+      @item.should_receive(:save).and_return true
+
+      post :create, :backlog_item => { :name => "" }
+
+      response.should redirect_to(@item)
+    end
+
+    it "renders the new template when creation fails" do
+      @item.should_receive(:save).and_return false
+
+      post :create, :backlog_item => { :name => "" }
+
+      response.should render_template(:new)
+    end
+  end
+
   describe "#edit" do
     it "assigns backlog_item to the correct instance" do
       BacklogItem.should_receive(:find).with("1").and_return "existing backlog item"
