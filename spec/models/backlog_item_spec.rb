@@ -9,6 +9,14 @@ describe BacklogItem do
 
       BacklogItem.new(:name => "something").should be_valid
     end
+
+    it "defaults archived to false" do
+      BacklogItem.new(:name => 'something').archived.should be_false
+    end
+
+    it "defaults completed to false" do
+      BacklogItem.new(:name => 'something').completed.should be_false
+    end
   end
 
   describe "ordering" do
