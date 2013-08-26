@@ -58,9 +58,5 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
-
-  gem 'minitest-rails'
-  gem 'minitest-rails-capybara'
-
   gem 'sqlite3'
 end
