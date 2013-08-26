@@ -65,6 +65,39 @@ describe BacklogItemsController do
     end
   end
 
+  describe "#update" do
+    before :each do
+      @request.env['HTTP_REFERER'] = 'something'
+      @item = backlog_items :first_item
+    end
+
+    it "updates the backlog item" do
+      assert_nil BacklogItem.find_by_name "a"
+
+      post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "a" }
+
+      assert_not_nil BacklogItem.find_by_name "a"
+    end
+
+    it "redirects back to referer when update is successful" do
+      post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "a" }
+
+      response.should redirect_to("something")
+    end
+
+    it "assigns backlog_item to the correct instance when unsucessful" do
+      post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "" }
+
+      expect(assigns :backlog_item).to eq(@item)
+    end
+
+    it "renders the edit page when unsuccessful" do
+      post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "" }
+
+      response.should render_template(:edit)
+    end
+  end
+
   describe "#destroy" do
     before :each do
       @request.env['HTTP_REFERER'] = 'something'
