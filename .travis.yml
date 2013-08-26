@@ -6,4 +6,4 @@ env:
 before_script:
 - npm install
 script:
-- bundle exec rake minitest:all  
+- bundle exec rake spec
