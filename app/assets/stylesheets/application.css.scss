@@ -54,7 +54,7 @@ hr {
 }
 
 .navbar-brand {
-  padding-top: 6px;
+  padding-top: 12px;
 
   i {
     font-size: 28px;
@@ -134,7 +134,13 @@ table.table {
   }
 }
 
-.backlog {
+.archive {
+  i {
+    color: $text;
+  }
+}
+
+.backlog, .archive {
   table.table {
     margin-top: 40px;
 

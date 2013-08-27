@@ -3,13 +3,16 @@ Backlog::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  get 'backlog', to: 'backlog_items#index', as: :backlog
-  get 'backlog/new', to: 'backlog_items#new', as: :new_backlog_item
-  post 'backlog/create', to: 'backlog_items#create', as: :create_backlog_item
-  get 'backlog/:backlog_item_id', to: 'backlog_items#edit', as: :backlog_item
-  patch 'backlog/:backlog_item_id', to: 'backlog_items#update', as: :update_backlog_item
-  delete 'backlog/:backlog_item_id', to: 'backlog_items#destroy', as: :delete_backlog_item
-  get 'backlog/:backlog_item_id/toggle-complete', to: 'backlog_items#toggle_complete', as: :toggle_complete_backlog_item
+  scope 'teamteam' do
+    get '', to: 'backlog_items#index', as: :backlog
+    get 'new', to: 'backlog_items#new', as: :new_backlog_item
+    post 'create', to: 'backlog_items#create', as: :create_backlog_item
+    get 'archive', to: 'backlog_items#archive', as: :archive_backlog
+    get ':backlog_item_id', to: 'backlog_items#edit', as: :backlog_item
+    patch ':backlog_item_id', to: 'backlog_items#update', as: :update_backlog_item
+    delete ':backlog_item_id', to: 'backlog_items#destroy', as: :delete_backlog_item
+    get ':backlog_item_id/toggle-complete', to: 'backlog_items#toggle_complete', as: :toggle_complete_backlog_item
+  end
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

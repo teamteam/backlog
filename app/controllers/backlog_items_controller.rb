@@ -1,6 +1,10 @@
 class BacklogItemsController < ApplicationController
   def index
-    @backlog_items = BacklogItem.all
+    @backlog_items = BacklogItem.this_week
+  end
+
+  def archive
+    @backlog_items = BacklogItem.archived
   end
 
   def new

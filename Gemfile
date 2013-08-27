@@ -60,9 +60,8 @@ group :production do
 end
 
 group :test, :development do
-  gem 'minitest-rails'
-  gem 'minitest-rails-capybara'
-
+  gem 'rspec-rails'
+  gem 'capybara'
   gem 'sqlite3'
   gem 'mailcatcher'
 end
