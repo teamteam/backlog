@@ -10,9 +10,21 @@ describe BacklogItemsController do
 
   describe "#index" do
     it "assigns backlog_items" do
+      BacklogItem.should_receive(:this_week).and_return "this week's items"
+
       get :index
 
-      expect(assigns :backlog_items).to eq(BacklogItem.all)
+      expect(assigns :backlog_items).to eq("this week's items")
+    end
+  end
+
+  describe "#archive" do
+    it "assigns backlog_items" do
+      BacklogItem.should_receive(:archived).and_return 'archived backlog items'
+
+      get :archive
+
+      expect(assigns :backlog_items).to eq('archived backlog items')
     end
   end
 

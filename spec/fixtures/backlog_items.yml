@@ -1,7 +1,9 @@
 first_item:
   name: First Item Name
   completed: false
+  archived: false
 
 second_item:
   name: Second Item Name
   completed: true
+  archived: false
