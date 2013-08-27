@@ -17,9 +17,11 @@
           %div.collapse.navbar-collapse.navbar-ex1-collapse
             %ul.nav.navbar-nav
               %li
-                %a{:href => archive_backlog_path}
-                  Archive
+                = link_to "Archive", archive_backlog_path
+
             %ul.nav.navbar-nav.navbar-right
+              %li
+                = link_to "Sign Out", destroy_user_session_path, :method => :delete
               %li
                 .navbar-form
                   .form-group

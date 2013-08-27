@@ -12,4 +12,8 @@ describe 'layouts/application' do
   it "contains a link to create a new item" do
     expect(rendered).to have_link("New Item", :href => new_backlog_item_path)
   end
+
+  it "contains a link to sign out" do
+    expect(rendered).to have_link("Sign Out", :href => destroy_user_session_path)
+  end
 end

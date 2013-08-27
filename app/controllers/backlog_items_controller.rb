@@ -1,4 +1,6 @@
 class BacklogItemsController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @backlog_items = BacklogItem.this_week
   end

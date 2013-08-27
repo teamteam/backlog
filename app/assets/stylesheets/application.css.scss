@@ -101,15 +101,16 @@ h1 {
   padding-left: 15px;
 }
 
+label {
+  font-weight: normal;
+  font-size: 15px;
+}
+
+form {
+  padding-top: 50px;
+}
+
 .backlog-item {
-  form {
-    padding-top: 50px;
-  }
-
-  label {
-    font-weight: normal;
-  }
-
   i {
     padding-left: 20px;
   }
