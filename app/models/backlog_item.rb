@@ -3,7 +3,7 @@ class BacklogItem < ActiveRecord::Base
   validates :name, presence: true
 
   def self.archived
-    self.where :archived => true
+    self.where(:archived => true).order 'updated_at DESC'
   end
 
   def self.this_week

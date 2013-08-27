@@ -42,6 +42,14 @@ describe BacklogItem do
       BacklogItem.archived.count.should eq(1)
       BacklogItem.archived.first.should eq(archived_item)
     end
+
+    it "orders archived items by last update" do
+      first_item = BacklogItem.create :name => "first item", :archived => true, :updated_at => DateTime.now
+      second_item = BacklogItem.create :name => "second item", :archived => true, :updated_at => DateTime.yesterday
+
+      BacklogItem.archived.first.should eq(first_item)
+      BacklogItem.archived.last.should eq(second_item)
+    end
   end
 
   describe "::this_week" do
