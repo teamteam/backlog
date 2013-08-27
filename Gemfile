@@ -51,6 +51,9 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Use devise for user management and authentication
+gem "devise"
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
@@ -60,4 +63,5 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'sqlite3'
+  gem 'mailcatcher'
 end
