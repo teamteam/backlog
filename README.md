@@ -24,10 +24,6 @@ Bower dependencies (note that this runs automatically when you run npm install)
 
 ## Test your code
 
-Generate a feature spec with the following command:
-
-    $ rails generate mini_test:feature NameOfYourFeature --spec
-
 Run all of the tests with the following command:
 
-    $ rake minitest:all
+    $ bundle exec rake spec
