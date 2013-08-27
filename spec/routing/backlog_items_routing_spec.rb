@@ -15,6 +15,15 @@ describe BacklogItemsController do
       )
     end
 
+    it "has a archive_backlog_path" do
+      path = archive_backlog_path
+
+      path.should eq("/#{@team_name}/archive")
+      get(path).should route_to(
+        'backlog_items#archive'
+      )
+    end
+
     it "has a backlog_item_path" do
       item = mock_model BacklogItem, :id => 1
       path = backlog_item_path(item)
