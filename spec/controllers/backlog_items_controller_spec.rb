@@ -18,7 +18,7 @@ describe BacklogItemsController do
 
   describe "#archive" do
     it "assigns backlog_items" do
-      BacklogItem.should_receive(:where).with(:archived => true).and_return 'archived backlog items'
+      BacklogItem.should_receive(:archived).and_return 'archived backlog items'
 
       get :archive
 

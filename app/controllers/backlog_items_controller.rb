@@ -4,7 +4,7 @@ class BacklogItemsController < ApplicationController
   end
 
   def archive
-    @backlog_items = BacklogItem.where :archived => true
+    @backlog_items = BacklogItem.archived
   end
 
   def new
