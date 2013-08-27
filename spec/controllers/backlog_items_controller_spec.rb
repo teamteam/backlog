@@ -12,7 +12,7 @@ describe BacklogItemsController do
     it "assigns backlog_items" do
       get :index
 
-      expect(assigns :backlog_items).to eq(BacklogItem.all)
+      expect(assigns :backlog_items).to eq(BacklogItem.where(:archived => false))
     end
   end
 

@@ -1,6 +1,6 @@
 class BacklogItemsController < ApplicationController
   def index
-    @backlog_items = BacklogItem.all
+    @backlog_items = BacklogItem.where :archived => false
   end
 
   def archive
