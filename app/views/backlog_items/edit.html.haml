@@ -1,6 +1,9 @@
 .backlog-item
   .row
     .col-lg-8.col-lg-offset-2
+      %h1
+        = @backlog_item.name
+
       = form_for @backlog_item, url: update_backlog_item_path(@backlog_item), :html => { :role => "form", :class => "form-horizontal" } do |f|
         .form-group{:class => @backlog_item.errors.has_key?(:name) ? 'has-error' : ''}
           .col-lg-2.control-label
