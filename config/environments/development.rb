@@ -27,6 +27,9 @@ Backlog::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # For devise
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1080 }
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.default_url_options = { :host => 'localhost' }
 end
