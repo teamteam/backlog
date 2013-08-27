@@ -1,0 +1,31 @@
+.row
+  .col-lg-8.col-lg-offset-2
+    %h1
+      Change your password
+  .col-lg-8.col-lg-offset-2
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :role => 'form', :class => 'form-horizontal' }) do |f|
+
+      = f.hidden_field :reset_password_token
+
+      .form-group{:class => resource.errors.has_key?(:password) ? 'has-error' : ''}
+        .col-lg-2.control-label
+          = f.label :password, "New password"
+        .col-lg-8
+          = f.password_field :password, :autofocus => true
+
+      .form-group{:class => resource.errors.has_key?(:password_confirmation) ? 'has-error' : ''}
+        .col-lg-2.control-label
+          = f.label :password_confirmation, "Confirm new password"
+        .col-lg-8
+          = f.password_field :password_confirmation
+
+      .form-group
+        .col-lg-2.control-label
+        .col-lg-8
+          = f.submit "Change my password", :class => "btn btn-default"
+
+      .form-group
+        .col-lg-2.control-label
+        .col-lg-8
+          %small
+            = render "devise/shared/links"
