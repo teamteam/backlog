@@ -1,9 +1,13 @@
 require 'spec_helper'
 
 describe BacklogItemsController do
+  include Devise::TestHelpers
   fixtures :backlog_items
 
   before :each do
+    user = User.create! :email => "me@me.com", :password => "long password"
+    sign_in user
+
     @item1 = backlog_items :first_item
     @item2 = backlog_items :second_item
   end
