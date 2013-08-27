@@ -5,4 +5,8 @@ class BacklogItem < ActiveRecord::Base
   def self.archived
     self.where :archived => true
   end
+
+  def self.this_week
+    self.where :archived => false
+  end
 end

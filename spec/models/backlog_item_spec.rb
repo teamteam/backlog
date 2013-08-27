@@ -43,4 +43,14 @@ describe BacklogItem do
       BacklogItem.archived.first.should eq(archived_item)
     end
   end
+
+  describe "::this_week" do
+    it "returns open items" do
+      BacklogItem.delete_all
+      BacklogItem.create :name => "something", :archived => true
+      BacklogItem.create :name => "something else", :archived => false
+
+      BacklogItem.this_week.count.should eq(1)
+    end
+  end
 end
