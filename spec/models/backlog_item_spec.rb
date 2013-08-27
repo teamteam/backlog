@@ -33,4 +33,14 @@ describe BacklogItem do
       items.last.should eq(@item1)
     end
   end
+
+  describe "::archived" do
+    it "returns only archived items" do
+      archived_item = BacklogItem.create :name => "something", :archived => true
+      BacklogItem.create :name => "something else", :archived => false
+
+      BacklogItem.archived.count.should eq(1)
+      BacklogItem.archived.first.should eq(archived_item)
+    end
+  end
 end
