@@ -112,7 +112,7 @@ describe BacklogItemsController do
 
         post :create, :backlog_item => { :name => "" }
 
-        response.should redirect_to(@item)
+        expect(response).to redirect_to(@item)
       end
 
       it "renders the new template when creation fails" do
@@ -120,7 +120,7 @@ describe BacklogItemsController do
 
         post :create, :backlog_item => { :name => "" }
 
-        response.should render_template(:new)
+        expect(response).to render_template(:new)
       end
     end
 
@@ -151,7 +151,7 @@ describe BacklogItemsController do
       it "redirects back to referer when update is successful" do
         post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "a" }
 
-        response.should redirect_to("something")
+        expect(response).to redirect_to("something")
       end
 
       it "assigns backlog_item to the correct instance when unsucessful" do
@@ -163,7 +163,7 @@ describe BacklogItemsController do
       it "renders the edit page when unsuccessful" do
         post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "" }
 
-        response.should render_template(:edit)
+        expect(response).to render_template(:edit)
       end
     end
 
@@ -181,7 +181,7 @@ describe BacklogItemsController do
       it "redirects to the referer" do
         get :toggle_complete, :backlog_item_id => @item1.id
 
-        response.should redirect_to("something")
+        expect(response).to redirect_to("something")
       end
     end
 
@@ -191,7 +191,7 @@ describe BacklogItemsController do
       end
 
       it "toggles the backlog item completed attribute from false to true" do
-        @item1.completed.should be_false
+        expect(@item1.completed).to be_false
 
         get :toggle_complete, :backlog_item_id => @item1.id
 
@@ -199,7 +199,7 @@ describe BacklogItemsController do
       end
 
       it "toggles the backlog item completed attribute from true to false" do
-        @item2.completed.should be_true
+        expect(@item2.completed).to be_true
 
         get :toggle_complete, :backlog_item_id => @item2.id
 
@@ -209,7 +209,7 @@ describe BacklogItemsController do
       it "redirects to the referer" do
         get :toggle_complete, :backlog_item_id => @item1.id
 
-        response.should redirect_to("something")
+        expect(response).to redirect_to("something")
       end
     end
   end
