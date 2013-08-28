@@ -7,24 +7,9 @@
     = csrf_meta_tags
 
   %body
-    .row
-      .col-lg-8.col-lg-offset-2
-        %nav.navbar.navbar-default{:role => "navigation"}
-          .navbar-header
-            = link_to backlog_path, :class => "navbar-brand" do
-              %i.icon-list
+    .container
+      .row
+        .col-lg-12
+          = render "layouts/navigation" unless @without_navigation
 
-          %div.collapse.navbar-collapse.navbar-ex1-collapse
-            %ul.nav.navbar-nav
-              %li
-                = link_to "Archive", archive_backlog_path
-
-            %ul.nav.navbar-nav.navbar-right
-              %li
-                = link_to "Sign Out", destroy_user_session_path, :method => :delete
-              %li
-                .navbar-form
-                  .form-group
-                    = link_to "New Item", new_backlog_item_path, :class => 'btn btn-success'
-
-    = yield
+      = yield

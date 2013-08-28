@@ -19,7 +19,7 @@ Backlog::Application.routes.draw do
     end
   end
 
-  root :to => redirect('/teamteam')
+  root 'application#index'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
