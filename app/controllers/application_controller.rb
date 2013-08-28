@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    @without_navbar = true
+    @without_navigation = true
   end
 end
