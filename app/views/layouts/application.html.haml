@@ -8,8 +8,6 @@
 
   %body
     .container
-      .row
-        .col-lg-12
-          = render "layouts/navigation" unless @without_navigation
+      = render "layouts/navigation" unless @without_navigation
 
       = yield
