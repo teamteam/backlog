@@ -5,8 +5,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    Task.create :name => params[:task][:name], :backlog_item_id => params[:backlog_item_id]
-
-    render :nothing => true
+    item = BacklogItem.find params[:backlog_item_id]
+    @task = Task.new :name => params[:task][:name], :backlog_item_id => item.id
+    @task.save
+    redirect_to backlog_item_path(item)
   end
 end
