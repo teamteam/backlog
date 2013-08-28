@@ -6,13 +6,13 @@ describe 'backlog_items/archive' do
     assign :backlog_items, []
 
     render
-    rendered.should include "No archived items"
+    expect(rendered).to include "No archived items"
   end
 
   it "shows archived items" do
     assign :backlog_items, [mock_model(BacklogItem, :name => "Archived item")]
 
     render
-    rendered.should include "Archived item"
+    expect(rendered).to include "Archived item"
   end
 end
