@@ -1,8 +1,8 @@
 .row
-  .col-lg-8.col-lg-offset-2
+  .col-lg-12
     %h1
       Change your password
-  .col-lg-8.col-lg-offset-2
+  .col-lg-12
     = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :role => 'form', :class => 'form-horizontal' }) do |f|
 
       = f.hidden_field :reset_password_token
