@@ -1,8 +1,8 @@
 .row
-  .col-lg-8.col-lg-offset-2
+  .col-lg-12
     %h1
       Sign up
-  .col-lg-8.col-lg-offset-2
+  .col-lg-12
     = form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form', :class => 'form-horizontal' } do |f|
 
       .form-group{:class => resource.errors.has_key?(:email) ? 'has-error' : ''}

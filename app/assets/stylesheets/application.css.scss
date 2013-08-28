@@ -22,6 +22,29 @@ $danger: #BD4A48;
 $default: #DDDDDD;
 $text: #444444;
 
+.jumbotron {
+  padding-top: 150px;
+  background: none;
+  text-align: center;
+  color: $text;
+
+  h1 {
+    font-size: 84px;
+  }
+
+  i {
+    top: 5px;
+  }
+
+  p.lead {
+    padding-top: 20px;
+  }
+
+  p.cta {
+    padding-top: 50px;
+  }
+}
+
 .alert {
   font-size: 14px;
 }
