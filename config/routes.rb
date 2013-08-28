@@ -8,10 +8,12 @@ Backlog::Application.routes.draw do
     get 'new', to: 'backlog_items#new', as: :new_backlog_item
     post 'create', to: 'backlog_items#create', as: :create_backlog_item
     get 'archive', to: 'backlog_items#archive', as: :archive_backlog
-    get ':backlog_item_id', to: 'backlog_items#edit', as: :backlog_item
-    patch ':backlog_item_id', to: 'backlog_items#update', as: :update_backlog_item
-    delete ':backlog_item_id', to: 'backlog_items#destroy', as: :delete_backlog_item
-    get ':backlog_item_id/toggle-complete', to: 'backlog_items#toggle_complete', as: :toggle_complete_backlog_item
+    scope ':backlog_item_id' do
+      get '', to: 'backlog_items#edit', as: :backlog_item
+      patch '', to: 'backlog_items#update', as: :update_backlog_item
+      delete '', to: 'backlog_items#destroy', as: :delete_backlog_item
+      get 'toggle-complete', to: 'backlog_items#toggle_complete', as: :toggle_complete_backlog_item
+    end
   end
 
   # You can have the root of your site routed with "root"
