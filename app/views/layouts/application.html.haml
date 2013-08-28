@@ -10,22 +10,23 @@
     .container
       .row
         .col-lg-12
-          %nav.navbar.navbar-default{:role => "navigation"}
-            .navbar-header
-              = link_to backlog_path, :class => "navbar-brand" do
-                %i.icon-list
+          - if not @without_navbar
+            %nav.navbar.navbar-default{:role => "navigation"}
+              .navbar-header
+                = link_to backlog_path, :class => "navbar-brand" do
+                  %i.icon-list
 
-            %div.collapse.navbar-collapse.navbar-ex1-collapse
-              %ul.nav.navbar-nav
-                %li
-                  = link_to "Archive", archive_backlog_path
+              %div.collapse.navbar-collapse.navbar-ex1-collapse
+                %ul.nav.navbar-nav
+                  %li
+                    = link_to "Archive", archive_backlog_path
 
-              %ul.nav.navbar-nav.navbar-right
-                %li
-                  = link_to "Sign Out", destroy_user_session_path, :method => :delete
-                %li
-                  .navbar-form
-                    .form-group
-                      = link_to "New Item", new_backlog_item_path, :class => 'btn btn-success'
+                %ul.nav.navbar-nav.navbar-right
+                  %li
+                    = link_to "Sign Out", destroy_user_session_path, :method => :delete
+                  %li
+                    .navbar-form
+                      .form-group
+                        = link_to "New Item", new_backlog_item_path, :class => 'btn btn-success'
 
       = yield
