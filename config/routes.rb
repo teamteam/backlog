@@ -13,8 +13,13 @@ Backlog::Application.routes.draw do
       patch '', to: 'backlog_items#update', as: :update_backlog_item
       delete '', to: 'backlog_items#destroy', as: :delete_backlog_item
       get 'toggle-complete', to: 'backlog_items#toggle_complete', as: :toggle_complete_backlog_item
+
+      get 'tasks/new', to: 'tasks#new', as: :new_task
+      post 'tasks/create', to: 'tasks#create', as: :create_task
     end
   end
+
+  root :to => redirect('/teamteam')
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
