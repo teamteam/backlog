@@ -11,6 +11,7 @@ describe "backlog_items/edit" do
       render
 
       expect(rendered).to have_content "Task 1"
+      expect(rendered).not_to have_content "No tasks"
     end
 
     it "should have a button to create new tasks" do
@@ -19,6 +20,14 @@ describe "backlog_items/edit" do
       render
 
       expect(rendered).to have_link "New task"
+    end
+
+    it "should handle empty task list" do
+      assign :backlog_item, mock_model(BacklogItem).as_null_object
+
+      render
+
+      expect(rendered).to have_content "No tasks"
     end
   end
 end
