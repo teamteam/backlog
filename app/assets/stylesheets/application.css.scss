@@ -110,6 +110,10 @@ i:hover {
   color: $text;
 }
 
+i.icon-plus:hover {
+  color: $success;
+}
+
 .completed {
   color: $success;
 }
