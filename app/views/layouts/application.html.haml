@@ -8,6 +8,6 @@
 
   %body
     .container
-      = render "layouts/navigation" unless @without_navigation
+      = render "layouts/navigation" unless @without_navigation or not user_signed_in?
 
       = yield
