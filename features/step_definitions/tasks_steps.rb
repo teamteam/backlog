@@ -20,6 +20,18 @@ Given /^I'm on the new task page$/ do
   click_on "New task"
 end
 
+Given /^a task exists$/ do
+  @task = Task.create :name => "Complete me", :backlog_item => @backlog_item
+end
+
+Given /^I'm on the backlog item page$/ do
+  visit backlog_item_path @backlog_item
+end
+
+When /^I mark the task as complete$/ do
+  click_on "Complete task"
+end
+
 When /^I enter the new task info$/ do
   fill_in "Name", :with => "My new task"
 end
@@ -31,5 +43,16 @@ end
 Then /^I should see the task on the item$/ do
   assert_not_nil Task.find_by_name "My new task"
   visit backlog_item_path @backlog_item
+
   expect(page).to have_content "My new task"
+  expect(page).to have_selector '.tasks' do |tasks|
+    expect(tasks).not_to have_selector 'i.icon-ok.completed'
+  end
+end
+
+Then /^the task shows up as completed$/ do
+  assert_not_nil Task.find_by_completed true
+  expect(page).to have_selector '.tasks' do |tasks|
+    expect(tasks).to have_selector 'i.icon-ok.completed'
+  end
 end

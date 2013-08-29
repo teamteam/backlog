@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828212451) do
+ActiveRecord::Schema.define(version: 20130829214338) do
 
   create_table "backlog_items", force: true do |t|
     t.string   "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20130828212451) do
     t.datetime "updated_at"
     t.integer  "backlog_item_id"
     t.string   "name"
+    t.boolean  "completed",       default: false
   end
 
   create_table "users", force: true do |t|

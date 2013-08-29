@@ -52,4 +52,22 @@ describe TasksController do
       end
     end
   end
+
+  describe "#toggle_complete" do
+    before :each do
+      Task.should_receive(:find).with(task.id.to_s).and_return task
+    end
+
+    it "should redirect to backlog item page" do
+      get :toggle_complete, :backlog_item_id => item.id, :task_id => task.id
+
+      expect(response).to redirect_to backlog_item_path(item)
+    end
+
+    it "calls toggle_complete on the task" do
+      task.should_receive(:toggle_complete)
+
+      get :toggle_complete, :backlog_item_id => item.id, :task_id => task.id
+    end
+  end
 end
