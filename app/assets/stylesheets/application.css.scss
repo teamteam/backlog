@@ -172,7 +172,13 @@ table.table {
   }
 }
 
-.tasks {
+table.tasks {
+  border-top: none;
+
+  tr:last-child {
+    border-bottom: none;
+  }
+
   td {
     font-size: 14px;
   }
