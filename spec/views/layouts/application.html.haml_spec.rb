@@ -23,7 +23,7 @@ describe 'layouts/application' do
       end
 
       it "contains a link to view the archive" do
-        expect(rendered).to have_link("archive", :href => archive_backlog_path)
+        expect(rendered).to have_link("Archive", :href => archive_backlog_path)
       end
 
       it "contains a link to create a new item" do
@@ -34,6 +34,9 @@ describe 'layouts/application' do
         expect(rendered).to have_link("Sign Out", :href => destroy_user_session_path)
       end
 
+      it "contains a link to account settings" do
+        expect(rendered).to have_link("Account Settings", :href => edit_user_registration_path)
+      end
     end
 
     context "without navigation" do

@@ -11,8 +11,11 @@
             = link_to new_backlog_item_path, :title => "New Item" do
               %i.icon-plus
           %li
-            = link_to archive_backlog_path, :id => "archive", :title => "Archive" do
+            = link_to archive_backlog_path, :title => "Archive" do
               %i.icon-archive
+          %li
+            = link_to edit_user_registration_path, :title => "Account Settings" do
+              %i.icon-cog
           %li
             = link_to destroy_user_session_path, :method => :delete, :title => "Sign Out" do
               %i.icon-signout
