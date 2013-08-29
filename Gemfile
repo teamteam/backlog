@@ -61,6 +61,8 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
   gem 'capybara'
   gem 'sqlite3'
 end

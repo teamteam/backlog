@@ -24,6 +24,16 @@ Bower dependencies (note that this runs automatically when you run npm install)
 
 ## Test your code
 
-Run all of the tests with the following command:
+Write features and specs.
+
+Run the feature tests with:
+
+    $ bundle exec rake cucumber
+
+Run the spec tests with:
 
     $ bundle exec rake spec
+
+Run all of the tests with:
+
+    $ bundle exec rake
