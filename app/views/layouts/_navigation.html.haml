@@ -8,7 +8,8 @@
       %div.collapse.navbar-collapse.navbar-ex1-collapse
         %ul.nav.navbar-nav
           %li
-            = link_to "Archive", archive_backlog_path
+            = link_to archive_backlog_path, :id => "archive", :title => "Archive" do
+              %i.icon-archive
 
         %ul.nav.navbar-nav.navbar-right
           %li
