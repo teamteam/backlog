@@ -99,24 +99,24 @@ i {
   left: -10px;
 }
 
-i.icon-remove {
-  color: $default;
-}
-
-i.icon-remove:hover {
-  color: $danger;
-}
-
-i:hover {
+a:hover {
   color: $text;
+
+  i {
+    color: $text;
+  }
+
+  i.icon-remove {
+    color: $danger;
+  }
+
+  i.icon-plus {
+    color: $success;
+  }
 }
 
 i.icon-plus {
   color: $inactive_sucess;
-}
-
-i.icon-plus:hover {
-  color: $success;
 }
 
 .completed {
