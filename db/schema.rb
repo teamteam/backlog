@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826215525) do
+ActiveRecord::Schema.define(version: 20130828212451) do
 
   create_table "backlog_items", force: true do |t|
     t.string   "name"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20130826215525) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "archived",   default: false
+  end
+
+  create_table "tasks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "backlog_item_id"
+    t.string   "name"
   end
 
   create_table "users", force: true do |t|

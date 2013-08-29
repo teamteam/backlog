@@ -1,4 +1,5 @@
 class BacklogItem < ActiveRecord::Base
+  has_many :tasks
   default_scope -> { order('created_at ASC') }
   validates :name, presence: true
 
