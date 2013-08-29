@@ -27,6 +27,8 @@ When /^submit$/ do
   click_on "Create"
 end
 
-Then /^the task should exist$/ do
+Then /^I should see the task on the item$/ do
   assert_not_nil Task.find_by_name "My new task"
+  visit backlog_item_path @backlog_item
+  expect(page).to have_content "My new task"
 end

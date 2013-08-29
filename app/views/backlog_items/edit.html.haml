@@ -27,6 +27,14 @@
 
         .form-group
           .col-lg-2.control-label
+            %label= "Tasks"
+          .col-lg-8
+            - @backlog_item.tasks.each do |task|
+              = task.name
+            %hr
+
+        .form-group
+          .col-lg-2.control-label
             %label= "Caution"
           .col-lg-8
             = link_to "Delete", @backlog_item, :method => :delete, :id => "remove", :class => "btn btn-danger", :data => { confirm: "Are you sure?" }
