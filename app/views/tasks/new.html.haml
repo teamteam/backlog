@@ -1,4 +1,17 @@
-= form_for @task, url: create_task_path(@task.backlog_item) do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.submit "Create"
+.backlog-item
+  .row
+    .col-lg-12
+      %h1
+        New Task
+
+      = form_for @task, url: create_task_path(@task.backlog_item), :html => { :role => "form", :class => "form-horizontal" } do |f|
+        .form-group{:class => @task.errors.has_key?(:name) ? 'has-error' : ''}
+          .col-lg-2.control-label
+            = f.label :name
+          .col-lg-8
+            = f.text_field :name, :class => "form-control", :placeholder => @task.errors[:name].join('')
+
+        .form-group
+          .col-lg-2.control-label
+          .col-lg-8
+            = f.submit "Create", :class => 'btn btn-default'
