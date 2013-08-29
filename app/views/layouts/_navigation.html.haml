@@ -6,15 +6,13 @@
           %i.icon-list
 
       %div.collapse.navbar-collapse.navbar-ex1-collapse
-        %ul.nav.navbar-nav
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            = link_to new_backlog_item_path, :title => "New Item" do
+              %i.icon-plus
           %li
             = link_to archive_backlog_path, :id => "archive", :title => "Archive" do
               %i.icon-archive
-
-        %ul.nav.navbar-nav.navbar-right
           %li
-            = link_to "Sign Out", destroy_user_session_path, :method => :delete
-          %li
-            .navbar-form
-              .form-group
-                = link_to "New Item", new_backlog_item_path, :class => 'btn btn-success'
+            = link_to destroy_user_session_path, :method => :delete, :title => "Sign Out" do
+              %i.icon-signout

@@ -82,6 +82,7 @@ hr {
   i {
     font-size: 28px;
     color: $text;
+    margin-left: 15px;
   }
 }
 
@@ -93,7 +94,6 @@ body {
 
 i {
   color: $default;
-  margin-left: 10px;
   position: relative;
   left: -10px;
 }
@@ -106,11 +106,7 @@ i.icon-remove:hover {
   color: $danger;
 }
 
-i.icon-pencil:hover {
-  color: $text;
-}
-
-i.icon-archive {
+i:hover {
   color: $text;
 }
 
@@ -168,6 +164,10 @@ table.table {
 }
 
 .backlog, .archive {
+  i {
+    margin-left: 10px;
+  }
+
   table.table {
     margin-top: 40px;
 
