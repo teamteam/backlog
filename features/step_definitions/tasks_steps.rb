@@ -16,7 +16,8 @@ Given /^a backlog item exists$/ do
 end
 
 Given /^I'm on the new task page$/ do
-  visit new_task_path @backlog_item
+  visit backlog_item_path @backlog_item
+  click_on "New task"
 end
 
 When /^I enter the new task info$/ do
