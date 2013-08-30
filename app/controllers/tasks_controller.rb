@@ -23,4 +23,8 @@ class TasksController < ApplicationController
     Task.delete params[:task_id]
     redirect_to backlog_item_path params[:backlog_item_id]
   end
+
+  def edit
+    @task = Task.find params[:task_id]
+  end
 end

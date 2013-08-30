@@ -84,4 +84,14 @@ describe TasksController do
       expect(response).to redirect_to backlog_item_path(2)
     end
   end
+
+  describe "#edit" do
+    it "assigns task" do
+      Task.should_receive(:find).with("1").and_return "Existing task"
+
+      get :edit, :backlog_item_id => 2, :task_id => 1
+
+      expect(assigns :task).to eq "Existing task"
+    end
+  end
 end

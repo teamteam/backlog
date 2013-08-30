@@ -21,6 +21,10 @@ describe "backlog_items/edit" do
       it "should have a remove button" do
         expect(rendered).to have_link "Remove task"
       end
+
+      it "should have a edit button" do
+        expect(rendered).to have_link "Edit task"
+      end
     end
 
     context "without tasks" do

@@ -45,6 +45,8 @@
                         = task.name
 
                       .pull-right
+                        = link_to task_path(@backlog_item, task), :title => "Edit task" do
+                          %i.icon-pencil
                         = link_to delete_task_path(@backlog_item, task), :method => :delete, :title => "Remove task", :data => { confirm: "Are you sure?" } do
                           %i.icon-remove
 

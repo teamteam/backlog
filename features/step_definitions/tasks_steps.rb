@@ -28,6 +28,12 @@ Given /^I'm on the backlog item page$/ do
   visit backlog_item_path @backlog_item
 end
 
+When /^I edit the task$/ do
+  click_on "Edit task"
+  fill_in "Name", :with => "Edited task"
+  click_on "Update"
+end
+
 When /^I mark the task as complete$/ do
   click_on "Complete task"
 end
@@ -71,4 +77,8 @@ Then /^the task shows up as completed$/ do
   expect(page).to have_selector '.tasks' do |tasks|
     expect(tasks).to have_selector 'i.icon-ok.completed'
   end
+end
+
+Then /^the task should be edited$/ do
+  pending # express the regexp above with the code you wish you had
 end

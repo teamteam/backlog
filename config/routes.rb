@@ -21,6 +21,7 @@ Backlog::Application.routes.draw do
         post 'create', to: 'tasks#create', as: :create_task
 
         scope ':task_id' do
+          get '', to: 'tasks#edit', as: :task
           delete '', to: 'tasks#destroy', as: :delete_task
           get 'toggle-completed', to: 'tasks#toggle_completed', as: :toggle_completed_task
         end

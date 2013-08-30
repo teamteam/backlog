@@ -23,3 +23,10 @@ Feature: Tasks
     And I'm on the backlog item page
     When I remove the task
     Then the task should be gone
+
+  Scenario: Edit a task
+    Given a backlog item exists
+    And a task exists
+    And I'm on the backlog item page
+    When I edit the task
+    Then the task should be edited
