@@ -9,16 +9,22 @@ Backlog::Application.routes.draw do
     get 'new', to: 'backlog_items#new', as: :new_backlog_item
     post 'create', to: 'backlog_items#create', as: :create_backlog_item
     get 'archive', to: 'backlog_items#archive', as: :archive_backlog
+
     scope ':backlog_item_id' do
       get '', to: 'backlog_items#edit', as: :backlog_item
       patch '', to: 'backlog_items#update', as: :update_backlog_item
       delete '', to: 'backlog_items#destroy', as: :delete_backlog_item
       get 'toggle-complete', to: 'backlog_items#toggle_complete', as: :toggle_complete_backlog_item
 
-      get 'tasks/new', to: 'tasks#new', as: :new_task
-      post 'tasks/create', to: 'tasks#create', as: :create_task
-      get 'tasks/:task_id/toggle-completed', to: 'tasks#toggle_completed', as: :toggle_completed_task
-      delete 'tasks/:task_id', to: 'tasks#destroy', as: :delete_task
+      scope 'tasks' do
+        get 'new', to: 'tasks#new', as: :new_task
+        post 'create', to: 'tasks#create', as: :create_task
+
+        scope ':task_id' do
+          delete '', to: 'tasks#destroy', as: :delete_task
+          get 'toggle-completed', to: 'tasks#toggle_completed', as: :toggle_completed_task
+        end
+      end
     end
   end
 
