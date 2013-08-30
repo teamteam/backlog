@@ -35,13 +35,14 @@ describe 'backlog_items/index' do
 
   context "without tasks" do
     it "should should a check mark" do
+      backlog_item.stub(:name).and_return "Spec Backlog Item Name"
       backlog_item.stub_chain(:tasks, :remaining, :count).and_return 0
       backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
 
       render
 
       expect(rendered).to have_selector 'i.icon-ok'
-      expect(rendered).not_to have_content 0
+      expect(rendered).not_to have_text 0
     end
   end
 end

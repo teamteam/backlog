@@ -20,7 +20,7 @@
                   - else
                     %div
                       = backlog_item.tasks.remaining.count
-                = backlog_item.name
+                = link_to backlog_item.name, backlog_item_path(backlog_item)
 
                 .edit-controls.pull-right
                   = link_to backlog_item_path(backlog_item) do
