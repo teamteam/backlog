@@ -28,21 +28,24 @@
           .col-lg-2.control-label
             %label= "Tasks"
           .col-lg-8
-            %table.table.tasks
-              - if @backlog_item.tasks.empty?
-                %tr
-                  %td
-                    %em
-                      No tasks
-              - else
-                - @backlog_item.tasks.each do |task|
+            .tasks
+              %table.table
+                - if @backlog_item.tasks.empty?
                   %tr
                     %td
-                      .pull-left
-                        = link_to toggle_complete_task_path(@backlog_item, task), :title => "Complete task" do
-                          %i.icon-ok{ :class => task.completed ? 'completed' : '' }
-                        = task.name
-            = link_to "New task", new_task_path(@backlog_item), :class => 'btn btn-default'
+                      %em
+                        No tasks
+                - else
+                  - @backlog_item.tasks.each do |task|
+                    %tr
+                      %td
+                        .pull-left
+                          = link_to toggle_complete_task_path(@backlog_item, task), :title => "Complete task" do
+                            %i.icon-ok{ :class => task.completed ? 'completed' : '' }
+                          %small
+                            = task.name
+              = link_to new_task_path(@backlog_item), :title => "New task" do
+                %i.icon-plus
             %hr
 
         .form-group

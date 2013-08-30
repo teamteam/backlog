@@ -115,10 +115,6 @@ a:hover {
   }
 }
 
-i.icon-plus {
-  color: $inactive_sucess;
-}
-
 .completed {
   color: $success;
 }
@@ -184,15 +180,25 @@ table.table {
   }
 }
 
-table.tasks {
-  border-top: none;
+i.icon-plus {
+  color: $text;
+}
 
-  tr:last-child {
-    border-bottom: none;
-  }
+.tasks {
+  table {
+    border-top: none;
 
-  td {
-    font-size: 14px;
+    tr:last-child {
+      border-bottom: none;
+    }
+
+    td {
+      i {
+        font-size: 18px;
+        top: 1px;
+        padding-left: 10px;
+      }
+    }
   }
 }
 
