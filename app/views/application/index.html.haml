@@ -8,5 +8,9 @@
     An easier way to work together.
 
   %p.cta
-    %a.btn.btn-lg.btn-success.disabled
-      Coming Soon
+    - if user_signed_in?
+      %a.btn.btn-lg.btn-success{:href => backlog_path}
+        View Backlog
+    - else
+      %a.btn.btn-lg.btn-success.disabled
+        Coming Soon
