@@ -28,14 +28,14 @@ describe TasksController do
       )
     end
 
-    it "has a toggle_complete_task_path" do
+    it "has a toggle_completed_task_path" do
       task = mock_model Task
-      path = toggle_complete_task_path @backlog_item, task
+      path = toggle_completed_task_path @backlog_item, task
 
-      expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks/#{task.id}/toggle-complete"
+      expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks/#{task.id}/toggle-completed"
       expect(:get => path).to route_to(
         :controller => "tasks",
-        :action => "toggle_complete",
+        :action => "toggle_completed",
         :backlog_item_id => @backlog_item.id.to_s,
         :task_id => task.id.to_s
       )
