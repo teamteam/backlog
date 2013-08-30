@@ -19,7 +19,8 @@
 
         .form-group
           .col-lg-2.control-label
-            %label= "Completed"
+            %label
+              Status
           .col-lg-8
             = link_to (@backlog_item.completed ? "Complete" : "Incomplete"), toggle_complete_backlog_item_path(@backlog_item), :id => "toggle", :class => "btn btn-#{@backlog_item.completed ? 'success' : 'warning'}"
             %hr
