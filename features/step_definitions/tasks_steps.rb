@@ -40,6 +40,14 @@ When /^submit$/ do
   click_on "Create"
 end
 
+When /^I view the backlog$/ do
+  visit backlog_path
+end
+
+Then /^I should see the remaining task count$/ do
+  expect(page).to have_content 1
+end
+
 Then /^I should see the task on the item$/ do
   assert_not_nil Task.find_by_name "My new task"
   visit backlog_item_path @backlog_item

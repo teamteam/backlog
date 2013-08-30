@@ -61,4 +61,13 @@ describe BacklogItem do
       expect(BacklogItem.this_week.count).to eq(1)
     end
   end
+
+  describe "#remaining_tasks" do
+    it "returns remaining tasks" do
+      backlog_item = BacklogItem.create :name => "something"
+      backlog_item.tasks.should_receive(:remaining).and_return ["stub task"]
+
+      expect(backlog_item.tasks.remaining.empty?).to be_false
+    end
+  end
 end

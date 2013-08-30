@@ -25,4 +25,14 @@ describe Task do
       expect(task.completed).to be_false
     end
   end
+
+  describe "::remaining" do
+    it "returns remaining tasks" do
+      Task.create :name => "completed task", :completed => true
+      task = Task.create :name => "not completed", :completed => false
+
+      expect(Task.remaining.count).to eq(1)
+      expect(Task.remaining.first).to eq(task)
+    end
+  end
 end
