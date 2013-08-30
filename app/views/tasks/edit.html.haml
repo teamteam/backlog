@@ -15,3 +15,4 @@
           .col-lg-2.control-label
           .col-lg-8
             = f.submit "Update", :class => 'btn btn-default'
+            = link_to "Cancel", backlog_item_path(@task.backlog_item), :class => 'btn btn-danger'
