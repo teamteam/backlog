@@ -70,4 +70,18 @@ describe TasksController do
       get :toggle_complete, :backlog_item_id => item.id, :task_id => task.id
     end
   end
+
+  describe "#destroy" do
+    it "deletes the task" do
+      Task.should_receive(:delete).with("1")
+      
+      delete :destroy, :backlog_item_id => 2, :task_id => 1
+    end
+
+    it "should redirect to backlog item" do
+      delete :destroy, :backlog_item_id => 2, :task_id => 1
+      
+      expect(response).to redirect_to backlog_item_path(2)
+    end
+  end
 end

@@ -19,33 +19,36 @@
 
         .form-group
           .col-lg-2.control-label
-            %label= "Status"
+            %label= "Completed"
           .col-lg-8
-            = link_to @backlog_item.completed ? 'Complete' : 'Incomplete', toggle_complete_backlog_item_path(@backlog_item), :id => "toggle", :title => "Complete", :class => @backlog_item.completed ? "btn btn-success" : "btn btn-warning"
+            = link_to toggle_complete_backlog_item_path(@backlog_item), :id => "toggle" do
+              %i.icon-ok.form-control-static{ :class => @backlog_item.completed ? 'completed' : 'not-completed' }
             %hr
 
         .form-group
           .col-lg-2.control-label
             %label= "Tasks"
           .col-lg-8
-            .tasks
-              %table.table
-                - if @backlog_item.tasks.empty?
+            %table.table.tasks
+              - if @backlog_item.tasks.empty?
+                %tr
+                  %td
+                    %em
+                      No tasks
+              - else
+                - @backlog_item.tasks.each do |task|
                   %tr
                     %td
-                      %em
-                        No tasks
-                - else
-                  - @backlog_item.tasks.each do |task|
-                    %tr
-                      %td
-                        .pull-left
-                          = link_to toggle_complete_task_path(@backlog_item, task), :title => "Complete task" do
-                            %i.icon-ok{ :class => task.completed ? 'completed' : '' }
-                            %small
-                              = task.name
-              = link_to new_task_path(@backlog_item), :title => "New task" do
-                %i.icon-plus
+                      .pull-left
+                        = link_to toggle_complete_task_path(@backlog_item, task), :title => "Complete task" do
+                          %i.icon-ok{ :class => task.completed ? 'completed' : '' }
+                        = task.name
+
+                      .pull-right
+                        = link_to delete_task_path(@backlog_item, task), :method => :delete, :title => "Remove task", :data => { confirm: "Are you sure?" } do
+                          %i.icon-remove
+
+            = link_to "New task", new_task_path(@backlog_item), :class => 'btn btn-default'
             %hr
 
         .form-group

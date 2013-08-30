@@ -44,6 +44,14 @@ When /^I view the backlog$/ do
   visit backlog_path
 end
 
+When /^I remove the task$/ do
+  click_on "Remove task"
+end
+
+Then /^the task should be gone$/ do
+  expect(page).not_to have_content "My new task"
+end
+
 Then /^I should see the remaining task count$/ do
   expect(page).to have_content 1
 end

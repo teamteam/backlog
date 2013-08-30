@@ -18,4 +18,9 @@ class TasksController < ApplicationController
     Task.find(params[:task_id]).toggle_complete
     redirect_to backlog_item_path params[:backlog_item_id]
   end
+
+  def destroy
+    Task.delete params[:task_id]
+    redirect_to backlog_item_path params[:backlog_item_id]
+  end
 end
