@@ -21,8 +21,7 @@
           .col-lg-2.control-label
             %label= "Completed"
           .col-lg-8
-            = link_to toggle_complete_backlog_item_path(@backlog_item), :id => "toggle" do
-              %i.icon-ok.form-control-static{ :class => @backlog_item.completed ? 'completed' : 'not-completed' }
+            = link_to (@backlog_item.completed ? "Complete" : "Incomplete"), toggle_complete_backlog_item_path(@backlog_item), :id => "toggle", :class => "btn btn-#{@backlog_item.completed ? 'success' : 'warning'}"
             %hr
 
         .form-group
@@ -51,7 +50,7 @@
                           = link_to delete_task_path(@backlog_item, task), :method => :delete, :title => "Remove task", :data => { confirm: "Are you sure?" } do
                             %i.icon-remove
 
-              = link_to new_task_path(@backlog_item) do
+              = link_to new_task_path(@backlog_item), :title => "New task" do
                 %i.icon-plus
             %hr
 
