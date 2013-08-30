@@ -23,22 +23,6 @@ describe Task do
     end
   end
 
-  describe "#toggle_complete" do
-    it "toggles false to true" do
-      task = Task.new :name => "Spec Task Name", :backlog_item_id => 1, :completed => false
-      task.toggle_complete
-
-      expect(task.completed).to be_true
-    end
-
-    it "toggles true to false" do
-      task = Task.new :name => "Spec Task Name", :backlog_item_id => 1, :completed => true
-      task.toggle_complete
-
-      expect(task.completed).to be_false
-    end
-  end
-
   describe "::remaining" do
     it "returns remaining tasks" do
       Task.create :name => "completed task", :completed => true
