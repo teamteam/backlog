@@ -14,12 +14,12 @@
             %tr
               %td
                 .status.pull-left
-                  = link_to toggle_complete_backlog_item_path(backlog_item), :id => "toggle-#{backlog_item.id}" do
-                    - if backlog_item.tasks.remaining.empty?
+                  - if backlog_item.tasks.remaining.empty?
+                    = link_to toggle_complete_backlog_item_path(backlog_item), :id => "toggle-#{backlog_item.id}" do
                       %i.icon-ok{ :class => backlog_item.completed ? 'completed' : '' }
-                    - else
-                      %div
-                        = backlog_item.tasks.remaining.count
+                  - else
+                    %div
+                      = backlog_item.tasks.remaining.count
                 = backlog_item.name
 
                 .edit-controls.pull-right
