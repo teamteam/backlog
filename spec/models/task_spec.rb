@@ -10,6 +10,19 @@ describe Task do
     expect(Task.new.completed).to be_false
   end
 
+  context "ordering" do
+    it "is ordered by created_at" do
+      task1 = Task.create :name => "first task", :created_at => DateTime.now
+      task2 = Task.create :name => "second task", :created_at => DateTime.yesterday
+
+      tasks = Task.all
+
+      expect(tasks.count).to eq(2)
+      expect(tasks.first).to eq(task2)
+      expect(tasks.last).to eq(task1)
+    end
+  end
+
   describe "#toggle_complete" do
     it "toggles false to true" do
       task = Task.new :name => "Spec Task Name", :backlog_item_id => 1, :completed => false
