@@ -14,8 +14,8 @@ class TasksController < ApplicationController
     end
   end
 
-  def toggle_complete
-    Task.find(params[:task_id]).toggle_complete
+  def toggle_completed
+    Task.find(params[:task_id]).toggle_completed
     redirect_to backlog_item_path params[:backlog_item_id]
   end
 

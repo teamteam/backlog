@@ -40,7 +40,7 @@
                   %tr
                     %td
                       .pull-left
-                        = link_to toggle_complete_task_path(@backlog_item, task), :title => "Complete task" do
+                        = link_to toggle_completed_task_path(@backlog_item, task), :title => "Complete task" do
                           %i.icon-ok{ :class => task.completed ? 'completed' : '' }
                         = task.name
 
