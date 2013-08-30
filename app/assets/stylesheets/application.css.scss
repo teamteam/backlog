@@ -188,8 +188,8 @@ i.icon-plus {
   table {
     border-top: none;
 
-    tr:last-child {
-      border-bottom: none;
+    tr {
+      border: none;
     }
 
     td {

@@ -42,8 +42,8 @@
                         .pull-left
                           = link_to toggle_complete_task_path(@backlog_item, task), :title => "Complete task" do
                             %i.icon-ok{ :class => task.completed ? 'completed' : '' }
-                          %small
-                            = task.name
+                            %small
+                              = task.name
               = link_to new_task_path(@backlog_item), :title => "New task" do
                 %i.icon-plus
             %hr
