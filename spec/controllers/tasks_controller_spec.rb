@@ -94,4 +94,38 @@ describe TasksController do
       expect(assigns :task).to eq "Existing task"
     end
   end
+
+  describe "#update" do
+    before :each do
+      Task.should_receive(:find).with(task.id.to_s).and_return task
+    end
+
+    it "redirects back to the task edit" do
+      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "a name" }
+
+      expect(response).to redirect_to(task_path(item, task))
+    end
+
+    it "updates the task" do
+      task.should_receive(:update_attributes).with "name" => "a name"
+
+      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "a name" }
+    end
+
+    it "assigns task to the correct instance when unsuccessful" do
+      task.should_receive(:update_attributes).and_return false
+  
+      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "" }
+
+      expect(assigns :task).to eq task
+    end
+
+    it "renders the edit page when unsuccessful" do
+      task.should_receive(:update_attributes).and_return false
+  
+      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "" }
+
+      expect(assigns :task).to render_template :edit
+    end
+  end
 end

@@ -27,4 +27,13 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find params[:task_id]
   end
+
+  def update
+    @task = Task.find params[:task_id]
+    if @task.update_attributes params.require(:task).permit(:name)
+      redirect_to task_path(params[:backlog_item_id], params[:task_id])
+    else
+      render :edit
+    end
+  end
 end

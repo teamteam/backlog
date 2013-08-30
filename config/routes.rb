@@ -22,6 +22,7 @@ Backlog::Application.routes.draw do
 
         scope ':task_id' do
           get '', to: 'tasks#edit', as: :task
+          patch '', to: 'tasks#update', as: :update_task
           delete '', to: 'tasks#destroy', as: :delete_task
           get 'toggle-completed', to: 'tasks#toggle_completed', as: :toggle_completed_task
         end

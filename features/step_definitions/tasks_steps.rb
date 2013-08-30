@@ -80,5 +80,8 @@ Then /^the task shows up as completed$/ do
 end
 
 Then /^the task should be edited$/ do
-  pending # express the regexp above with the code you wish you had
+  visit backlog_item_path @backlog_item
+
+  expect(page).not_to have_content "My new task"
+  expect(page).to have_content "Edited task"
 end

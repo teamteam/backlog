@@ -66,5 +66,18 @@ describe TasksController do
         :task_id => task.id.to_s
       )
     end
+
+    it "has an update_task_path" do
+      task = mock_model Task
+      path = update_task_path @backlog_item, task
+
+      expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks/#{task.id}"
+      expect(:patch => path).to route_to(
+        :controller => "tasks",
+        :action => "update",
+        :backlog_item_id => @backlog_item.id.to_s,
+        :task_id => task.id.to_s
+      )
+    end
   end
 end
