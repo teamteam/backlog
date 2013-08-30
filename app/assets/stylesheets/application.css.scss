@@ -168,8 +168,10 @@ table.table {
 
 .status {
   font-weight: bold;
+  padding-right: 10px;
 
-  span {
+  div {
+      top: 2px;
       padding-left: 5px;
       padding-right: 10px;
       color: $default;

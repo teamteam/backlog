@@ -18,7 +18,7 @@
                     - if backlog_item.tasks.remaining.empty?
                       %i.icon-ok{ :class => backlog_item.completed ? 'completed' : '' }
                     - else
-                      %span
+                      %div
                         = backlog_item.tasks.remaining.count
                 = backlog_item.name
 
