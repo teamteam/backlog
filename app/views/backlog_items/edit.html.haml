@@ -19,10 +19,9 @@
 
         .form-group
           .col-lg-2.control-label
-            %label= "Completed"
+            %label= "Status"
           .col-lg-8
-            = link_to toggle_complete_backlog_item_path(@backlog_item), :id => "toggle" do
-              %i.icon-ok.form-control-static{ :class => @backlog_item.completed ? 'completed' : 'not-completed' }
+            = link_to @backlog_item.completed ? 'Complete' : 'Incomplete', toggle_complete_backlog_item_path(@backlog_item), :id => "toggle", :title => "Complete", :class => @backlog_item.completed ? "btn btn-success" : "btn btn-warning"
             %hr
 
         .form-group
