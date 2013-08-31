@@ -54,6 +54,18 @@ When /^I remove the task$/ do
   click_on "Remove task"
 end
 
+When /^I add a backlog item$/ do
+  click_on "New Item"
+
+  fill_in "Name", :with => "New Item Name"
+
+  click_on "Create"
+end
+
+Then /^the backlog item should be in this week$/ do
+  expect(page).to have_content "New Item Name"
+end
+
 Then /^the task should be gone$/ do
   expect(page).not_to have_content "My new task"
 end
