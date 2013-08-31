@@ -36,4 +36,4 @@ Run the spec tests with:
 
 Run all of the tests with:
 
-    $ bundle exec rake
+    $ ./bin/test
