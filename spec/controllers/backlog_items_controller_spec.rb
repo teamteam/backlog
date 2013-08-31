@@ -174,20 +174,18 @@ describe BacklogItemsController do
     end
 
     describe "#destroy" do
-      before :each do
-        @request.env['HTTP_REFERER'] = 'something'
-      end
-
       it "deletes the item" do
-        BacklogItem.should_receive(:delete).with "#{@item1.id}"
+        BacklogItem.should_receive(:delete).with backlog_item.id.to_s
 
-        delete :destroy, :backlog_item_id => @item1.id
+        delete :destroy, :backlog_item_id => backlog_item.id
       end
 
-      it "redirects to the referer" do
-        get :toggle_complete, :backlog_item_id => @item1.id
+      it "redirects to the backlog" do
+        BacklogItem.should_receive(:delete).with backlog_item.id.to_s
 
-        expect(response).to redirect_to("something")
+        get :destroy, :backlog_item_id => backlog_item.id
+
+        expect(response).to redirect_to(backlog_path)
       end
     end
 
