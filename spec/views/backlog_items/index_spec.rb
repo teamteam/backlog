@@ -7,6 +7,22 @@ describe 'backlog_items/index' do
     assign :backlog_items, [backlog_item]
   end
 
+  it "has a link to remove the backlog item" do
+    backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
+
+    render
+
+    expect(rendered).to have_link "Remove item"
+  end
+
+  it "has a link to edit the backlog item" do
+    backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
+
+    render
+
+    expect(rendered).to have_link "Edit item"
+  end
+
   context "with tasks" do
     context "with remaining tasks" do
       it "shows the remaining task count" do
