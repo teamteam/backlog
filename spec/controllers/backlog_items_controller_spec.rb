@@ -4,6 +4,8 @@ describe BacklogItemsController do
   include Devise::TestHelpers
   fixtures :backlog_items
 
+  let(:backlog_item) { mock_model(BacklogItem).as_null_object }
+
   before :each do
     @item1 = backlog_items :first_item
     @item2 = backlog_items :second_item
@@ -137,31 +139,35 @@ describe BacklogItemsController do
     describe "#update" do
       before :each do
         @request.env['HTTP_REFERER'] = 'something'
-        @item = backlog_items :first_item
+        BacklogItem.should_receive(:find).with(backlog_item.id.to_s).and_return backlog_item
       end
 
       it "updates the backlog item" do
-        assert_nil BacklogItem.find_by_name "a"
+        backlog_item.should_receive(:update_attributes).with "name" => "a name"
 
-        post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "a" }
-
-        assert_not_nil BacklogItem.find_by_name "a"
+        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a name" }
       end
 
       it "redirects back to referer when update is successful" do
-        post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "a" }
+        backlog_item.should_receive(:update_attributes).and_return true
+
+        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a" }
 
         expect(response).to redirect_to("something")
       end
 
       it "assigns backlog_item to the correct instance when unsucessful" do
-        post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "" }
+        backlog_item.should_receive(:update_attributes).and_return false
 
-        expect(assigns :backlog_item).to eq(@item)
+        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "" }
+
+        expect(assigns :backlog_item).to eq(backlog_item)
       end
 
       it "renders the edit page when unsuccessful" do
-        post :update, :backlog_item_id => @item.id, :backlog_item => { :name => "" }
+        backlog_item.should_receive(:update_attributes).and_return false
+
+        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "" }
 
         expect(response).to render_template(:edit)
       end
