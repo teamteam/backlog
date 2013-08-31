@@ -68,6 +68,19 @@ When /^I delete the backlog item$/ do
   click_on "Remove item"
 end
 
+When /^I update the backlog item$/ do
+  click_on "Edit item"
+
+  fill_in "Name", :with => "Edited Item Name"
+
+  click_on "Update"
+end
+
+Then /^the backlog item should be updated$/ do
+  expect(page).to have_content "Edited Item Name"
+  expect(page).not_to have_content "something"
+end
+
 Then /^the backlog item should not be in this week$/ do
   expect(page).not_to have_content @backlog_item.name
 end
