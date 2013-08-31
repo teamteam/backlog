@@ -98,31 +98,38 @@ describe BacklogItemsController do
     end
 
     describe "#create" do
-      before :each do
-        @item = mock_model BacklogItem
-        BacklogItem.should_receive(:new).and_return @item
+      context "successful" do
+        before :each do
+          backlog_item.should_receive(:save).and_return true
+        end
+
+        it "creates a new backlog item" do
+          BacklogItem.should_receive(:new).with(:name => "new backlog item").and_return backlog_item
+
+          post :create, :backlog_item => { :name => "new backlog item" }
+        end
+
+        it "redirects to the backlog" do
+          BacklogItem.should_receive(:new).and_return backlog_item
+
+          post :create, :backlog_item => { :name => "" }
+
+          expect(response).to redirect_to(backlog_item)
+        end
+
       end
 
-      it "creates a new backlog item" do
-        @item.should_receive(:save).and_return true
+      context "unsuccessful" do
+        before :each do
+          BacklogItem.should_receive(:new).and_return backlog_item
+          backlog_item.should_receive(:save).and_return false
+        end
 
-        post :create, :backlog_item => { :name => "new backlog item" }
-      end
+        it "renders the new backlog item template" do
+          post :create, :backlog_item => { :name => "" }
 
-      it "redirects to backlog when creation is successful" do
-        @item.should_receive(:save).and_return true
-
-        post :create, :backlog_item => { :name => "" }
-
-        expect(response).to redirect_to(@item)
-      end
-
-      it "renders the new template when creation fails" do
-        @item.should_receive(:save).and_return false
-
-        post :create, :backlog_item => { :name => "" }
-
-        expect(response).to render_template(:new)
+          expect(response).to render_template(:new)
+        end
       end
     end
 
