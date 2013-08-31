@@ -12,6 +12,8 @@ Given /^I am logged in$/ do
 end
 
 Given /^a backlog item exists$/ do
+  BacklogItem.delete_all
+
   @backlog_item = BacklogItem.create :name => "something"
 end
 
@@ -52,6 +54,39 @@ end
 
 When /^I remove the task$/ do
   click_on "Remove task"
+end
+
+When /^I add a backlog item$/ do
+  click_on "New Item"
+
+  fill_in "Name", :with => "New Item Name"
+
+  click_on "Create"
+end
+
+When /^I delete the backlog item$/ do
+  click_on "Remove item"
+end
+
+When /^I update the backlog item$/ do
+  click_on "Edit item"
+
+  fill_in "Name", :with => "Edited Item Name"
+
+  click_on "Update"
+end
+
+Then /^the backlog item should be updated$/ do
+  expect(page).to have_content "Edited Item Name"
+  expect(page).not_to have_content "something"
+end
+
+Then /^the backlog item should not be in this week$/ do
+  expect(page).not_to have_content @backlog_item.name
+end
+
+Then /^the backlog item should be in this week$/ do
+  expect(page).to have_content "New Item Name"
 end
 
 Then /^the task should be gone$/ do
