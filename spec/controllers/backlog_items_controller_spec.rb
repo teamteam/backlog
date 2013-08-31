@@ -138,7 +138,7 @@ describe BacklogItemsController do
 
     describe "#update" do
       before :each do
-        @request.env['HTTP_REFERER'] = 'something'
+        @request.env['HTTP_REFERER'] = ''
         BacklogItem.should_receive(:find).with(backlog_item.id.to_s).and_return backlog_item
       end
 
@@ -148,28 +148,36 @@ describe BacklogItemsController do
         post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a name" }
       end
 
-      it "redirects back to referer when update is successful" do
-        backlog_item.should_receive(:update_attributes).and_return true
+      context "successful" do
+        before :each do
+          backlog_item.should_receive(:update_attributes).and_return true
+        end
 
-        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a" }
+        it "redirects back to referer when update is successful" do
+          @request.env['HTTP_REFERER'] = 'something'
 
-        expect(response).to redirect_to("something")
+          post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a" }
+
+          expect(response).to redirect_to("something")
+        end
       end
 
-      it "assigns backlog_item to the correct instance when unsucessful" do
-        backlog_item.should_receive(:update_attributes).and_return false
+      context "unsuccessful" do
+        before :each do
+          backlog_item.should_receive(:update_attributes).and_return false
+        end
 
-        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "" }
+        it "assigns backlog_item to the correct instance when unsucessful" do
+          post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "" }
 
-        expect(assigns :backlog_item).to eq(backlog_item)
-      end
+          expect(assigns :backlog_item).to eq(backlog_item)
+        end
 
-      it "renders the edit page when unsuccessful" do
-        backlog_item.should_receive(:update_attributes).and_return false
+        it "renders the edit page when unsuccessful" do
+          post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "" }
 
-        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "" }
-
-        expect(response).to render_template(:edit)
+          expect(response).to render_template(:edit)
+        end
       end
     end
 
