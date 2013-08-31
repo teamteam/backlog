@@ -12,6 +12,8 @@ Given /^I am logged in$/ do
 end
 
 Given /^a backlog item exists$/ do
+  BacklogItem.delete_all
+
   @backlog_item = BacklogItem.create :name => "something"
 end
 
@@ -60,6 +62,14 @@ When /^I add a backlog item$/ do
   fill_in "Name", :with => "New Item Name"
 
   click_on "Create"
+end
+
+When /^I delete the backlog item$/ do
+  click_on "Remove item"
+end
+
+Then /^the backlog item should not be in this week$/ do
+  expect(page).not_to have_content @backlog_item.name
 end
 
 Then /^the backlog item should be in this week$/ do

@@ -9,3 +9,8 @@ Feature: Backlog Item
     And I view the backlog
     Then the backlog item should be in this week
 
+  Scenario: Delete
+    Given a backlog item exists
+    And I view the backlog
+    When I delete the backlog item
+    Then the backlog item should not be in this week

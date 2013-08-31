@@ -25,5 +25,5 @@
                 .edit-controls.pull-right
                   = link_to backlog_item_path(backlog_item) do
                     %i.icon-pencil
-                  = link_to backlog_item, :method => :delete, :id => "remove-#{backlog_item.id}", :data => { confirm: "Are you sure?" } do
+                  = link_to backlog_item, :method => :delete, :title => "Remove item", :id => "remove-#{backlog_item.id}", :data => { confirm: "Are you sure?" } do
                     %i.icon-remove
