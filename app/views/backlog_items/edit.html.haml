@@ -21,17 +21,18 @@
           .col-lg-2.control-label
             %label
               Status
-          .col-lg-8
+          .col-lg-8.status
             - if @backlog_item.tasks.empty?
-              .alert.alert-danger
+              .danger
                 %strong
                   No work!
             - else
               - if @backlog_item.tasks.remaining.empty?
-                .alert.alert-success
-                  Done!
+                .success
+                  %strong
+                    Done!
               - else
-                .alert.alert-warning
+                .warning
                   %strong
                     Not done!
             %hr

@@ -19,6 +19,7 @@
 $dark: #000000;
 $inactive_sucess: #38C481;
 $success: #5CB85C;
+$warning: #F0AD4E;
 $danger: #BD4A48;
 $default: #DDDDDD;
 $text: #444444;
@@ -52,6 +53,14 @@ $text: #444444;
 
 .danger {
   color: $danger;
+}
+
+.success {
+  color: $success;
+}
+
+.warning {
+  color: $warning;
 }
 
 a {
@@ -140,6 +149,11 @@ form {
 }
 
 .backlog-item {
+  .status {
+    top: 7px;
+    font-size: 15px;
+  }
+
   i {
     padding-left: 20px;
   }
@@ -160,18 +174,6 @@ table.table {
     td {
       border: none;
     }
-  }
-}
-
-.status {
-  font-weight: bold;
-  padding-right: 10px;
-
-  div {
-      top: 2px;
-      padding-left: 5px;
-      padding-right: 10px;
-      color: $default;
   }
 }
 
@@ -206,6 +208,18 @@ i.icon-plus {
 }
 
 .backlog, .archive {
+  .status {
+    font-weight: bold;
+    padding-right: 10px;
+
+    div {
+        top: 2px;
+        padding-left: 5px;
+        padding-right: 10px;
+        color: $default;
+    }
+  }
+
   i {
     margin-left: 10px;
   }
