@@ -14,3 +14,7 @@ deploy:
   app: thebacklog
   on:
     repo: teamteam/backlog
+notifications:
+  hipchat:
+    rooms:
+      secure: XjPDs0zEVLN4NxOW8BnJO+XNrd8FiYzoy4UsOf6xanG4CrChv/epr/rQuZN+62Aw+vgqjV8GECEU0Do9TRu9+wZd0gyFsqE5h+bc6fCBe4Rmi415m0Y3lPqpxtfkWPJwjaTEZnuznu1HdiQ/BW1Dud0dsvDmN3OpF8H6W1YH2X8=
