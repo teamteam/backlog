@@ -8,7 +8,7 @@ describe 'backlog_items/index' do
   end
 
   it "has a link to remove the backlog item" do
-      backlog_item.stub_chain(:tasks, :empty?).and_return true
+    backlog_item.stub_chain(:tasks, :empty?).and_return true
     backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
 
     render
@@ -17,7 +17,7 @@ describe 'backlog_items/index' do
   end
 
   it "has a link to edit the backlog item" do
-      backlog_item.stub_chain(:tasks, :empty?).and_return true
+    backlog_item.stub_chain(:tasks, :empty?).and_return true
     backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
 
     render
