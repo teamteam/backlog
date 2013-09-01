@@ -27,7 +27,8 @@
 
         .form-group
           .col-lg-2.control-label
-            %label= "Tasks"
+            %label
+              Tasks
           .col-lg-8
             .tasks
               %table.table.tasks
@@ -57,6 +58,7 @@
 
         .form-group
           .col-lg-2.control-label
-            %label= "Caution"
+            %label
+              Caution
           .col-lg-8
             = link_to "Delete", @backlog_item, :method => :delete, :id => "remove", :class => "btn btn-danger", :data => { confirm: "Are you sure?" }
