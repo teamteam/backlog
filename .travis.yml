@@ -6,4 +6,11 @@ env:
 before_script:
 - npm install
 script:
-- bundle exec rake
+- ./bin/test
+deploy:
+  provider: heroku
+  api_key:
+    secure: N5vquBOAkqY6JpyOaNz5kaxgXmdvg2kilaOr8oUguD7/ckWTbn/TOILdWzJ9oUKZgUVZWt/YdEH5DxAGVMctvMr4/iPk3y72sdDocKd+0gDyrTW8NDOKR/7Ol6PgqGsQEjN6mhMwM+trbQvMyL7a/DpLUQlz6B4sPL5HGG5tQWA=
+  app: thebacklog
+  on:
+    repo: teamteam/backlog
