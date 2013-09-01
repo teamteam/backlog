@@ -22,7 +22,18 @@
             %label
               Status
           .col-lg-8
-            = link_to (@backlog_item.completed ? "Complete" : "Incomplete"), toggle_complete_backlog_item_path(@backlog_item), :id => "toggle", :class => "btn btn-#{@backlog_item.completed ? 'success' : 'warning'}"
+            - if @backlog_item.tasks.empty?
+              .alert.alert-danger
+                %strong
+                  No work!
+            - else
+              - if @backlog_item.tasks.remaining.empty?
+                .alert.alert-success
+                  Done!
+              - else
+                .alert.alert-warning
+                  %strong
+                    Not done!
             %hr
 
         .form-group
