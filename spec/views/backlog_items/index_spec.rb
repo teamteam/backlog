@@ -8,6 +8,7 @@ describe 'backlog_items/index' do
   end
 
   it "has a link to remove the backlog item" do
+      backlog_item.stub_chain(:tasks, :empty?).and_return true
     backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
 
     render
@@ -16,6 +17,7 @@ describe 'backlog_items/index' do
   end
 
   it "has a link to edit the backlog item" do
+      backlog_item.stub_chain(:tasks, :empty?).and_return true
     backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
 
     render
@@ -24,6 +26,10 @@ describe 'backlog_items/index' do
   end
 
   context "with tasks" do
+    before :each do
+      backlog_item.stub_chain(:tasks, :empty?).and_return false
+    end
+
     context "with remaining tasks" do
       it "shows the remaining task count" do
         backlog_item.stub_chain(:tasks, :remaining, :count).and_return 10
@@ -50,15 +56,16 @@ describe 'backlog_items/index' do
   end
 
   context "without tasks" do
-    it "should should a check mark" do
+    before :each do
       backlog_item.stub(:name).and_return "Spec Backlog Item Name"
-      backlog_item.stub_chain(:tasks, :remaining, :count).and_return 0
-      backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
+      backlog_item.stub_chain(:tasks, :empty?).and_return true
+    end
 
+    it "should show a dash" do
       render
 
-      expect(rendered).to have_selector 'i.icon-ok'
-      expect(rendered).not_to have_text 0
+      expect(rendered).to have_text "-"
+      expect(rendered).not_to have_selector 'i.icon-ok'
     end
   end
 end
