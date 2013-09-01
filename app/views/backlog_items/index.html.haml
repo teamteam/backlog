@@ -18,8 +18,7 @@
                     %div.danger= "-"
                   - else
                     - if backlog_item.tasks.remaining.empty?
-                      = link_to toggle_complete_backlog_item_path(backlog_item), :id => "toggle-#{backlog_item.id}" do
-                        %i.icon-ok.completed
+                      %i.icon-ok.completed
                     - else
                       %div.warning
                         = backlog_item.tasks.remaining.count
