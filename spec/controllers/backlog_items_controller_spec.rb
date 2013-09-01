@@ -53,12 +53,6 @@ describe BacklogItemsController do
 
       expect(response).to redirect_to(new_user_session_path)
     end
-
-    it "redirects toggle_complete to login" do
-      get :toggle_complete, :backlog_item_id => 1
-
-      expect(response).to redirect_to(new_user_session_path)
-    end
   end
 
   context "signed in" do
@@ -201,34 +195,6 @@ describe BacklogItemsController do
         get :destroy, :backlog_item_id => backlog_item.id
 
         expect(response).to redirect_to(backlog_path)
-      end
-    end
-
-    describe "#toggle_complete" do
-      before :each do
-        @request.env['HTTP_REFERER'] = "something"
-      end
-
-      it "toggles the backlog item completed attribute from false to true" do
-        expect(@item1.completed).to be_false
-
-        get :toggle_complete, :backlog_item_id => @item1.id
-
-        assert_not_nil BacklogItem.find_by_id_and_completed(@item1.id, true)
-      end
-
-      it "toggles the backlog item completed attribute from true to false" do
-        expect(@item2.completed).to be_true
-
-        get :toggle_complete, :backlog_item_id => @item2.id
-
-        assert_not_nil BacklogItem.find_by_id_and_completed(@item2.id, false)
-      end
-
-      it "redirects to the referer" do
-        get :toggle_complete, :backlog_item_id => @item1.id
-
-        expect(response).to redirect_to("something")
       end
     end
   end
