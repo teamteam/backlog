@@ -13,7 +13,8 @@ describe "Notification Emails" do
 
     describe "Create Task Email" do
       before :each do
-        @email = BacklogMailer.create_task_email
+        task = mock_model Task, :name => "The Task Name"
+        @email = BacklogMailer.create_task_email task
       end
 
       it "should send the email to everyone" do
@@ -23,11 +24,16 @@ describe "Notification Emails" do
       it "should have the correct subject" do
         expect(@email).to have_subject "Task Created"
       end
+
+      it "should include the name of the new task" do
+        expect(@email).to have_body_text /The Task Name/
+      end
     end
 
-    describe "New Item Email" do
+    describe "Create Item Email" do
       before :each do
-        @email = BacklogMailer.create_item_email
+        item = mock_model BacklogItem, :name => "The Backlog Item Name"
+        @email = BacklogMailer.create_item_email item
       end
 
       it "should send the email to everyone" do
@@ -36,6 +42,10 @@ describe "Notification Emails" do
 
       it "should have the correct subject" do
         expect(@email).to have_subject "Backlog Item Created"
+      end
+
+      it "should include the name of the new item" do
+        expect(@email).to have_body_text /The Backlog Item Name/
       end
     end
 
@@ -69,7 +79,8 @@ describe "Notification Emails" do
 
     describe "Update Task Email" do
       before :each do
-        @email = BacklogMailer.update_task_email
+        task = mock_model Task, :name => "The Task Name"
+        @email = BacklogMailer.update_task_email task
       end
 
       it "should send the email to everyone" do
@@ -79,11 +90,16 @@ describe "Notification Emails" do
       it "should have the correct subject" do
         expect(@email).to have_subject "Task Updated"
       end
+
+      it "should include the name of the new task" do
+        expect(@email).to have_body_text /The Task Name/
+      end
     end
 
     describe "Update Item Email" do
       before :each do
-        @email = BacklogMailer.update_item_email
+        item = mock_model BacklogItem, :name => "The Backlog Item Name"
+        @email = BacklogMailer.update_item_email item
       end
 
       it "should send the email to everyone" do
@@ -92,6 +108,10 @@ describe "Notification Emails" do
 
       it "should have the correct subject" do
         expect(@email).to have_subject "Backlog Item Updated"
+      end
+
+      it "should contain the item name" do
+        expect(@email).to have_body_text /The Backlog Item Name/
       end
     end
 

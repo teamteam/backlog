@@ -1,8 +1,9 @@
 class BacklogMailer < ActionMailer::Base
   default from: "notifications@thebacklog.io"
 
-  def create_item_email
+  def create_item_email item
     recipients = User.all.map { |user| user.email }
+    @item = item
     mail to: recipients.join(','), subject: "Backlog Item Created"
   end
 
@@ -11,18 +12,21 @@ class BacklogMailer < ActionMailer::Base
     mail to: recipients.join(','), subject: "Backlog Item Deleted"
   end
 
-  def update_item_email
+  def update_item_email item
     recipients = User.all.map { |user| user.email }
+    @item = item
     mail to: recipients.join(','), subject: "Backlog Item Updated"
   end
 
-  def create_task_email
+  def create_task_email task
     recipients = User.all.map { |user| user.email }
+    @task = task
     mail to: recipients.join(','), subject: "Task Created"
   end
 
-  def update_task_email
+  def update_task_email task
     recipients = User.all.map { |user| user.email }
+    @task = task
     mail to: recipients.join(','), subject: "Task Updated"
   end
 
