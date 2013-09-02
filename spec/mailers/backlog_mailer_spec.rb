@@ -8,6 +8,21 @@ describe "Notification Emails" do
   describe "Emails" do
     before :each do
       User.stub(:all).and_return [mock_model(User, :email => "teammate@example.com")]
+      @view.stub :mail
+    end
+
+    describe "Create Task Email" do
+      before :each do
+        @email = BacklogMailer.create_task_email
+      end
+
+      it "should send the email to everyone" do
+        expect(@email).to deliver_to "teammate@example.com"
+      end
+
+      it "should have the correct subject" do
+        expect(@email).to have_subject "Task Created"
+      end
     end
 
     describe "New Item Email" do
@@ -35,6 +50,20 @@ describe "Notification Emails" do
 
       it "should have the correct subject" do
         expect(@email).to have_subject "Backlog Item Deleted"
+      end
+    end
+
+    describe "Update Task Email" do
+      before :each do
+        @email = BacklogMailer.update_task_email
+      end
+
+      it "should send the email to everyone" do
+        expect(@email).to deliver_to "teammate@example.com"
+      end
+
+      it "should have the correct subject" do
+        expect(@email).to have_subject "Task Updated"
       end
     end
 

@@ -8,6 +8,7 @@ class TasksController < ApplicationController
     item = BacklogItem.find params[:backlog_item_id]
     @task = Task.new :name => params[:task][:name], :backlog_item_id => item.id
     if @task.save
+      BacklogMailer.create_task_email.deliver
       redirect_to backlog_item_path(item)
     else
       render :action => :new
@@ -31,6 +32,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find params[:task_id]
     if @task.update_attributes params.require(:task).permit(:name)
+      BacklogMailer.update_task_email.deliver
       redirect_to task_path(params[:backlog_item_id], params[:task_id])
     else
       render :edit

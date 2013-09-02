@@ -21,6 +21,18 @@ describe TasksController do
   end
 
   describe "#create" do
+    before :each do
+      BacklogMailer.stub_chain :create_task_email, :deliver
+    end
+
+    it "should send update item email" do
+      email = double
+      email.should_receive :deliver
+      BacklogMailer.should_receive(:create_task_email).and_return email
+
+      post :create, :backlog_item_id => item.id, :task => { :name => "My new task" }
+    end
+
     it "creates a new task" do
       Task.should_receive(:new).with(:name => "My new task", :backlog_item_id => item.id).and_return task
       post :create, :backlog_item_id => item.id, :task => { :name => "My new task" }
@@ -98,6 +110,15 @@ describe TasksController do
   describe "#update" do
     before :each do
       Task.should_receive(:find).with(task.id.to_s).and_return task
+      BacklogMailer.stub_chain :update_task_email, :deliver
+    end
+
+    it "should send update item email" do
+      email = double
+      email.should_receive :deliver
+      BacklogMailer.should_receive(:update_task_email).and_return email
+
+      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "a name" }
     end
 
     it "redirects back to the task edit" do

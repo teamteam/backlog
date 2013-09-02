@@ -15,4 +15,14 @@ class BacklogMailer < ActionMailer::Base
     recipients = User.all.map { |user| user.email }
     mail to: recipients.join(','), subject: "Backlog Item Updated"
   end
+
+  def create_task_email
+    recipients = User.all.map { |user| user.email }
+    mail to: recipients.join(','), subject: "Task Created"
+  end
+
+  def update_task_email
+    recipients = User.all.map { |user| user.email }
+    mail to: recipients.join(','), subject: "Task Updated"
+  end
 end
