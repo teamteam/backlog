@@ -27,7 +27,7 @@ describe "Notification Emails" do
 
     describe "New Item Email" do
       before :each do
-        @email = BacklogMailer.new_item_email
+        @email = BacklogMailer.create_item_email
       end
 
       it "should send the email to everyone" do
@@ -35,7 +35,7 @@ describe "Notification Emails" do
       end
 
       it "should have the correct subject" do
-        expect(@email).to have_subject "Backlog Item Added"
+        expect(@email).to have_subject "Backlog Item Created"
       end
     end
 
