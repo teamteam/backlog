@@ -153,6 +153,14 @@ describe BacklogItemsController do
         BacklogItem.should_receive(:find).with(backlog_item.id.to_s).and_return backlog_item
       end
 
+      it "should send update item email" do
+        email = double
+        email.should_receive :deliver
+        BacklogMailer.should_receive(:update_item_email).and_return email
+
+        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a name" }
+      end
+
       it "updates the backlog item" do
         backlog_item.should_receive(:update_attributes).with "name" => "a name"
 
@@ -193,6 +201,14 @@ describe BacklogItemsController do
     end
 
     describe "#destroy" do
+      it "should send update item email" do
+        email = double
+        email.should_receive :deliver
+        BacklogMailer.should_receive(:delete_item_email).and_return email
+
+        delete :destroy, :backlog_item_id => backlog_item.id
+      end
+
       it "deletes the item" do
         BacklogItem.should_receive(:delete).with backlog_item.id.to_s
 
