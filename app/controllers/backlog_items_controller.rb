@@ -16,6 +16,7 @@ class BacklogItemsController < ApplicationController
   def create
     @backlog_item = BacklogItem.new :name => params[:backlog_item][:name]
     if @backlog_item.save
+      BacklogMailer.new_item_email.deliver
       redirect_to backlog_item_path(@backlog_item)
     else
       render :new

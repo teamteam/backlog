@@ -94,7 +94,17 @@ describe BacklogItemsController do
     describe "#create" do
       context "successful" do
         before :each do
+          BacklogMailer.stub_chain :new_item_email, :deliver
           backlog_item.should_receive(:save).and_return true
+        end
+
+        it "should send new item email" do
+          BacklogItem.should_receive(:new).and_return backlog_item
+          email = double
+          email.should_receive :deliver
+          BacklogMailer.should_receive(:new_item_email).and_return email
+
+          post :create, :backlog_item => { :name => "new backlog item" }
         end
 
         it "creates a new backlog item" do
