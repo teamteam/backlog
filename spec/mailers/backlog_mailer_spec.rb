@@ -94,5 +94,33 @@ describe "Notification Emails" do
         expect(@email).to have_subject "Backlog Item Updated"
       end
     end
+
+    describe "Complete Task Email" do
+      before :each do
+        @email = BacklogMailer.complete_task_email
+      end
+
+      it "should send the email to everyone" do
+        expect(@email).to deliver_to "teammate@example.com"
+      end
+
+      it "should have the correct subject" do
+        expect(@email).to have_subject "Task Marked Complete"
+      end
+    end
+
+    describe "Incomplete Task Email" do
+      before :each do
+        @email = BacklogMailer.incomplete_task_email
+      end
+
+      it "should send the email to everyone" do
+        expect(@email).to deliver_to "teammate@example.com"
+      end
+
+      it "should have the correct subject" do
+        expect(@email).to have_subject "Task Marked Incomplete"
+      end
+    end
   end
 end

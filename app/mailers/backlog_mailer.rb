@@ -30,4 +30,14 @@ class BacklogMailer < ActionMailer::Base
     recipients = User.all.map { |user| user.email }
     mail to: recipients.join(','), subject: "Task Deleted"
   end
+
+  def complete_task_email
+    recipients = User.all.map { |user| user.email }
+    mail to: recipients.join(','), subject: "Task Marked Complete"
+  end
+
+  def incomplete_task_email
+    recipients = User.all.map { |user| user.email }
+    mail to: recipients.join(','), subject: "Task Marked Incomplete"
+  end
 end

@@ -68,6 +68,15 @@ describe TasksController do
   describe "#toggle_completed" do
     before :each do
       Task.should_receive(:find).with(task.id.to_s).and_return task
+      BacklogMailer.stub_chain(:complete_task_email, :deliver)
+    end
+
+    it "should send update item email" do
+      email = double
+      email.should_receive :deliver
+      BacklogMailer.should_receive(:complete_task_email).and_return email
+      
+      get :toggle_completed, :backlog_item_id => item.id, :task_id => task.id
     end
 
     it "should redirect to backlog item page" do
