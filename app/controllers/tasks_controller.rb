@@ -22,6 +22,7 @@ class TasksController < ApplicationController
 
   def destroy
     Task.delete params[:task_id]
+    BacklogMailer.delete_task_email.deliver
     redirect_to backlog_item_path params[:backlog_item_id]
   end
 

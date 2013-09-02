@@ -84,6 +84,18 @@ describe TasksController do
   end
 
   describe "#destroy" do
+    before :each do
+      BacklogMailer.stub_chain :delete_task_email, :deliver
+    end
+
+    it "should send update item email" do
+      email = double
+      email.should_receive :deliver
+      BacklogMailer.should_receive(:delete_task_email).and_return email
+      
+      delete :destroy, :backlog_item_id => 2, :task_id => 1
+    end
+
     it "deletes the task" do
       Task.should_receive(:delete).with("1")
       

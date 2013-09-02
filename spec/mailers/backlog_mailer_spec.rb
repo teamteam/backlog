@@ -39,6 +39,20 @@ describe "Notification Emails" do
       end
     end
 
+    describe "Delete Task Email" do
+      before :each do
+        @email = BacklogMailer.delete_task_email
+      end
+
+      it "should send the email to everyone" do
+        expect(@email).to deliver_to "teammate@example.com"
+      end
+
+      it "should have the correct subject" do
+        expect(@email).to have_subject "Task Deleted"
+      end
+    end
+
     describe "Delete Item Email" do
       before :each do
         @email = BacklogMailer.delete_item_email
