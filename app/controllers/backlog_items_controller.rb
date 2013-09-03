@@ -22,21 +22,21 @@ class BacklogItemsController < ApplicationController
     end
   end
 
-  def edit
-    @backlog_item = BacklogItem.find params[:backlog_item_id]
+  def show
+    @backlog_item = BacklogItem.find params[:id]
   end
 
   def update
-    @backlog_item = BacklogItem.find params[:backlog_item_id]
+    @backlog_item = BacklogItem.find params[:id]
     if @backlog_item.update_attributes params.require(:backlog_item).permit(:name, :completed)
       redirect_to :back
     else
-      render :edit
+      render :show
     end
   end
 
   def destroy
-    BacklogItem.delete params[:backlog_item_id]
-    redirect_to backlog_path
+    BacklogItem.delete params[:id]
+    redirect_to backlog_items_path
   end
 end
