@@ -51,7 +51,8 @@ describe "Notification Emails" do
 
     describe "Delete Task Email" do
       before :each do
-        @email = BacklogMailer.delete_task_email
+        task = mock_model Task, :name => "The Task Name"
+        @email = BacklogMailer.delete_task_email task
       end
 
       it "should send the email to everyone" do
@@ -60,6 +61,10 @@ describe "Notification Emails" do
 
       it "should have the correct subject" do
         expect(@email).to have_subject "Task Deleted"
+      end
+
+      it "should contain the name of the task" do
+        expect(@email).to have_body_text /The Task Name/
       end
     end
 

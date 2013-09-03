@@ -94,6 +94,9 @@ describe TasksController do
 
   describe "#destroy" do
     before :each do
+      @task = mock_model Task, :delete => false
+      Task.should_receive(:find).and_return @task
+
       BacklogMailer.stub_chain :delete_task_email, :deliver
     end
 
@@ -106,7 +109,7 @@ describe TasksController do
     end
 
     it "deletes the task" do
-      Task.should_receive(:delete).with("1")
+      @task.should_receive :delete
       
       delete :destroy, :backlog_item_id => 2, :task_id => 1
     end
