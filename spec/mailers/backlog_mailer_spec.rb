@@ -7,14 +7,14 @@ describe "Notification Emails" do
 
   describe "Emails" do
     before :each do
+      @item = mock_model BacklogItem, :name => "The Backlog Item Name"
       User.stub(:all).and_return [mock_model(User, :email => "teammate@example.com")]
       @view.stub :mail
     end
 
     describe "Create Item Email" do
       before :each do
-        item = mock_model BacklogItem, :name => "The Backlog Item Name"
-        @email = BacklogMailer.create_item_email item
+        @email = BacklogMailer.create_item_email @item
       end
 
       it "should send the email to everyone" do
@@ -26,14 +26,13 @@ describe "Notification Emails" do
       end
 
       it "should include the name of the new item" do
-        expect(@email).to have_body_text /The Backlog Item Name/
+        expect(@email).to have_body_text @item.name
       end
     end
 
     describe "Delete Item Email" do
       before :each do
-        item = mock_model BacklogItem, :name => "The Backlog Item Name"
-        @email = BacklogMailer.delete_item_email item
+        @email = BacklogMailer.delete_item_email @item
       end
 
       it "should send the email to everyone" do
@@ -45,14 +44,13 @@ describe "Notification Emails" do
       end
 
       it "should contain the name of the item" do
-        expect(@email).to have_body_text /The Backlog Item Name/
+        expect(@email).to have_body_text @item.name
       end
     end
 
     describe "Update Item Email" do
       before :each do
-        item = mock_model BacklogItem, :name => "The Backlog Item Name"
-        @email = BacklogMailer.update_item_email item
+        @email = BacklogMailer.update_item_email @item
       end
 
       it "should send the email to everyone" do
@@ -64,7 +62,7 @@ describe "Notification Emails" do
       end
 
       it "should contain the item name" do
-        expect(@email).to have_body_text /The Backlog Item Name/
+        expect(@email).to have_body_text @item.name
       end
     end
   end

@@ -7,14 +7,14 @@ describe "Notification Emails" do
 
   describe "Emails" do
     before :each do
+      @task = mock_model Task, :name => "The Task Name"
       User.stub(:all).and_return [mock_model(User, :email => "teammate@example.com")]
       @view.stub :mail
     end
 
     describe "Create Task Email" do
       before :each do
-        task = mock_model Task, :name => "The Task Name"
-        @email = TaskMailer.create_task_email task
+        @email = TaskMailer.create_task_email @task
       end
 
       it "should send the email to everyone" do
@@ -32,8 +32,7 @@ describe "Notification Emails" do
 
     describe "Delete Task Email" do
       before :each do
-        task = mock_model Task, :name => "The Task Name"
-        @email = TaskMailer.delete_task_email task
+        @email = TaskMailer.delete_task_email @task
       end
 
       it "should send the email to everyone" do
@@ -51,8 +50,7 @@ describe "Notification Emails" do
 
     describe "Update Task Email" do
       before :each do
-        task = mock_model Task, :name => "The Task Name"
-        @email = TaskMailer.update_task_email task
+        @email = TaskMailer.update_task_email @task
       end
 
       it "should send the email to everyone" do
@@ -70,7 +68,6 @@ describe "Notification Emails" do
 
     describe "Complete Task Email" do
       before :each do
-        @task = mock_model Task, :name => "The Task Name"
         @email = TaskMailer.complete_task_email @task
       end
 
@@ -89,7 +86,6 @@ describe "Notification Emails" do
 
     describe "Incomplete Task Email" do
       before :each do
-        @task = mock_model Task, :name => "The Task Name"
         @email = TaskMailer.incomplete_task_email @task
       end
 
