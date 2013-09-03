@@ -1,8 +1,4 @@
-require 'toggleable'
-
 class Task < ActiveRecord::Base
-  include Toggleable
-
   belongs_to :backlog_item
   validates :name, presence: true
 
