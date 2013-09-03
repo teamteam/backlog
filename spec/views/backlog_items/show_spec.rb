@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "backlog_items/edit" do
+describe "backlog_items/show" do
   let(:backlog_item) { mock_model BacklogItem, :tasks => [mock_model(Task, :name => "Task 1")] }
 
   context "tasks" do

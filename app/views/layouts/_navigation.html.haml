@@ -2,7 +2,7 @@
   .col-lg-10.col-lg-offset-1
     %nav.navbar.navbar-default{:role => "navigation"}
       .navbar-header
-        = link_to backlog_path, :class => "navbar-brand" do
+        = link_to backlog_items_path, :class => "navbar-brand" do
           %i.icon-list
 
       %div.collapse.navbar-collapse.navbar-ex1-collapse
@@ -11,7 +11,7 @@
             = link_to new_backlog_item_path, :title => "New Item" do
               %i.icon-plus
           %li
-            = link_to archive_backlog_path, :title => "Archive" do
+            = link_to archive_backlog_items_path, :title => "Archive" do
               %i.icon-archive
           %li
             = link_to edit_user_registration_path, :title => "Account Settings" do
