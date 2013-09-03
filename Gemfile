@@ -64,5 +64,6 @@ group :test, :development do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'email_spec'
   gem 'sqlite3'
 end

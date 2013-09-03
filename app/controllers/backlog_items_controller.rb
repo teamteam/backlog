@@ -16,6 +16,7 @@ class BacklogItemsController < ApplicationController
   def create
     @backlog_item = BacklogItem.new :name => params[:backlog_item][:name]
     if @backlog_item.save
+      BacklogItemMailer.create_item_email(@backlog_item).deliver
       redirect_to backlog_item_path(@backlog_item)
     else
       render :new
@@ -29,6 +30,7 @@ class BacklogItemsController < ApplicationController
   def update
     @backlog_item = BacklogItem.find params[:id]
     if @backlog_item.update_attributes params.require(:backlog_item).permit(:name, :completed)
+      BacklogItemMailer.update_item_email(@backlog_item).deliver
       redirect_to :back
     else
       render :show
@@ -36,7 +38,9 @@ class BacklogItemsController < ApplicationController
   end
 
   def destroy
-    BacklogItem.delete params[:id]
+    backlog_item = BacklogItem.find params[:id]
+    backlog_item.delete
+    BacklogItemMailer.delete_item_email(backlog_item).deliver
     redirect_to backlog_items_path
   end
 end
