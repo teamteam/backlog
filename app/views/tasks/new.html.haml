@@ -4,7 +4,7 @@
       %h1
         New Task
 
-      = form_for @task, url: create_task_path(@task.backlog_item), :html => { :role => "form", :class => "form-horizontal" } do |f|
+      = form_for @task, url: backlog_item_tasks_path(@task.backlog_item), :method => :post, :html => { :role => "form", :class => "form-horizontal" } do |f|
         .form-group{:class => @task.errors.has_key?(:name) ? 'has-error' : ''}
           .col-lg-2.control-label
             = f.label :name

@@ -36,20 +36,20 @@ describe BacklogItemsController do
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    it "redirects edit to login" do
-      get :edit, :backlog_item_id => 1
+    it "redirects show to login" do
+      get :show, :id => 1
 
       expect(response).to redirect_to(new_user_session_path)
     end
 
     it "redirects update to login" do
-      post :update, :backlog_item_id => 1, :backlog_item => { :name => "a" }
+      post :update, :id => 1, :backlog_item => { :name => "a" }
 
       expect(response).to redirect_to(new_user_session_path)
     end
 
     it "redirects delete to login" do
-      delete :destroy, :backlog_item_id => 1
+      delete :destroy, :id => 1
 
       expect(response).to redirect_to(new_user_session_path)
     end
@@ -137,11 +137,11 @@ describe BacklogItemsController do
       end
     end
 
-    describe "#edit" do
+    describe "#show" do
       it "assigns backlog_item to the correct instance" do
         BacklogItem.should_receive(:find).with("1").and_return "existing backlog item"
 
-        get :edit, :backlog_item_id => 1
+        get :show, :id => 1
 
         expect(assigns :backlog_item).to eq('existing backlog item')
       end
@@ -158,13 +158,13 @@ describe BacklogItemsController do
         email.should_receive :deliver
         BacklogItemMailer.should_receive(:update_item_email).and_return email
 
-        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a name" }
+        post :update, :id => backlog_item.id, :backlog_item => { :name => "a name" }
       end
 
       it "updates the backlog item" do
         backlog_item.should_receive(:update_attributes).with "name" => "a name"
 
-        post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a name" }
+        post :update, :id => backlog_item.id, :backlog_item => { :name => "a name" }
       end
 
       context "successful" do
@@ -175,7 +175,7 @@ describe BacklogItemsController do
         it "redirects back to referer when update is successful" do
           @request.env['HTTP_REFERER'] = 'something'
 
-          post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a" }
+          post :update, :id => backlog_item.id, :backlog_item => { :name => "a" }
 
           expect(response).to redirect_to("something")
         end
@@ -187,15 +187,15 @@ describe BacklogItemsController do
         end
 
         it "assigns backlog_item to the correct instance when unsucessful" do
-          post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "" }
+          post :update, :id => backlog_item.id, :backlog_item => { :name => "" }
 
           expect(assigns :backlog_item).to eq(backlog_item)
         end
 
-        it "renders the edit page when unsuccessful" do
-          post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "" }
+        it "renders the show page when unsuccessful" do
+          post :update, :id => backlog_item.id, :backlog_item => { :name => "" }
 
-          expect(response).to render_template(:edit)
+          expect(response).to render_template(:show)
         end
       end
     end
@@ -211,19 +211,19 @@ describe BacklogItemsController do
         email.should_receive :deliver
         BacklogItemMailer.should_receive(:delete_item_email).and_return email
 
-        delete :destroy, :backlog_item_id => backlog_item.id
+        delete :destroy, :id => backlog_item.id
       end
 
       it "deletes the item" do
         @item.should_receive :delete
 
-        delete :destroy, :backlog_item_id => backlog_item.id
+        delete :destroy, :id => backlog_item.id
       end
 
       it "redirects to the backlog" do
-        get :destroy, :backlog_item_id => backlog_item.id
+        get :destroy, :id => backlog_item.id
 
-        expect(response).to redirect_to(backlog_path)
+        expect(response).to redirect_to(backlog_items_path)
       end
     end
   end

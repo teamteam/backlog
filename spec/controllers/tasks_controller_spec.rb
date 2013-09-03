@@ -65,37 +65,10 @@ describe TasksController do
     end
   end
 
-  describe "#toggle_completed" do
-    before :each do
-      Task.should_receive(:find).with(task.id.to_s).and_return task
-      TaskMailer.stub_chain(:complete_task_email, :deliver)
-    end
-
-    it "should send update item email" do
-      email = double
-      email.should_receive :deliver
-      TaskMailer.should_receive(:complete_task_email).and_return email
-      
-      get :toggle_completed, :backlog_item_id => item.id, :task_id => task.id
-    end
-
-    it "should redirect to backlog item page" do
-      get :toggle_completed, :backlog_item_id => item.id, :task_id => task.id
-
-      expect(response).to redirect_to backlog_item_path(item)
-    end
-
-    it "calls toggle_completed on the task" do
-      task.should_receive(:toggle_completed)
-
-      get :toggle_completed, :backlog_item_id => item.id, :task_id => task.id
-    end
-  end
-
   describe "#destroy" do
     before :each do
       @task = mock_model Task, :delete => false
-      Task.should_receive(:find).and_return @task
+      Task.stub(:find).and_return @task
 
       TaskMailer.stub_chain :delete_task_email, :deliver
     end
@@ -105,27 +78,29 @@ describe TasksController do
       email.should_receive :deliver
       TaskMailer.should_receive(:delete_task_email).and_return email
       
-      delete :destroy, :backlog_item_id => 2, :task_id => 1
+      delete :destroy, :backlog_item_id => 2, :id => 1
     end
 
     it "deletes the task" do
+      Task.should_receive(:find).with("1").and_return @task
+
       @task.should_receive :delete
       
-      delete :destroy, :backlog_item_id => 2, :task_id => 1
+      delete :destroy, :backlog_item_id => 2, :id => 1
     end
 
     it "should redirect to backlog item" do
-      delete :destroy, :backlog_item_id => 2, :task_id => 1
+      delete :destroy, :backlog_item_id => 2, :id => 1
       
       expect(response).to redirect_to backlog_item_path(2)
     end
   end
 
-  describe "#edit" do
+  describe "#show" do
     it "assigns task" do
       Task.should_receive(:find).with("1").and_return "Existing task"
 
-      get :edit, :backlog_item_id => 2, :task_id => 1
+      get :show, :backlog_item_id => 2, :id => 1
 
       expect(assigns :task).to eq "Existing task"
     end
@@ -142,35 +117,35 @@ describe TasksController do
       email.should_receive :deliver
       TaskMailer.should_receive(:update_task_email).and_return email
 
-      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "a name" }
+      post :update, :backlog_item_id => item.id, :id => task.id, :task => { :name => "a name" }
     end
 
     it "redirects back to the task edit" do
-      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "a name" }
+      patch :update, :backlog_item_id => item.id, :id => task.id, :task => { :name => "a name" }
 
-      expect(response).to redirect_to(task_path(item, task))
+      expect(response).to redirect_to(backlog_item_path(item))
     end
 
     it "updates the task" do
       task.should_receive(:update_attributes).with "name" => "a name"
 
-      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "a name" }
+      patch :update, :backlog_item_id => item.id, :id => task.id, :task => { :name => "a name" }
     end
 
     it "assigns task to the correct instance when unsuccessful" do
       task.should_receive(:update_attributes).and_return false
   
-      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "" }
+      patch :update, :backlog_item_id => item.id, :id => task.id, :task => { :name => "" }
 
       expect(assigns :task).to eq task
     end
 
-    it "renders the edit page when unsuccessful" do
+    it "renders the show page when unsuccessful" do
       task.should_receive(:update_attributes).and_return false
   
-      post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "" }
+      patch :update, :backlog_item_id => item.id, :id => task.id, :task => { :name => "" }
 
-      expect(assigns :task).to render_template :edit
+      expect(assigns :task).to render_template :show
     end
   end
 end

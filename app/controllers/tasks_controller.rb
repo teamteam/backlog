@@ -4,6 +4,10 @@ class TasksController < ApplicationController
     @task = Task.new :backlog_item_id => item.id
   end
 
+  def show
+    @task = Task.find params[:id]
+  end
+
   def create
     item = BacklogItem.find params[:backlog_item_id]
     @task = Task.new :name => params[:task][:name], :backlog_item_id => item.id
@@ -15,31 +19,20 @@ class TasksController < ApplicationController
     end
   end
 
-  def toggle_completed
-    task = Task.find(params[:task_id])
-    task.toggle_completed
-    TaskMailer.complete_task_email(task).deliver
-    redirect_to backlog_item_path params[:backlog_item_id]
-  end
-
   def destroy
-    task = Task.find(params[:task_id])
+    task = Task.find(params[:id])
     task.delete
     TaskMailer.delete_task_email(task).deliver
     redirect_to backlog_item_path params[:backlog_item_id]
   end
 
-  def edit
-    @task = Task.find params[:task_id]
-  end
-
   def update
-    @task = Task.find params[:task_id]
-    if @task.update_attributes params.require(:task).permit(:name)
+    @task = Task.find params[:id]
+    if @task.update_attributes params.require(:task).permit(:name, :completed)
       TaskMailer.update_task_email(@task).deliver
-      redirect_to task_path(params[:backlog_item_id], params[:task_id])
+      redirect_to backlog_item_path params[:backlog_item_id]
     else
-      render :edit
+      render :show
     end
   end
 end

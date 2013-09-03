@@ -10,7 +10,7 @@ describe "tasks/new" do
     assign :task, task
 
     render
-    expect(rendered).to have_selector "form[action='#{create_task_path(task.backlog_item)}']"
+    expect(rendered).to have_selector "form[action='#{backlog_item_tasks_path(task.backlog_item)}'][method='post']"
     expect(rendered).to have_field "Name"
     expect(rendered).to have_button "Create"
   end

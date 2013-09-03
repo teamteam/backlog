@@ -23,24 +23,24 @@ class BacklogItemsController < ApplicationController
     end
   end
 
-  def edit
-    @backlog_item = BacklogItem.find params[:backlog_item_id]
+  def show
+    @backlog_item = BacklogItem.find params[:id]
   end
 
   def update
-    @backlog_item = BacklogItem.find params[:backlog_item_id]
+    @backlog_item = BacklogItem.find params[:id]
     if @backlog_item.update_attributes params.require(:backlog_item).permit(:name, :completed)
       BacklogItemMailer.update_item_email(@backlog_item).deliver
       redirect_to :back
     else
-      render :edit
+      render :show
     end
   end
 
   def destroy
-    backlog_item = BacklogItem.find params[:backlog_item_id]
+    backlog_item = BacklogItem.find params[:id]
     backlog_item.delete
     BacklogItemMailer.delete_item_email(backlog_item).deliver
-    redirect_to backlog_path
+    redirect_to backlog_items_path
   end
 end

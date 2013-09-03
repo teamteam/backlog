@@ -9,7 +9,7 @@
 
   %p.cta
     - if user_signed_in?
-      %a.btn.btn-lg.btn-success{:href => backlog_path}
+      %a.btn.btn-lg.btn-success{:href => backlog_items_path}
         View Backlog
     - else
       %a.btn.btn-lg.btn-success.disabled
