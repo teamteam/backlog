@@ -38,8 +38,9 @@ class BacklogItemsController < ApplicationController
   end
 
   def destroy
-    BacklogItem.delete params[:backlog_item_id]
-      BacklogMailer.delete_item_email.deliver
+    backlog_item = BacklogItem.find params[:backlog_item_id]
+    backlog_item.delete
+    BacklogMailer.delete_item_email(backlog_item).deliver
     redirect_to backlog_path
   end
 end

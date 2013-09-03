@@ -201,6 +201,11 @@ describe BacklogItemsController do
     end
 
     describe "#destroy" do
+      before :each do
+        @item = mock_model BacklogItem, :delete => true
+        BacklogItem.should_receive(:find).with(backlog_item.id.to_s).and_return @item
+      end
+
       it "should send update item email" do
         email = double
         email.should_receive :deliver
@@ -210,14 +215,12 @@ describe BacklogItemsController do
       end
 
       it "deletes the item" do
-        BacklogItem.should_receive(:delete).with backlog_item.id.to_s
+        @item.should_receive :delete
 
         delete :destroy, :backlog_item_id => backlog_item.id
       end
 
       it "redirects to the backlog" do
-        BacklogItem.should_receive(:delete).with backlog_item.id.to_s
-
         get :destroy, :backlog_item_id => backlog_item.id
 
         expect(response).to redirect_to(backlog_path)

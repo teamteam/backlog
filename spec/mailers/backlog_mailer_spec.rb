@@ -65,7 +65,8 @@ describe "Notification Emails" do
 
     describe "Delete Item Email" do
       before :each do
-        @email = BacklogMailer.delete_item_email
+        item = mock_model BacklogItem, :name => "The Backlog Item Name"
+        @email = BacklogMailer.delete_item_email item
       end
 
       it "should send the email to everyone" do
@@ -74,6 +75,10 @@ describe "Notification Emails" do
 
       it "should have the correct subject" do
         expect(@email).to have_subject "Backlog Item Deleted"
+      end
+
+      it "should contain the name of the item" do
+        expect(@email).to have_body_text /The Backlog Item Name/
       end
     end
 

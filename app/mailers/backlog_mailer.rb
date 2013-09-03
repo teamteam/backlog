@@ -7,8 +7,9 @@ class BacklogMailer < ActionMailer::Base
     mail to: recipients.join(','), subject: "Backlog Item Created"
   end
 
-  def delete_item_email
+  def delete_item_email item
     recipients = User.all.map { |user| user.email }
+    @item = item
     mail to: recipients.join(','), subject: "Backlog Item Deleted"
   end
 
