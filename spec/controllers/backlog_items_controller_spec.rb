@@ -94,7 +94,17 @@ describe BacklogItemsController do
     describe "#create" do
       context "successful" do
         before :each do
+          BacklogItemMailer.stub_chain :create_item_email, :deliver
           backlog_item.should_receive(:save).and_return true
+        end
+
+        it "should send new item email" do
+          BacklogItem.should_receive(:new).and_return backlog_item
+          email = double
+          email.should_receive :deliver
+          BacklogItemMailer.should_receive(:create_item_email).and_return email
+
+          post :create, :backlog_item => { :name => "new backlog item" }
         end
 
         it "creates a new backlog item" do
@@ -143,6 +153,14 @@ describe BacklogItemsController do
         BacklogItem.should_receive(:find).with(backlog_item.id.to_s).and_return backlog_item
       end
 
+      it "should send update item email" do
+        email = double
+        email.should_receive :deliver
+        BacklogItemMailer.should_receive(:update_item_email).and_return email
+
+        post :update, :id => backlog_item.id, :backlog_item => { :name => "a name" }
+      end
+
       it "updates the backlog item" do
         backlog_item.should_receive(:update_attributes).with "name" => "a name"
 
@@ -183,15 +201,26 @@ describe BacklogItemsController do
     end
 
     describe "#destroy" do
+      before :each do
+        @item = mock_model BacklogItem, :delete => true
+        BacklogItem.should_receive(:find).with(backlog_item.id.to_s).and_return @item
+      end
+
+      it "should send update item email" do
+        email = double
+        email.should_receive :deliver
+        BacklogItemMailer.should_receive(:delete_item_email).and_return email
+
+        delete :destroy, :id => backlog_item.id
+      end
+
       it "deletes the item" do
-        BacklogItem.should_receive(:delete).with backlog_item.id.to_s
+        @item.should_receive :delete
 
         delete :destroy, :id => backlog_item.id
       end
 
       it "redirects to the backlog" do
-        BacklogItem.should_receive(:delete).with backlog_item.id.to_s
-
         get :destroy, :id => backlog_item.id
 
         expect(response).to redirect_to(backlog_items_path)
