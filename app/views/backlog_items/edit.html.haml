@@ -54,7 +54,7 @@
                     %tr
                       %td
                         .pull-left
-                          = link_to task_path(@backlog_item, task), :method => :patch, :title => "Complete task" do
+                          = link_to task_path(@backlog_item, task, :task => { :completed => (not task.completed) }), :method => :patch, :title => "Complete task" do
                             %i.icon-ok{ :class => task.completed ? 'completed' : '' }
                             = task.name
 
