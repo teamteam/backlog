@@ -6,17 +6,18 @@ describe BacklogItemsController do
       @team_name = "teamteam"
     end
 
-    it "has a backlog_path" do
-      path = backlog_path
+    it "has a backlog_items_path" do
+      path = backlog_items_path
 
       expect(path).to eq("/#{@team_name}")
       expect(get(path)).to route_to(
-        'backlog_items#index'
+        :action => 'index',
+        :controller => 'backlog_items',
       )
     end
 
-    it "has a archive_backlog_path" do
-      path = archive_backlog_path
+    it "has a archive_backlog_items_path" do
+      path = archive_backlog_items_path
 
       expect(path).to eq("/#{@team_name}/archive")
       expect(get(path)).to route_to(
@@ -30,8 +31,9 @@ describe BacklogItemsController do
 
       expect(path).to eq("/#{@team_name}/1")
       expect(get(path)).to route_to(
-        'backlog_items#edit',
-        :backlog_item_id => "#{item.id}"
+        :action => 'show',
+        :controller => 'backlog_items',
+        :id => "#{item.id}"
       )
     end
 
@@ -44,45 +46,34 @@ describe BacklogItemsController do
       )
     end
 
-    it "has a create_backlog_item_path" do
-      path = create_backlog_item_path
+    it "has a create backlog_item_path" do
+      path = backlog_items_path
 
-      expect(path).to eq("/#{@team_name}/create")
+      expect(path).to eq("/#{@team_name}")
       expect(post(path)).to route_to(
         'backlog_items#create'
       )
     end
 
-    it "has an update_backlog_item_path" do
+    it "has an update backlog_item_path" do
       item = mock_model BacklogItem, :id => 1
-      path = update_backlog_item_path(item)
+      path = backlog_item_path(item)
 
       expect(path).to eq("/#{@team_name}/1")
       expect(patch(path)).to route_to(
         'backlog_items#update',
-        :backlog_item_id => "#{item.id}"
+        :id => "#{item.id}"
       )
     end
 
-    it "has a delete_backlog_item_path" do
+    it "has a delete backlog_item_path" do
       item = mock_model BacklogItem, :id => 1
-      path = delete_backlog_item_path(item)
+      path = backlog_item_path(item)
 
       expect(path).to eq("/#{@team_name}/1")
       expect(delete(path)).to route_to(
         'backlog_items#destroy',
-        :backlog_item_id => "#{item.id}"
-      )
-    end
-
-    it "has a toggle_complete_backlog_item_path" do
-      item = mock_model BacklogItem, :id => 1
-      path = toggle_complete_backlog_item_path(item)
-      
-      expect(path).to eq("/#{@team_name}/1/toggle-complete")
-      expect(get(path)).to route_to(
-        'backlog_items#toggle_complete',
-        :backlog_item_id => "#{item.id}"
+        :id => "#{item.id}"
       )
     end
   end
