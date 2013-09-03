@@ -4,7 +4,7 @@
       %h1
         = @backlog_item.name
 
-      = form_for @backlog_item, url: update_backlog_item_path(@backlog_item), :html => { :role => "form", :class => "form-horizontal" } do |f|
+      = form_for @backlog_item, url: backlog_item_path(@backlog_item), :html => { :role => "form", :class => "form-horizontal" } do |f|
         .form-group{:class => @backlog_item.errors.has_key?(:name) ? 'has-error' : ''}
           .col-lg-2.control-label
             = f.label :name
@@ -54,17 +54,17 @@
                     %tr
                       %td
                         .pull-left
-                          = link_to task_path(@backlog_item, task, :task => { :completed => (not task.completed) }), :method => :patch, :title => "Complete task" do
+                          = link_to backlog_item_task_path(@backlog_item, task, :task => { :completed => (not task.completed) }), :method => :patch, :title => "Complete task" do
                             %i.icon-ok{ :class => task.completed ? 'completed' : '' }
                             = task.name
 
                         .pull-right
-                          = link_to task_path(@backlog_item, task), :title => "Edit task" do
+                          = link_to backlog_item_task_path(@backlog_item, task), :title => "Edit task" do
                             %i.icon-pencil
-                          = link_to task_path(@backlog_item, task), :method => :delete, :title => "Remove task", :data => { confirm: "Are you sure?" } do
+                          = link_to backlog_item_task_path(@backlog_item, task), :method => :delete, :title => "Remove task", :data => { confirm: "Are you sure?" } do
                             %i.icon-remove
 
-              = link_to new_task_path(@backlog_item), :title => "New task" do
+              = link_to new_backlog_item_task_path(@backlog_item), :title => "New task" do
                 %i.icon-plus
             %hr
 
