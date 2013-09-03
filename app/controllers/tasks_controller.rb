@@ -25,8 +25,8 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find params[:id]
-    if @task.update_attributes params.require(:task).permit(:name)
-      redirect_to task_path(params[:backlog_item_id], params[:id])
+    if @task.update_attributes params.require(:task).permit(:name, :completed)
+      redirect_to backlog_item_path params[:backlog_item_id]
     else
       render :show
     end

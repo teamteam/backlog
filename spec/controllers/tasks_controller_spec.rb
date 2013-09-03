@@ -85,7 +85,7 @@ describe TasksController do
     it "redirects back to the task edit" do
       patch :update, :backlog_item_id => item.id, :id => task.id, :task => { :name => "a name" }
 
-      expect(response).to redirect_to(task_path(item, task))
+      expect(response).to redirect_to(backlog_item_path(item))
     end
 
     it "updates the task" do
