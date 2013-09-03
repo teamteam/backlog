@@ -9,6 +9,7 @@ describe "tasks/show" do
     render
 
     expect(rendered).to have_selector "form[action='#{task_path(task.backlog_item, task)}']"
+    expect(rendered).to have_selector "input[name='_method'][value='put']"
     expect(rendered).to have_field "Name"
     expect(rendered).to have_button "Update"
     expect(rendered).to have_link("Cancel", href: backlog_item_path(task.backlog_item))
