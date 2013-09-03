@@ -54,14 +54,14 @@
                     %tr
                       %td
                         .pull-left
-                          = link_to toggle_completed_task_path(@backlog_item, task), :title => "Complete task" do
+                          = link_to task_path(@backlog_item, task), :method => :patch, :title => "Complete task" do
                             %i.icon-ok{ :class => task.completed ? 'completed' : '' }
                             = task.name
 
                         .pull-right
                           = link_to task_path(@backlog_item, task), :title => "Edit task" do
                             %i.icon-pencil
-                          = link_to delete_task_path(@backlog_item, task), :method => :delete, :title => "Remove task", :data => { confirm: "Are you sure?" } do
+                          = link_to task_path(@backlog_item, task), :method => :delete, :title => "Remove task", :data => { confirm: "Are you sure?" } do
                             %i.icon-remove
 
               = link_to new_task_path(@backlog_item), :title => "New task" do
