@@ -16,8 +16,9 @@ class TasksController < ApplicationController
   end
 
   def toggle_completed
-    Task.find(params[:task_id]).toggle_completed
-    BacklogMailer.complete_task_email.deliver
+    task = Task.find(params[:task_id])
+    task.toggle_completed
+    BacklogMailer.complete_task_email(task).deliver
     redirect_to backlog_item_path params[:backlog_item_id]
   end
 

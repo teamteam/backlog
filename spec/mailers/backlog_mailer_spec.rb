@@ -117,7 +117,8 @@ describe "Notification Emails" do
 
     describe "Complete Task Email" do
       before :each do
-        @email = BacklogMailer.complete_task_email
+        @task = mock_model Task, :name => "The Task Name"
+        @email = BacklogMailer.complete_task_email @task
       end
 
       it "should send the email to everyone" do
@@ -126,6 +127,10 @@ describe "Notification Emails" do
 
       it "should have the correct subject" do
         expect(@email).to have_subject "Task Marked Complete"
+      end
+
+      it "should contain the task name" do
+        expect(@email).to have_body_text /The Task Name/
       end
     end
 
