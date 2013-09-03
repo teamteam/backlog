@@ -11,25 +11,6 @@ describe "Notification Emails" do
       @view.stub :mail
     end
 
-    describe "Create Task Email" do
-      before :each do
-        task = mock_model Task, :name => "The Task Name"
-        @email = BacklogMailer.create_task_email task
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
-      it "should have the correct subject" do
-        expect(@email).to have_subject "Task Created"
-      end
-
-      it "should include the name of the new task" do
-        expect(@email).to have_body_text /The Task Name/
-      end
-    end
-
     describe "Create Item Email" do
       before :each do
         item = mock_model BacklogItem, :name => "The Backlog Item Name"
@@ -46,25 +27,6 @@ describe "Notification Emails" do
 
       it "should include the name of the new item" do
         expect(@email).to have_body_text /The Backlog Item Name/
-      end
-    end
-
-    describe "Delete Task Email" do
-      before :each do
-        task = mock_model Task, :name => "The Task Name"
-        @email = BacklogMailer.delete_task_email task
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
-      it "should have the correct subject" do
-        expect(@email).to have_subject "Task Deleted"
-      end
-
-      it "should contain the name of the task" do
-        expect(@email).to have_body_text /The Task Name/
       end
     end
 
@@ -87,25 +49,6 @@ describe "Notification Emails" do
       end
     end
 
-    describe "Update Task Email" do
-      before :each do
-        task = mock_model Task, :name => "The Task Name"
-        @email = BacklogMailer.update_task_email task
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
-      it "should have the correct subject" do
-        expect(@email).to have_subject "Task Updated"
-      end
-
-      it "should include the name of the new task" do
-        expect(@email).to have_body_text /The Task Name/
-      end
-    end
-
     describe "Update Item Email" do
       before :each do
         item = mock_model BacklogItem, :name => "The Backlog Item Name"
@@ -122,44 +65,6 @@ describe "Notification Emails" do
 
       it "should contain the item name" do
         expect(@email).to have_body_text /The Backlog Item Name/
-      end
-    end
-
-    describe "Complete Task Email" do
-      before :each do
-        @task = mock_model Task, :name => "The Task Name"
-        @email = BacklogMailer.complete_task_email @task
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
-      it "should have the correct subject" do
-        expect(@email).to have_subject "Task Marked Complete"
-      end
-
-      it "should contain the task name" do
-        expect(@email).to have_body_text /The Task Name/
-      end
-    end
-
-    describe "Incomplete Task Email" do
-      before :each do
-        @task = mock_model Task, :name => "The Task Name"
-        @email = BacklogMailer.incomplete_task_email @task
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
-      it "should have the correct subject" do
-        expect(@email).to have_subject "Task Marked Incomplete"
-      end
-
-      it "should contain the task name" do
-        expect(@email).to have_body_text /The Task Name/
       end
     end
   end

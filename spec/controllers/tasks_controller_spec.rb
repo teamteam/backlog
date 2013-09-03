@@ -22,13 +22,13 @@ describe TasksController do
 
   describe "#create" do
     before :each do
-      BacklogMailer.stub_chain :create_task_email, :deliver
+      TaskMailer.stub_chain :create_task_email, :deliver
     end
 
     it "should send update item email" do
       email = double
       email.should_receive :deliver
-      BacklogMailer.should_receive(:create_task_email).and_return email
+      TaskMailer.should_receive(:create_task_email).and_return email
 
       post :create, :backlog_item_id => item.id, :task => { :name => "My new task" }
     end
@@ -68,13 +68,13 @@ describe TasksController do
   describe "#toggle_completed" do
     before :each do
       Task.should_receive(:find).with(task.id.to_s).and_return task
-      BacklogMailer.stub_chain(:complete_task_email, :deliver)
+      TaskMailer.stub_chain(:complete_task_email, :deliver)
     end
 
     it "should send update item email" do
       email = double
       email.should_receive :deliver
-      BacklogMailer.should_receive(:complete_task_email).and_return email
+      TaskMailer.should_receive(:complete_task_email).and_return email
       
       get :toggle_completed, :backlog_item_id => item.id, :task_id => task.id
     end
@@ -97,13 +97,13 @@ describe TasksController do
       @task = mock_model Task, :delete => false
       Task.should_receive(:find).and_return @task
 
-      BacklogMailer.stub_chain :delete_task_email, :deliver
+      TaskMailer.stub_chain :delete_task_email, :deliver
     end
 
     it "should send update item email" do
       email = double
       email.should_receive :deliver
-      BacklogMailer.should_receive(:delete_task_email).and_return email
+      TaskMailer.should_receive(:delete_task_email).and_return email
       
       delete :destroy, :backlog_item_id => 2, :task_id => 1
     end
@@ -134,13 +134,13 @@ describe TasksController do
   describe "#update" do
     before :each do
       Task.should_receive(:find).with(task.id.to_s).and_return task
-      BacklogMailer.stub_chain :update_task_email, :deliver
+      TaskMailer.stub_chain :update_task_email, :deliver
     end
 
     it "should send update item email" do
       email = double
       email.should_receive :deliver
-      BacklogMailer.should_receive(:update_task_email).and_return email
+      TaskMailer.should_receive(:update_task_email).and_return email
 
       post :update, :backlog_item_id => item.id, :task_id => task.id, :task => { :name => "a name" }
     end
