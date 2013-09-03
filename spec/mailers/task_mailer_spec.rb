@@ -7,7 +7,8 @@ describe "Notification Emails" do
 
   describe "Emails" do
     before :each do
-      @task = mock_model Task, :name => "The Task Name"
+      @item = mock_model BacklogItem, :name => "The Backlog Item Name"
+      @task = mock_model Task, :name => "The Task Name", :backlog_item => @item
       User.stub(:all).and_return [mock_model(User, :email => "teammate@example.com")]
       @view.stub :mail
     end
@@ -26,7 +27,11 @@ describe "Notification Emails" do
       end
 
       it "should include the name of the new task" do
-        expect(@email).to have_body_text /The Task Name/
+        expect(@email).to have_body_text @task.name
+      end
+
+      it "should contain the name of the item" do
+        expect(@email).to have_body_text @item.name
       end
     end
 
@@ -61,7 +66,7 @@ describe "Notification Emails" do
         expect(@email).to have_subject "Task Updated"
       end
 
-      it "should include the name of the new task" do
+      it "should contain the name of the task" do
         expect(@email).to have_body_text /The Task Name/
       end
     end
