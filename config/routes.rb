@@ -4,30 +4,12 @@ Backlog::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  scope 'teamteam' do
-    get '', to: 'backlog_items#index', as: :backlog
-    get 'new', to: 'backlog_items#new', as: :new_backlog_item
-    post 'create', to: 'backlog_items#create', as: :create_backlog_item
-    get 'archive', to: 'backlog_items#archive', as: :archive_backlog
-
-    scope ':backlog_item_id' do
-      get '', to: 'backlog_items#edit', as: :backlog_item
-      patch '', to: 'backlog_items#update', as: :update_backlog_item
-      delete '', to: 'backlog_items#destroy', as: :delete_backlog_item
-      get 'toggle-complete', to: 'backlog_items#toggle_complete', as: :toggle_complete_backlog_item
-
-      scope 'tasks' do
-        get 'new', to: 'tasks#new', as: :new_task
-        post 'create', to: 'tasks#create', as: :create_task
-
-        scope ':task_id' do
-          get '', to: 'tasks#edit', as: :task
-          patch '', to: 'tasks#update', as: :update_task
-          delete '', to: 'tasks#destroy', as: :delete_task
-          get 'toggle-completed', to: 'tasks#toggle_completed', as: :toggle_completed_task
-        end
-      end
+  resources :backlog_items, path: '/teamteam' do
+    collection do
+      get 'archive', to: :archive
     end
+
+    resources :tasks
   end
 
   root 'application#index'

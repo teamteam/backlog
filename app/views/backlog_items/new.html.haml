@@ -4,7 +4,7 @@
       %h1
         New Item
 
-      = form_for @backlog_item, url: create_backlog_item_path, :html => { :role => "form", :class => "form-horizontal" } do |f|
+      = form_for @backlog_item, url: backlog_items_path, :html => { :role => "form", :class => "form-horizontal" } do |f|
         .form-group{:class => @backlog_item.errors.has_key?(:name) ? 'has-error' : ''}
           .col-lg-2.control-label
             = f.label :name

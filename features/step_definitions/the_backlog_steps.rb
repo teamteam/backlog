@@ -49,7 +49,7 @@ When /^submit$/ do
 end
 
 When /^I view the backlog$/ do
-  visit backlog_path
+  visit backlog_items_path
 end
 
 When /^I remove the task$/ do
