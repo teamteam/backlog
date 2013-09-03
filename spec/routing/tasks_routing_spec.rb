@@ -17,10 +17,10 @@ describe TasksController do
       )
     end
 
-    it "has a create_task_path" do
-      path = create_task_path @backlog_item
+    it "has a create tasks_path" do
+      path = tasks_path @backlog_item
 
-      expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks/create"
+      expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks"
       expect(:post => path).to route_to(
         :controller => "tasks",
         :action => "create",
@@ -28,29 +28,29 @@ describe TasksController do
       )
     end
 
-    it "has a toggle_completed_task_path" do
+    it "has a toggle_completed task_path" do
       task = mock_model Task
-      path = toggle_completed_task_path @backlog_item, task
+      path = task_path @backlog_item, task
 
-      expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks/#{task.id}/toggle-completed"
-      expect(:get => path).to route_to(
+      expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks/#{task.id}"
+      expect(:patch => path).to route_to(
         :controller => "tasks",
-        :action => "toggle_completed",
+        :action => "update",
         :backlog_item_id => @backlog_item.id.to_s,
-        :task_id => task.id.to_s
+        :id => task.id.to_s
       )
     end
 
-    it "has a delete_task_path" do
+    it "has a destroy task_path" do
       task = mock_model Task
-      path = delete_task_path @backlog_item, task
+      path = task_path @backlog_item, task
 
       expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks/#{task.id}"
       expect(:delete => path).to route_to(
         :controller => "tasks",
         :action => "destroy",
         :backlog_item_id => @backlog_item.id.to_s,
-        :task_id => task.id.to_s
+        :id => task.id.to_s
       )
     end
 
@@ -61,22 +61,22 @@ describe TasksController do
       expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks/#{task.id}"
       expect(:get => path).to route_to(
         :controller => "tasks",
-        :action => "edit",
+        :action => "show",
         :backlog_item_id => @backlog_item.id.to_s,
-        :task_id => task.id.to_s
+        :id => task.id.to_s
       )
     end
 
-    it "has an update_task_path" do
+    it "has an update task_path" do
       task = mock_model Task
-      path = update_task_path @backlog_item, task
+      path = task_path @backlog_item, task
 
       expect(path).to eq "/#{@team_name}/#{@backlog_item.id}/tasks/#{task.id}"
       expect(:patch => path).to route_to(
         :controller => "tasks",
         :action => "update",
         :backlog_item_id => @backlog_item.id.to_s,
-        :task_id => task.id.to_s
+        :id => task.id.to_s
       )
     end
   end
