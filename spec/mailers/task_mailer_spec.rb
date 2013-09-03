@@ -10,16 +10,11 @@ describe "Notification Emails" do
       @item = mock_model BacklogItem, :name => "The Backlog Item Name"
       @task = mock_model Task, :name => "The Task Name", :backlog_item => @item
       User.stub(:all).and_return [mock_model(User, :email => "teammate@example.com")]
-      @view.stub :mail
     end
 
     describe "Create Task Email" do
       before :each do
         @email = TaskMailer.create_task_email @task
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
       end
 
       it "should have the correct subject" do
@@ -40,10 +35,6 @@ describe "Notification Emails" do
         @email = TaskMailer.delete_task_email @task
       end
 
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
       it "should have the correct subject" do
         expect(@email).to have_subject "Task Deleted"
       end
@@ -56,10 +47,6 @@ describe "Notification Emails" do
     describe "Update Task Email" do
       before :each do
         @email = TaskMailer.update_task_email @task
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
       end
 
       it "should have the correct subject" do
@@ -76,10 +63,6 @@ describe "Notification Emails" do
         @email = TaskMailer.complete_task_email @task
       end
 
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
       it "should have the correct subject" do
         expect(@email).to have_subject "Task Marked Complete"
       end
@@ -92,10 +75,6 @@ describe "Notification Emails" do
     describe "Incomplete Task Email" do
       before :each do
         @email = TaskMailer.incomplete_task_email @task
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
       end
 
       it "should have the correct subject" do

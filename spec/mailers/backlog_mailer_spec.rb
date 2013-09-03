@@ -1,69 +1,18 @@
 require 'spec_helper'
 
-describe "Notification Emails" do
-  include EmailSpec::Helpers
-  include EmailSpec::Matchers
-  include Rails.application.routes.url_helpers
+class TestMailer
+  include BacklogMailer
+end
 
-  describe "Emails" do
-    before :each do
-      @item = mock_model BacklogItem, :name => "The Backlog Item Name"
-      User.stub(:all).and_return [mock_model(User, :email => "teammate@example.com")]
-      @view.stub :mail
-    end
+describe BacklogMailer do
+  describe "#recipients" do
+    it "returns all users" do
+      User.should_receive(:all).and_return [
+        mock_model(User, :email => "teammate1@example.com"),
+        mock_model(User, :email => "teammate2@example.com")
+      ]
 
-    describe "Create Item Email" do
-      before :each do
-        @email = BacklogMailer.create_item_email @item
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
-      it "should have the correct subject" do
-        expect(@email).to have_subject "Backlog Item Created"
-      end
-
-      it "should include the name of the new item" do
-        expect(@email).to have_body_text @item.name
-      end
-    end
-
-    describe "Delete Item Email" do
-      before :each do
-        @email = BacklogMailer.delete_item_email @item
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
-      it "should have the correct subject" do
-        expect(@email).to have_subject "Backlog Item Deleted"
-      end
-
-      it "should contain the name of the item" do
-        expect(@email).to have_body_text @item.name
-      end
-    end
-
-    describe "Update Item Email" do
-      before :each do
-        @email = BacklogMailer.update_item_email @item
-      end
-
-      it "should send the email to everyone" do
-        expect(@email).to deliver_to "teammate@example.com"
-      end
-
-      it "should have the correct subject" do
-        expect(@email).to have_subject "Backlog Item Updated"
-      end
-
-      it "should contain the item name" do
-        expect(@email).to have_body_text @item.name
-      end
+      expect(TestMailer.new.recipients).to eq "teammate1@example.com,teammate2@example.com"
     end
   end
 end

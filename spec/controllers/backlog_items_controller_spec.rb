@@ -94,7 +94,7 @@ describe BacklogItemsController do
     describe "#create" do
       context "successful" do
         before :each do
-          BacklogMailer.stub_chain :create_item_email, :deliver
+          BacklogItemMailer.stub_chain :create_item_email, :deliver
           backlog_item.should_receive(:save).and_return true
         end
 
@@ -102,7 +102,7 @@ describe BacklogItemsController do
           BacklogItem.should_receive(:new).and_return backlog_item
           email = double
           email.should_receive :deliver
-          BacklogMailer.should_receive(:create_item_email).and_return email
+          BacklogItemMailer.should_receive(:create_item_email).and_return email
 
           post :create, :backlog_item => { :name => "new backlog item" }
         end
@@ -156,7 +156,7 @@ describe BacklogItemsController do
       it "should send update item email" do
         email = double
         email.should_receive :deliver
-        BacklogMailer.should_receive(:update_item_email).and_return email
+        BacklogItemMailer.should_receive(:update_item_email).and_return email
 
         post :update, :backlog_item_id => backlog_item.id, :backlog_item => { :name => "a name" }
       end
@@ -209,7 +209,7 @@ describe BacklogItemsController do
       it "should send update item email" do
         email = double
         email.should_receive :deliver
-        BacklogMailer.should_receive(:delete_item_email).and_return email
+        BacklogItemMailer.should_receive(:delete_item_email).and_return email
 
         delete :destroy, :backlog_item_id => backlog_item.id
       end
