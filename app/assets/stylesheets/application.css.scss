@@ -16,6 +16,7 @@
 
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+// common colors
 $dark: #000000;
 $inactive_sucess: #38C481;
 $success: #5CB85C;
@@ -24,7 +25,9 @@ $danger: #BD4A48;
 $default: #DDDDDD;
 $text: #444444;
 
-.jumbotron {
+// home
+
+.home {
   padding-top: 150px;
   background: none;
   text-align: center;
@@ -42,8 +45,8 @@ $text: #444444;
     padding-top: 20px;
   }
 
-  p.cta {
-    padding-top: 50px;
+  a {
+    margin-top: 50px;
   }
 }
 
