@@ -13,10 +13,6 @@ describe BacklogItem do
     it "defaults archived to false" do
       expect(BacklogItem.new(:name => 'something').archived).to be_false
     end
-
-    it "defaults completed to false" do
-      expect(BacklogItem.new(:name => 'something').completed).to be_false
-    end
   end
 
   describe "ordering" do

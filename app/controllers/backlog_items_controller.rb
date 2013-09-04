@@ -28,7 +28,7 @@ class BacklogItemsController < ApplicationController
   end
 
   def update
-    if @backlog_item.update_attributes params.require(:backlog_item).permit(:name, :completed)
+    if @backlog_item.update_attributes params.require(:backlog_item).permit(:name)
       BacklogItemMailer.update_item_email(@backlog_item).deliver
       redirect_to :back
     else
