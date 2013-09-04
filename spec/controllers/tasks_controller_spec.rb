@@ -45,7 +45,7 @@ describe TasksController do
     end
 
     it "creates a new task" do
-      Task.should_receive(:new).with(:name => "My new task", :backlog_item_id => item.id).and_return task
+      Task.should_receive(:new).with(:name => "My new task", :backlog_item_id => item.id.to_s).and_return task
       post :create, :backlog_item_id => item.id, :task => { :name => "My new task" }
     end
 

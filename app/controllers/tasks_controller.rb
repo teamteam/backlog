@@ -10,11 +10,10 @@ class TasksController < ApplicationController
   end
 
   def create
-    item = BacklogItem.find params[:backlog_item_id]
-    @task = Task.new :name => params[:task][:name], :backlog_item_id => item.id
+    @task = Task.new :name => params[:task][:name], :backlog_item_id => params[:backlog_item_id]
     if @task.save
       TaskMailer.create_task_email(@task).deliver
-      redirect_to backlog_item_path(item)
+      redirect_to backlog_item_path params[:backlog_item_id]
     else
       render :action => :new
     end
