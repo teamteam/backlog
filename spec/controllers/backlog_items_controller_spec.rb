@@ -183,12 +183,10 @@ describe BacklogItemsController do
           backlog_item.should_receive(:update_attributes).and_return true
         end
 
-        it "redirects back to referer when update is successful" do
-          @request.env['HTTP_REFERER'] = 'something'
-
+        it "redirects back to the item" do
           post :update, :id => backlog_item.id, :backlog_item => { :name => "a" }
 
-          expect(response).to redirect_to("something")
+          expect(response).to redirect_to(backlog_item_path(backlog_item))
         end
       end
 

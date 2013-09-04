@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe TasksController do
-  let(:task) { mock_model(Task).as_null_object }
   let(:item) { BacklogItem.create :name => "test backlog item name" }
+  let(:task) { mock_model(Task, :backlog_item => item).as_null_object }
 
   before :each do
     Task.stub(:new).and_return task
