@@ -79,4 +79,11 @@ describe "backlog_items/show" do
       end
     end
   end
+
+  it "changes the title" do
+    assign :backlog_item, mock_model(BacklogItem, :name => "Item").as_null_object
+    view.should_receive(:content_for).with(:title, "Item")
+
+    render
+  end
 end
