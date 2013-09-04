@@ -8,6 +8,17 @@ describe TasksController do
     Task.stub(:new).and_return task
   end
 
+  describe "#find_task" do
+    it "assigns the correct task" do
+      Task.should_receive(:find).with("1").and_return task
+      controller.params[:id] = "1"
+
+      controller.find_task
+
+      expect(assigns :task).to eq(task)
+    end
+  end
+
   describe "#new" do
     it "assigns a new task" do
       get :new, :backlog_item_id => item.id
