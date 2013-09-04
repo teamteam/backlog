@@ -16,6 +16,8 @@
 
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+// common
+
 $dark: #000000;
 $inactive_sucess: #38C481;
 $success: #5CB85C;
@@ -24,31 +26,77 @@ $danger: #BD4A48;
 $default: #DDDDDD;
 $text: #444444;
 
-.jumbotron {
-  padding-top: 150px;
-  background: none;
-  text-align: center;
-  color: $text;
+body {
+  padding-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  padding-bottom: 75px;
+}
 
-  h1 {
-    font-size: 84px;
-  }
+h1 {
+  font-family: 'Roboto', sans-serif;
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+a {
+  color: $text;
+}
+
+a:hover {
+  color: $dark;
+  text-decoration: none;
 
   i {
-    top: 5px;
+    color: $text;
   }
 
-  p.lead {
-    padding-top: 20px;
+  i.icon-remove {
+    color: $danger;
   }
 
-  p.cta {
-    padding-top: 50px;
+  i.icon-plus {
+    color: $success;
   }
 }
 
-.alert {
-  font-size: 14px;
+i {
+  color: $default;
+  position: relative;
+  left: -10px;
+}
+
+i.icon-plus {
+  color: $text;
+}
+
+form {
+  padding-top: 50px;
+
+  label {
+    font-weight: normal;
+    font-size: 15px;
+  }
+}
+
+hr {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  height: 1px;
+  border: none;
+  border-top: thin dotted $default;
+}
+
+table.table {
+  border-top: thin dotted $default;
+
+  tr {
+    border-bottom: thin dotted $default;
+
+    td {
+      border: none;
+    }
+  }
 }
 
 .danger {
@@ -63,19 +111,7 @@ $text: #444444;
   color: $warning;
 }
 
-a {
-  color: $text;
-}
-
-a:hover {
-  text-decoration: none;
-  color: $dark;
-}
-
-hr {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
+// navigation
 
 .navbar {
   background: none;
@@ -96,56 +132,29 @@ hr {
   }
 }
 
-body {
-  padding-top: 20px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-  padding-bottom: 75px;
-}
+// home
 
-i {
-  color: $default;
-  position: relative;
-  left: -10px;
-}
-
-a:hover {
+.home {
+  padding-top: 150px;
+  background: none;
+  text-align: center;
   color: $text;
 
+  h1 {
+    font-size: 84px;
+  }
+
   i {
-    color: $text;
+    top: 5px;
   }
 
-  i.icon-remove {
-    color: $danger;
+  p.lead {
+    padding-top: 20px;
   }
 
-  i.icon-plus {
-    color: $success;
+  a {
+    margin-top: 50px;
   }
-}
-
-.completed {
-  color: $success;
-}
-
-.not-completed {
-  color: $default;
-}
-
-h1 {
-  font-family: 'Roboto', sans-serif;
-  margin-top: 10px;
-  padding-left: 15px;
-}
-
-label {
-  font-weight: normal;
-  font-size: 15px;
-}
-
-form {
-  padding-top: 50px;
 }
 
 .backlog-item {
@@ -159,32 +168,10 @@ form {
   }
 }
 
-hr {
-  height: 1px;
-  border: none;
-  border-top: thin dotted $default;
-}
-
-table.table {
-  border-top: thin dotted $default;
-
-  tr {
-    border-bottom: thin dotted $default;
-
-    td {
-      border: none;
-    }
-  }
-}
-
 .archive {
   i {
     color: $text;
   }
-}
-
-i.icon-plus {
-  color: $text;
 }
 
 .tasks {

@@ -1,11 +1,22 @@
 require 'spec_helper'
 
 describe TasksController do
-  let(:task) { mock_model(Task).as_null_object }
   let(:item) { BacklogItem.create :name => "test backlog item name" }
+  let(:task) { mock_model(Task, :backlog_item => item).as_null_object }
 
   before :each do
     Task.stub(:new).and_return task
+  end
+
+  describe "#find_task" do
+    it "assigns the correct task" do
+      Task.should_receive(:find).with("1").and_return task
+      controller.params[:id] = "1"
+
+      controller.find_task
+
+      expect(assigns :task).to eq(task)
+    end
   end
 
   describe "#new" do
@@ -34,7 +45,7 @@ describe TasksController do
     end
 
     it "creates a new task" do
-      Task.should_receive(:new).with(:name => "My new task", :backlog_item_id => item.id).and_return task
+      Task.should_receive(:new).with(:name => "My new task", :backlog_item_id => item.id.to_s).and_return task
       post :create, :backlog_item_id => item.id, :task => { :name => "My new task" }
     end
 
@@ -67,7 +78,8 @@ describe TasksController do
 
   describe "#destroy" do
     before :each do
-      @task = mock_model Task, :delete => false
+      @item = mock_model BacklogItem
+      @task = mock_model Task, :backlog_item => @item, :delete => false
       Task.stub(:find).and_return @task
 
       TaskMailer.stub_chain :delete_task_email, :deliver
@@ -78,7 +90,7 @@ describe TasksController do
       email.should_receive :deliver
       TaskMailer.should_receive(:delete_task_email).and_return email
       
-      delete :destroy, :backlog_item_id => 2, :id => 1
+      delete :destroy, :backlog_item_id => @item.id, :id => 1
     end
 
     it "deletes the task" do
@@ -86,13 +98,13 @@ describe TasksController do
 
       @task.should_receive :delete
       
-      delete :destroy, :backlog_item_id => 2, :id => 1
+      delete :destroy, :backlog_item_id => @item.id, :id => 1
     end
 
     it "should redirect to backlog item" do
-      delete :destroy, :backlog_item_id => 2, :id => 1
+      delete :destroy, :backlog_item_id => @item.id, :id => 1
       
-      expect(response).to redirect_to backlog_item_path(2)
+      expect(response).to redirect_to backlog_item_path(@item.id)
     end
   end
 

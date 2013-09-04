@@ -7,30 +7,29 @@ describe "backlog_items/show" do
     context "with tasks" do
       before :each do
         assign :backlog_item, backlog_item
-        backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
+        backlog_item.stub(:has_work).and_return true
+        backlog_item.stub(:is_done).and_return false
       end
 
       context "with remaining tasks" do
         it "should show message not done" do
-          backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return false
+          backlog_item.should_receive(:has_work).and_return true
+          backlog_item.should_receive(:is_done).and_return false
 
           render
 
           expect(rendered).to have_content "Not done!"
-          expect(rendered).not_to have_content "No work!"
-          expect(rendered).not_to have_content "Done!"
         end
       end
 
       context "without remaining tasks" do
         it "should show done message" do
-          backlog_item.stub_chain(:tasks, :remaining, :empty?).and_return true
+          backlog_item.should_receive(:has_work).and_return true
+          backlog_item.should_receive(:is_done).and_return true
 
           render
 
           expect(rendered).to have_content "Done!"
-          expect(rendered).not_to have_content "Not done!"
-          expect(rendered).not_to have_content "No work!"
         end
       end
 
@@ -62,7 +61,7 @@ describe "backlog_items/show" do
 
     context "without tasks" do
       before :each do
-        assign :backlog_item, mock_model(BacklogItem).as_null_object
+        assign :backlog_item, mock_model(BacklogItem, :has_work => false).as_null_object
         render
       end
 
