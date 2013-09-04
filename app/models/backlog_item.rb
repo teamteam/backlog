@@ -5,4 +5,12 @@ class BacklogItem < ActiveRecord::Base
 
   scope :archived, -> { where(:archived => true).order "updated_at DESC" }
   scope :this_week, -> { where(:archived => false) }
+
+  def has_work
+    not tasks.empty?
+  end
+
+  def is_done
+    tasks.remaining.empty?
+  end
 end

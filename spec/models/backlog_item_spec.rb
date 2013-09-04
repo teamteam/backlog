@@ -3,6 +3,43 @@ require 'spec_helper'
 describe BacklogItem do
   fixtures :backlog_items
 
+  describe "statuses" do
+    describe "#has_work" do
+      it "handles true" do
+        item = BacklogItem.new
+        item.stub_chain(:tasks, :empty?).and_return false
+
+        expect(item.has_work).to be_true
+      end
+
+      it "handles false" do
+        item = BacklogItem.new
+        item.stub_chain(:tasks, :empty?).and_return true
+
+        expect(item.has_work).to be_false
+      end
+    end
+
+    describe "#is_done" do
+      before :each do
+        @item = BacklogItem.new
+        @item.stub_chain(:tasks, :empty?).and_return false
+      end
+
+      it "handles false" do
+        @item.stub_chain(:tasks, :remaining, :empty?).and_return false
+
+        expect(@item.is_done).to be_false
+      end
+
+      it "handles true" do
+        @item.stub_chain(:tasks, :remaining, :empty?).and_return true
+
+        expect(@item.is_done).to be_true
+      end
+    end
+  end
+
   describe "creation" do
     it "requires a name" do
       expect(BacklogItem.new).not_to be_valid
