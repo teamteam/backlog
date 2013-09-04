@@ -50,7 +50,7 @@ describe 'backlog_items/index' do
 
         render
 
-        expect(rendered).to have_selector 'i.icon-ok.completed'
+        expect(rendered).to have_selector 'i.icon-ok.success'
       end
     end
   end

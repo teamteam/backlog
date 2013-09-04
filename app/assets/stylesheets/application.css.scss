@@ -16,7 +16,8 @@
 
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
-// common colors
+// common
+
 $dark: #000000;
 $inactive_sucess: #38C481;
 $success: #5CB85C;
@@ -24,6 +25,112 @@ $warning: #F0AD4E;
 $danger: #BD4A48;
 $default: #DDDDDD;
 $text: #444444;
+
+body {
+  padding-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  padding-bottom: 75px;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+a {
+  color: $text;
+}
+
+a:hover {
+  color: $dark;
+  text-decoration: none;
+
+  i {
+    color: $text;
+  }
+
+  i.icon-remove {
+    color: $danger;
+  }
+
+  i.icon-plus {
+    color: $success;
+  }
+}
+
+i {
+  color: $default;
+  position: relative;
+  left: -10px;
+}
+
+i.icon-plus {
+  color: $text;
+}
+
+form {
+  padding-top: 50px;
+
+  label {
+    font-weight: normal;
+    font-size: 15px;
+  }
+}
+
+hr {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  height: 1px;
+  border: none;
+  border-top: thin dotted $default;
+}
+
+table.table {
+  border-top: thin dotted $default;
+
+  tr {
+    border-bottom: thin dotted $default;
+
+    td {
+      border: none;
+    }
+  }
+}
+
+.danger {
+  color: $danger;
+}
+
+.success {
+  color: $success;
+}
+
+.warning {
+  color: $warning;
+}
+
+// navigation
+
+.navbar {
+  background: none;
+  border: none;
+}
+
+.control-label {
+  top: -4px;
+}
+
+.navbar-brand {
+  padding-top: 12px;
+
+  i {
+    font-size: 28px;
+    color: $text;
+    margin-left: 15px;
+  }
+}
 
 // home
 
@@ -50,107 +157,6 @@ $text: #444444;
   }
 }
 
-.alert {
-  font-size: 14px;
-}
-
-.danger {
-  color: $danger;
-}
-
-.success {
-  color: $success;
-}
-
-.warning {
-  color: $warning;
-}
-
-a {
-  color: $text;
-}
-
-a:hover {
-  text-decoration: none;
-  color: $dark;
-}
-
-hr {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-.navbar {
-  background: none;
-  border: none;
-}
-
-.control-label {
-  top: -4px;
-}
-
-.navbar-brand {
-  padding-top: 12px;
-
-  i {
-    font-size: 28px;
-    color: $text;
-    margin-left: 15px;
-  }
-}
-
-body {
-  padding-top: 20px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-  padding-bottom: 75px;
-}
-
-i {
-  color: $default;
-  position: relative;
-  left: -10px;
-}
-
-a:hover {
-  color: $text;
-
-  i {
-    color: $text;
-  }
-
-  i.icon-remove {
-    color: $danger;
-  }
-
-  i.icon-plus {
-    color: $success;
-  }
-}
-
-.completed {
-  color: $success;
-}
-
-.not-completed {
-  color: $default;
-}
-
-h1 {
-  font-family: 'Roboto', sans-serif;
-  margin-top: 10px;
-  padding-left: 15px;
-}
-
-label {
-  font-weight: normal;
-  font-size: 15px;
-}
-
-form {
-  padding-top: 50px;
-}
-
 .backlog-item {
   .status {
     top: 7px;
@@ -162,32 +168,10 @@ form {
   }
 }
 
-hr {
-  height: 1px;
-  border: none;
-  border-top: thin dotted $default;
-}
-
-table.table {
-  border-top: thin dotted $default;
-
-  tr {
-    border-bottom: thin dotted $default;
-
-    td {
-      border: none;
-    }
-  }
-}
-
 .archive {
   i {
     color: $text;
   }
-}
-
-i.icon-plus {
-  color: $text;
 }
 
 .tasks {

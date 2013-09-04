@@ -18,7 +18,7 @@
                     %div.danger= "-"
                   - else
                     - if backlog_item.tasks.remaining.empty?
-                      %i.icon-ok.completed
+                      %i.icon-ok.success
                     - else
                       %div.warning
                         = backlog_item.tasks.remaining.count
