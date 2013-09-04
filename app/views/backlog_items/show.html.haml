@@ -22,19 +22,16 @@
             %label
               Status
           .col-lg-8.status
-            - if @backlog_item.tasks.empty?
+            %strong
+            - if not @backlog_item.has_work
               .danger
-                %strong
-                  No work!
+                No work!
+            - elsif @backlog_item.is_done
+              .success
+                Done!
             - else
-              - if @backlog_item.tasks.remaining.empty?
-                .success
-                  %strong
-                    Done!
-              - else
-                .warning
-                  %strong
-                    Not done!
+              .warning
+                Not done!
             %hr
 
         .form-group
@@ -44,7 +41,7 @@
           .col-lg-8
             .tasks
               %table.table.tasks
-                - if @backlog_item.tasks.empty?
+                - if not @backlog_item.has_work
                   %tr
                     %td
                       %em
@@ -55,7 +52,7 @@
                       %td
                         .pull-left
                           = link_to backlog_item_task_path(@backlog_item, task, :task => { :completed => (not task.completed) }), :method => :patch, :title => "Complete task" do
-                            %i.icon-ok{ :class => task.completed ? 'completed' : '' }
+                            %i.icon-ok{ :class => task.completed ? 'success' : '' }
                             = task.name
 
                         .pull-right

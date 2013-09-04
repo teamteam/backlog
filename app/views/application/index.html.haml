@@ -1,5 +1,4 @@
-
-%div.jumbotron
+.home
   %h1
     %i.icon-list
     The Backlog
@@ -7,7 +6,7 @@
   %p.lead
     An easier way to work together.
 
-  %p.cta
+  %p
     - if user_signed_in?
       %a.btn.btn-lg.btn-success{:href => backlog_items_path}
         View Backlog

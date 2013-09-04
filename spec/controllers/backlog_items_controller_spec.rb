@@ -11,6 +11,17 @@ describe BacklogItemsController do
     @item2 = backlog_items :second_item
   end
 
+  describe "#find_backlog_item" do
+    it "assigns the correct backlog item" do
+      BacklogItem.should_receive(:find).with("1").and_return backlog_item
+      controller.params[:id] = "1"
+
+      controller.find_backlog_item
+
+      expect(assigns :backlog_item).to eq(backlog_item)
+    end
+  end
+
   context "not signed in" do
     it "redirects index to login" do
       get :index
@@ -172,12 +183,10 @@ describe BacklogItemsController do
           backlog_item.should_receive(:update_attributes).and_return true
         end
 
-        it "redirects back to referer when update is successful" do
-          @request.env['HTTP_REFERER'] = 'something'
-
+        it "redirects back to the item" do
           post :update, :id => backlog_item.id, :backlog_item => { :name => "a" }
 
-          expect(response).to redirect_to("something")
+          expect(response).to redirect_to(backlog_item_path(backlog_item))
         end
       end
 
