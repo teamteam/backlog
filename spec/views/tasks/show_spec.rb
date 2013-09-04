@@ -14,4 +14,11 @@ describe "tasks/show" do
     expect(rendered).to have_button "Update"
     expect(rendered).to have_link("Cancel", href: backlog_item_path(task.backlog_item))
   end
+
+  it "changes the title" do
+    assign :task, mock_model(Task, :name => "Task").as_null_object
+    view.should_receive(:content_for).with(:title, "Task")
+
+    render
+  end
 end
