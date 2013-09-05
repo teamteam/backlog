@@ -169,8 +169,10 @@ table.table {
 }
 
 .archive {
-  i {
-    color: $text;
+  .status {
+    i {
+      color: $text;
+    }
   }
 }
 

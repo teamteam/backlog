@@ -211,6 +211,7 @@ describe BacklogItemsController do
 
     describe "#destroy" do
       before :each do
+        @request.env['HTTP_REFERER'] = ''
         @item = mock_model BacklogItem, :delete => true
         BacklogItem.should_receive(:find).with(backlog_item.id.to_s).and_return @item
       end
@@ -229,10 +230,12 @@ describe BacklogItemsController do
         delete :destroy, :id => backlog_item.id
       end
 
-      it "redirects to the backlog" do
+      it "redirects to the referer" do
+        @request.env['HTTP_REFERER'] = 'an example referer'
+
         get :destroy, :id => backlog_item.id
 
-        expect(response).to redirect_to(backlog_items_path)
+        expect(response).to redirect_to('an example referer')
       end
     end
   end
