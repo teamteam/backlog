@@ -50,4 +50,24 @@ describe 'layouts/application' do
       end
     end
   end
+
+  describe "page title" do
+    before :each do
+      assign :without_navigation, true
+    end
+
+    it "shows the default" do
+      render
+
+      expect(rendered).to have_title "Backlog"
+    end
+
+    it "shows the title passed to it" do
+      view.content_for(:title) { "Test" }
+
+      render
+
+      expect(rendered).to have_title "Test | Backlog"
+    end
+  end
 end
