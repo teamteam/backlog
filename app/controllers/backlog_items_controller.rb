@@ -39,7 +39,7 @@ class BacklogItemsController < ApplicationController
   def destroy
     @backlog_item.delete
     BacklogItemMailer.delete_item_email(@backlog_item).deliver
-    redirect_to backlog_items_path
+    redirect_to :back
   end
 
   def find_backlog_item

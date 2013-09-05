@@ -17,3 +17,9 @@
                 .status.pull-left
                   %i.icon-ok
                 = backlog_item.name
+
+                .pull-right
+                  = link_to backlog_item_path(backlog_item), :title => "Edit item" do
+                    %i.icon-pencil
+                  = link_to backlog_item, :method => :delete, :title => "Remove item", :data => { confirm: "Are you sure?" } do
+                    %i.icon-remove
